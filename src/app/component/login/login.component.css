@@ -1,0 +1,49 @@
+#wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back {
+    border: none;
+}
+
+hr {
+    border: 2px solid cornflowerblue;
+}
+
+.consensus {
+    text-align: left;
+}
+
+.consensusInput {
+    margin-bottom: 0;
+}
+
+.body-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+/*-------------- button check --------------------------*/
+
+.mat-checkbox .mat-checkbox-frame {
+    transform: scale(2);
+    border: solid 1px cornflowerblue;
+}
+
+.mat-checkbox-checked .mat-checkbox-background {
+    transform: scale(2);
+}
+
+.checkbox-consensus {
+    margin-bottom: 0;
+}
+
+.card-body {
+    font-size: 12px;
+}
+
+
+
+

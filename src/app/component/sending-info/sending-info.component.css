@@ -1,0 +1,63 @@
+#wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back {
+    border: none;
+    text-align: left;
+}
+
+hr {
+    border: 2px solid cornflowerblue;
+}
+
+.consensus {
+    text-align: left;
+}
+
+.drop {
+    align-items: center;
+}
+
+.consensusInput {
+    margin-bottom: 0;
+}
+
+.body-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.card-header {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/*--------------------------radio button ----------------------------------*/
+
+.mat-radio-button .mat-radio-container{
+    height: 30px;
+    width: 30px;
+}
+.mat-radio-button .mat-radio-outer-circle{
+    height: 30px;
+    width: 30px;
+}
+.mat-radio-button .mat-radio-inner-circle{
+    height: 30px;
+    width: 30px;
+}
+.mat-radio-button .mat-radio-button .mat-radio-ripple{
+    height: 20px;
+    width: 20px;
+    left: calc(50% - 10px);
+    top: calc(50% - 10px);
+}
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+<div class="container">
+
+    <!-------------------------------------------------------title-------------------------------------------------------->
+    <div class="body-title row">
+        <button class="btn btn-outline-primary back col-1" [routerLink]="['/banks', id, 'sending']"><i
+                class="fas fa-arrow-left"></i>
+        </button>
+        <div class="body-title col-10">
+            Login information
+        </div>
+    </div>
+    <hr>
+    <app-information></app-information>
+    <hr>
+
+    <!-------------------------------------------------- login   ------------------------------------------------------>
+    <div class="accordion login" id="accordionExample">
+        <div class="card">
+            <div class="card-header card-check form-inline" id="headingOne">
+                <div class="form-group col-sm-11 col-10">
+                    <mat-checkbox color="primary" id="checkbox-consensus" class="checkbox-consensus" name="radio"
+                                  (click)="checkBox()"><i style="margin-left: 10px">{{report}}</i></mat-checkbox>
+                </div>
+                <div class="form-group">
+                    <button class="btn drop" type="button" data-toggle="collapse"
+                            data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down "></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <form [formGroup]="loginForm">
+                        <div class="form-group row">
+                            <label for="exampleInputId" class="col-4 col-sm-2 col-form-label login">ID:</label>
+                            <input type="text" class="form-control col-8 col-sm-10 login" id="exampleInputId"
+                                   formControlName="username"
+                                   aria-describedby="idHelp" placeholder="Enter Id"
+                                   [ngClass]="{ 'is-invalid': f.username.errors && f.username.touched }"/>
+                        </div>
+                        <div *ngIf="f.username.errors && f.username.touched" class="alert alert-danger">
+                            <div *ngIf="f.username.errors.required">Username is required</div>
+                            <div *ngIf="f.username.errors">Username must be at least 5 character</div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputPassword1" class="col-4 col-sm-2 col-form-label login">PW:</label>
+                            <input type="password" class="form-control col-8 col-sm-10 login" formControlName="password"
+                                   id="exampleInputPassword1" placeholder="Password"
+                                   [ngClass]="{ 'is-invalid': f.password.errors && f.password.touched}"/>
+                        </div>
+                        <div *ngIf="f.password.errors && f.password.touched" class="alert alert-danger">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                            <div *ngIf="f.password.errors">Password must be at least 5 character</div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputPassword2"
+                                   class="col-4 col-sm-2 col-form-label login">PW(confirm):</label>
+                            <input type="password" class="form-control col-8 col-sm-10 login"
+                                   formControlName="confirmPassword"
+                                   id="exampleInputPassword2" placeholder="ConfirmPassword"
+                                   [ngClass]="{ 'is-invalid': f.confirmPassword.errors && f.confirmPassword.touched }"/>
+                        </div>
+                        <div *ngIf="f.confirmPassword.errors && f.confirmPassword.touched" class="alert alert-danger">
+                            <div *ngIf="f.confirmPassword.errors.required"> Confirm password is required</div>
+                            <div *ngIf="f.confirmPassword.errors">Confirm password must be the same</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <!-------------------------------------button next ------------------------------------------>
+    <div id="wrapper" *ngIf="check && !f.username.errors && !f.password.errors && !f.confirmPassword.errors">
+        <button class="btn btn-outline-primary" (click)="onSubmit()">Next</button>
+    </div>
+</div>

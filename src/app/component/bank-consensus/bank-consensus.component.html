@@ -1,0 +1,82 @@
+<div class="container">
+
+<!------------------------------------------ Title --------------------------------------->
+    <div class="body-title row">
+        <button class="btn btn-outline-primary back col-1" [routerLink]="['/banks', id, 'sending']"><i
+                class="fas fa-arrow-left"></i>
+        </button>
+        <div class="body-title col-10">
+            Consensus of data using, collecting and providing
+        </div>
+    </div>
+    <hr>
+    <app-information></app-information>
+    <hr>
+
+<!-------------------------------------------- Consent body ---------------------------------------->
+    <div class="accordion" id="accordionExample" *ngIf="bankConsensus">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <div class="btn-group col-12">
+                    <button class="btn consensus" type="button">Consent of data collection
+                    </button>
+                    <button class="btn col-1 drop" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    {{bankConsensus["TO_CHAR(COLLECTION)"]}}
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <div class="btn-group col-12">
+                    <button class="btn consensus" type="button">Consent of data using
+                    </button>
+                    <button class="btn col-1 drop" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    {{bankConsensus["TO_CHAR(DATA_USING)"]}}
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <div class="btn-group col-12">
+                    <button class="btn consensus" type="button">Consent of data providing
+                    </button>
+                    <button class="btn col-1 drop" type="button" data-toggle="collapse" data-target="#collapseThree"
+                            aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    {{bankConsensus["TO_CHAR(PROVIDING)"]}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+<!----------------------------------------------------- Agreement with all the above ---------------------------------------->
+    <div style="text-align: center">
+        <div class="form-check form-check-inline">
+            <mat-checkbox color="primary" (click)="agreeWith()"><i style="margin-left: 10px">I agree with all the above</i></mat-checkbox>
+        </div>
+    </div>
+    <br>
+
+<!------------------------------------------------------- Button next ------------------------------------------------------>
+    <div id="wrapper" *ngIf="onNext()">
+        <button class="btn btn-outline-primary" [routerLink]="['/banks', id, 'login']">Next</button>
+    </div>
+</div>

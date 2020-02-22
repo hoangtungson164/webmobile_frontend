@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="body-title">Target Institution</div>
+    <hr>
+
+<!----------------------------------- display all institutions ----------------------------->
+    <div *ngFor="let bank of banks">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn" style="margin-left: 5px">
+                <input type="radio" class="bank" name="options" id="{{bank.CUST_GB}}"
+                       (click)="getId(bank.CUST_GB, bank.CUST_CD)"> {{bank.CUST_NM_ENG}}
+            </label>
+        </div>
+        <hr class="lineBetween">
+    </div>
+
+<!--------------------------------- next button until check ------------------------------->
+    <div id="wrapper" *ngIf="bankId">
+        <button class="btn btn-outline-primary" [routerLink]="['/banks', bankId, 'sending']">Next</button>
+    </div>
+</div>

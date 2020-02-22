@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+@media only screen and (min-width: 1201px) {
+    .container {
+        width: 40%;
+    }
+    .body-title {
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (max-width: 568px) {
+    .card-check {
+        padding-bottom: 0;
+    }
+    .information {
+        font-size: small;
+    }
+    .login {
+        font-size: small;
+    }
+    .card {
+        font-size: small;
+    }
+}
+
+@media only screen and (max-height: 700px) {
+    .footer {
+        height: 10%;
+    }
+    .header {
+        height: 15%;
+    }
+}
+
+@media only screen and (max-height: 400px) {
+    .footer {
+        height: 15%;
+    }
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

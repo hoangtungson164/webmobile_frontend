@@ -1,0 +1,24 @@
+footer {
+    position: fixed;
+    height: 6%;
+    bottom: 0;
+    width: 100%;
+    font-style: italic;
+    text-align: center;
+    color: white;
+    background: cornflowerblue;
+}
+
+@media only screen and (max-height: 700px) {
+    footer {
+        height: 9%;
+        font-size: small;
+    }
+}
+
+@media only screen and (max-height: 400px) {
+    footer {
+        height: 9%;
+        font-size: x-small;
+    }
+}

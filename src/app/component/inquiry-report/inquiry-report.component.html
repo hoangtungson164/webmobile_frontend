@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="body-title row">
+        <button class="btn btn-outline-primary back col-1" [routerLink]="['/banks', id, 'login']"><i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="body-title col-10">Inquiry Report</div>
+    </div>
+    <hr>
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Target Institution</th>
+                <th scope="col">Result</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">
+                    <mat-checkbox color="primary" [(ngModel)]="check"></mat-checkbox>
+                </th>
+                <td>{{report}}</td>
+                <td>{{result}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+<div class="btn btn-group col-12" *ngIf="checkToSubmit()">
+    <button type="button" class="btn btn-outline-primary" (click)="onSubmit()">Submit</button>
+    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#deleteModal">Cancel</button>
+</div>
+
+    <div class="modal" id="deleteModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete all data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="clearAllData()">Delete all</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

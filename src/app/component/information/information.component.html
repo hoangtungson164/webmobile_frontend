@@ -1,0 +1,24 @@
+<form [formGroup]="informationForm">
+
+<!--------------------------------------------- name ----------------------------------------->
+    <div class="form-group row col-12">
+        <label for="inputId" class="col-4 col-sm-2 col-form-label information">Name:</label>
+        <input type="text" class="form-control col-8 col-sm-10 information" id="inputId" formControlName="full_name"
+               aria-describedby="idHelp" placeholder="Enter your full name" (change)="saveData()" [ngClass]="{ 'is-invalid': f.full_name.errors && f.full_name.touched }"/>
+        <div *ngIf="f.full_name.errors && f.full_name.touched" class=" col-12 alert alert-danger">
+            <div *ngIf="f.full_name.errors.required">full_name is required</div>
+            <div *ngIf="f.full_name.errors">this is not a person's name</div>
+        </div>
+    </div>
+
+<!----------------------------------------national id ------------------------------------>
+    <div class="form-group row col-12">
+        <label for="inputPassword1" class="col-4 col-sm-2 col-form-label information">National ID:</label>
+        <input type="text" class="form-control col-8 col-sm-10 information" formControlName="national_id"
+               id="inputPassword1" placeholder="National ID" (change)="saveData()" [ngClass]="{ 'is-invalid': f.national_id.errors && f.national_id.touched }">
+        <div *ngIf="f.national_id.errors && f.national_id.touched" class="col-12 alert alert-danger">
+            <div *ngIf="f.national_id.errors.required">national_id is required</div>
+            <div *ngIf="f.national_id.errors">this is not national_id</div>
+        </div>
+    </div>
+</form>

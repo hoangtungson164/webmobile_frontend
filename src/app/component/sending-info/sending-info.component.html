@@ -1,0 +1,51 @@
+<div class="container">
+<!------------------------------------ title ---------------------------------------->
+    <div class="body-title row">
+        <button class="btn btn-outline-primary back col-1" [routerLink]="['/']"><i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="body-title col-10">Sending information</div>
+    </div>
+    <hr>
+    <app-information></app-information>
+    <hr>
+
+<!----------------------------------------- sending info ---------------------------------->
+    <div class="accordion" id="accordionExample">
+        <div class="card" *ngFor="let report of reports, index as i">
+            <div class="card-header card-check form-inline" >
+                <div class="form-group col-sm-11 col-10">
+                    <mat-radio-button color="primary" id="{{report.REPORT_CODE}}" class="checkbox-consensus" name="radio"
+                                  (click)="checkBox(report.REPORT_CODE, report.REPORT_NAME)"><i style=" margin-left: 10px">{{report.REPORT_NAME}}</i></mat-radio-button>
+                </div>
+                <div class="form-group">
+                    <button class="btn drop" type="button" data-toggle="collapse"
+                            [attr.data-target]="'#one' + i"
+                            aria-expanded="true" [attr.aria-controls]="'one' + i"><i class="fas fa-caret-down "></i>
+                    </button>
+                </div>
+            </div>
+            <div id="one{{i}}" class="collapse">
+                <div class="card-body">
+                    Sending information follow:
+                    <ul>
+                        <li>Name</li>
+                        <li>Date of Birth</li>
+                        <li>Address</li>
+                        <li>Phone Number</li>
+                        <li>National ID number</li>
+                        <li>Credit score</li>
+                        <li>Credit grade</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+<!------------------------------------------ button next ------------------------------------------------->
+    <div id="wrapper" *ngIf="check">
+        <button class="btn btn-outline-primary" [routerLink]="['/banks', id, 'consensus']">Next</button>
+    </div>
+</div>
+
+

@@ -1,0 +1,27 @@
+.body-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.back {
+    border: none;
+    text-align: left;
+}
+
+hr {
+    border: 2px solid cornflowerblue;
+}
+
+.btn {
+    align-content: center;
+}
+
+.mat-checkbox .mat-checkbox-frame {
+    transform: scale(2);
+    border: solid 1px cornflowerblue;
+}
+
+.mat-checkbox-checked .mat-checkbox-background {
+    transform: scale(2);
+}
+
