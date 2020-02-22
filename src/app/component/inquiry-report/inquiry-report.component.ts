@@ -54,7 +54,7 @@ export class InquiryReportComponent implements OnInit {
 
     onSubmit() {
         this.saveInfo();
-        // this.saveUser();
+        this.saveUser();
     }
 
     // ------------------ save individual info to database--------------------------------------
@@ -63,13 +63,20 @@ export class InquiryReportComponent implements OnInit {
             this.dataStorageService.getInstitution(),
             this.dataStorageService.getName(),
             this.dataStorageService.getNationalId());
-        this.infoService.postIndi(this.info).subscribe(next => {
+
+        this.infoService.postINQ(this.info).subscribe(next => {
             console.log(this.info);
             console.log(next);
-            console.log('success to store individual');
-            alert('success to send the report');
+            console.log('success to store into inqlog');
         }, error => {
-            console.log('fail to store individual');
+            console.log('fail to store into inqlog');
+        });
+
+        this.infoService.postSCRP(this.info).subscribe(next => {
+            console.log(next);
+            console.log('success to store into scrplog');
+        }, error => {
+            console.log('fail to store into scrplog');
         });
     }
 

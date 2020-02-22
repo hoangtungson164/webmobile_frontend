@@ -4,20 +4,26 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IInfo} from '../interface/i-info';
 
-const URL = environment.externalURL;
+const URL = environment.URL;
 
 @Injectable({
     providedIn: 'root'
 })
 export class IndiService {
 
-    private apiURL = URL + '/CIC_MACR_RQST';
+    private apiINQUrl = URL + '/insertINQLog';
+    private apiSCRPUrl = URL + '/insertSCRPlog';
 
     constructor(private httpClient: HttpClient) {
     }
 
-    postIndi(indiInfo: IInfo): Observable<IInfo> {
-        return this.httpClient.post<IInfo>(this.apiURL, indiInfo);
+    postINQ(indiInfo: IInfo): Observable<IInfo> {
+        return this.httpClient.post<IInfo>(this.apiINQUrl, indiInfo);
+    }
+
+
+    postSCRP(indiInfo: IInfo): Observable<IInfo> {
+        return this.httpClient.post<IInfo>(this.apiSCRPUrl, indiInfo);
     }
 
 }
