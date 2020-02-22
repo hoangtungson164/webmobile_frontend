@@ -5,9 +5,13 @@ import {BankConsensusComponent} from '../component/bank-consensus/bank-consensus
 import {SendingInfoComponent} from '../component/sending-info/sending-info.component';
 import {LoginComponent} from '../component/login/login.component';
 import {InquiryReportComponent} from '../component/inquiry-report/inquiry-report.component';
+import {RedirectBackendComponent} from '../component/redirect-backend/redirect-backend.component';
 
 const routes: Routes = [{
   path: '',
+  component: RedirectBackendComponent,
+}, {
+  path: 'banks',
   component: BankListComponent,
 }, {
   path: 'banks/:id/consensus',

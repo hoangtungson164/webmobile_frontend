@@ -18,6 +18,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { InquiryReportComponent } from './component/inquiry-report/inquiry-report.component';
 import {HttpErrorInterceptor} from './http-error.interceptor';
+import { RedirectBackendComponent } from './component/redirect-backend/redirect-backend.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import {HttpErrorInterceptor} from './http-error.interceptor';
         LoginComponent,
         InformationComponent,
         FooterComponent,
-        InquiryReportComponent
+        InquiryReportComponent,
+        RedirectBackendComponent
     ],
     imports: [
         BrowserModule,

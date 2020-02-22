@@ -86,6 +86,6 @@ export class InquiryReportComponent implements OnInit {
 
     clearAllData() {
         this.dataStorageService.clear();
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/banks');
     }
 }
