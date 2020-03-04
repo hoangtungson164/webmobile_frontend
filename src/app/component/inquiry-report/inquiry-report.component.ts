@@ -5,6 +5,8 @@ import {IInfo} from '../information/interface/i-info';
 import {IndiService} from '../information/service/indi.service';
 import {UserService} from '../login/service/user-service.service';
 import {IUser} from '../login/interface/i-user';
+import {ICic} from './ICic';
+import {CicService} from "./service/cic.service";
 
 @Component({
     selector: 'app-report',
@@ -20,6 +22,7 @@ export class InquiryReportComponent implements OnInit {
     check = false;
     info: IInfo;
     user: IUser;
+    cic: ICic;
 
 
     constructor(
@@ -28,6 +31,7 @@ export class InquiryReportComponent implements OnInit {
         private dataStorageService: DataStorageService,
         private infoService: IndiService,
         private router: Router,
+        private cicService: CicService,
     ) {
     }
 
@@ -55,6 +59,7 @@ export class InquiryReportComponent implements OnInit {
     onSubmit() {
         this.saveInfo();
         this.saveUser();
+        this.requestCIC();
     }
 
     // ------------------ save individual info to database--------------------------------------
@@ -94,5 +99,22 @@ export class InquiryReportComponent implements OnInit {
     clearAllData() {
         this.dataStorageService.clear();
         this.router.navigateByUrl('/banks');
+    }
+
+    requestCIC() {
+        this.cic = new ICic(
+            this.dataStorageService.getOrgCd(),
+            this.dataStorageService.getInstitution(),
+            this.dataStorageService.getSvcCd(),
+            this.dataStorageService.getNationalId(),
+            this.dataStorageService.getPassword(),
+        );
+
+        this.cicService.postCIC(this.cic).subscribe(next => {
+            console.log(next);
+            console.log('send request');
+        }, error => {
+            console.log('fail to send request');
+        });
     }
 }

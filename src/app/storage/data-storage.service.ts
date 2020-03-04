@@ -7,6 +7,8 @@ const NATIONAL_ID = 'National id';
 const CREDIT_NAME = 'Credit name';
 const USER_ID = 'user_id';
 const PASSWORD = 'password';
+const SVC_CODE = 'svcCd';
+const ORG_CODE = 'orgCd';
 
 @Injectable({
     providedIn: 'root'
@@ -80,7 +82,26 @@ export class DataStorageService {
         return sessionStorage.getItem(PASSWORD);
     }
 
+    public saveSvcCd(svcCd: string) {
+        window.sessionStorage.removeItem(SVC_CODE);
+        window.sessionStorage.setItem(SVC_CODE, svcCd);
+    }
+
+    public getSvcCd(): string {
+        return sessionStorage.getItem(SVC_CODE);
+    }
+
+    public setOrgCd(orgCd: string) {
+        window.sessionStorage.removeItem(ORG_CODE);
+        window.sessionStorage.setItem(ORG_CODE, orgCd);
+    }
+
+    public getOrgCd(): string {
+        return sessionStorage.getItem(ORG_CODE);
+    }
+
     public clear(): void {
         sessionStorage.clear();
     }
+
 }
