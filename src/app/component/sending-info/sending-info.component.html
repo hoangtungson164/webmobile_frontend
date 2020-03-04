@@ -9,6 +9,10 @@
     <app-information></app-information>
     <hr>
 
+    <div *ngIf="!reports" class="text-center">
+        <div class="spinner-border text-primary" role="status">
+        </div>
+    </div>
 <!----------------------------------------- sending info ---------------------------------->
     <div class="accordion" id="accordionExample">
         <div class="card" *ngFor="let report of reports, index as i">

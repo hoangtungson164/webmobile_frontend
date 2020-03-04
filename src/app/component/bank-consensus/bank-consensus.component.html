@@ -14,6 +14,10 @@
     <hr>
 
 <!-------------------------------------------- Consent body ---------------------------------------->
+    <div *ngIf="!bankConsensus" class="text-center">
+        <div class="spinner-border text-primary" role="status">
+        </div>
+    </div>
     <div class="accordion" id="accordionExample" *ngIf="bankConsensus">
         <div class="card">
             <div class="card-header" id="headingOne">

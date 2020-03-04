@@ -2,7 +2,7 @@
     <div class="body-title">Target Institution</div>
     <hr>
 
-<!----------------------------------- display all institutions ----------------------------->
+    <!----------------------------------- display all institutions ----------------------------->
     <div *ngFor="let bank of banks">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn" style="margin-left: 5px">
@@ -13,7 +13,12 @@
         <hr class="lineBetween">
     </div>
 
-<!--------------------------------- next button until check ------------------------------->
+    <div *ngIf="!banks" class="text-center">
+        <div class="spinner-border text-primary" role="status">
+        </div>
+    </div>
+
+    <!--------------------------------- next button until check ------------------------------->
     <div id="wrapper" *ngIf="bankId">
         <button class="btn btn-outline-primary" [routerLink]="['/banks', bankId, 'sending']">Next</button>
     </div>
