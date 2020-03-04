@@ -88,7 +88,8 @@ export class DataStorageService {
     }
 
     public getSvcCd(): string {
-        return sessionStorage.getItem(SVC_CODE);
+        // return sessionStorage.getItem(SVC_CODE);
+        return 'A0001';
     }
 
     public setOrgCd(orgCd: string) {
@@ -97,7 +98,8 @@ export class DataStorageService {
     }
 
     public getOrgCd(): string {
-        return sessionStorage.getItem(ORG_CODE);
+        // return sessionStorage.getItem(ORG_CODE);
+        return 'cic.vn';
     }
 
     public clear(): void {

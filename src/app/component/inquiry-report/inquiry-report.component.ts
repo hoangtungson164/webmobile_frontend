@@ -103,9 +103,9 @@ export class InquiryReportComponent implements OnInit {
 
     requestCIC() {
         this.cic = new ICic(
-            this.dataStorageService.getOrgCd(),
+            this.dataStorageService.getOrgCd(), // cic.vn
             this.dataStorageService.getInstitution(),
-            this.dataStorageService.getSvcCd(),
+            this.dataStorageService.getSvcCd(), // A0001
             this.dataStorageService.getNationalId(),
             this.dataStorageService.getPassword(),
         );
