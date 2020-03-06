@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {BankListComponent} from './component/bank-list/bank-list.component';
 import {AppRoutingModule} from './app-routing/app-routing.module';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {HeadingComponent} from './header-footer/heading/heading.component';
 import {BankConsensusComponent} from './component/bank-consensus/bank-consensus.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -19,6 +19,9 @@ import { MatTableModule } from '@angular/material/table';
 import { InquiryReportComponent } from './component/inquiry-report/inquiry-report.component';
 import {HttpErrorInterceptor} from './http-error.interceptor';
 import { RedirectBackendComponent } from './component/redirect-backend/redirect-backend.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
 
 @NgModule({
     declarations: [
@@ -43,6 +46,13 @@ import { RedirectBackendComponent } from './component/redirect-backend/redirect-
         MatCheckboxModule,
         MatRadioModule,
         MatTableModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
     ],
     providers: [
         {
@@ -54,4 +64,8 @@ import { RedirectBackendComponent } from './component/redirect-backend/redirect-
     bootstrap: [AppComponent]
 })
 export class AppModule {
+}
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
 }

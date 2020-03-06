@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BankService} from './service/bank.service';
 import {IBank} from './interface/ibank';
 import {DataStorageService} from '../../storage/data-storage.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-bank-list',
@@ -9,19 +10,45 @@ import {DataStorageService} from '../../storage/data-storage.service';
     styleUrls: ['./bank-list.component.css']
 })
 export class BankListComponent implements OnInit {
-
     banks: IBank[];
-
     bankId: string;
+    inputLanguage: string;
+    displayLanguage: string;
+    LANGUAGE: string;
+    isShowButtonChooseLanguage = false;
 
     constructor(
         private bankService: BankService,
         private dataStorageService: DataStorageService,
+        public translate: TranslateService,
+        private storageLocal: DataStorageService
     ) {
+        translate.addLangs(['en', 'vi']);
     }
 
     ngOnInit() {
         this.getAllBanks();
+        this.setLanguage();
+    }
+
+    setLanguage() {
+        this.LANGUAGE = this.storageLocal.getLanguage();
+        if (this.LANGUAGE) {
+        this.translate.use(this.LANGUAGE);
+        }
+    }
+
+    getInputLanguage(input: string , language: string) {
+        this.inputLanguage = input;
+        this.displayLanguage = language;
+        this.isShowButtonChooseLanguage = true;
+    }
+
+    saveLanguageAfterChoose() {
+        if (this.inputLanguage) {
+            this.storageLocal.saveLanguage(this.inputLanguage);
+            this.setLanguage();
+        }
     }
 
     // -------------------------- get all the banks -----------------------------------
@@ -38,7 +65,14 @@ export class BankListComponent implements OnInit {
 
     // ------------------------------ store the chosen institution --------------------------------------
     getId(id: string, institution: string) {
+        console.log(this.bankId);
         this.bankId = id;
         this.dataStorageService.saveInstitution(institution);
+    }
+
+    backToChooseLanguage() {
+        this.storageLocal.clear();
+        this.setLanguage();
+        this.isShowButtonChooseLanguage = false;
     }
 }

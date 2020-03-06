@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataStorageService} from '../../storage/data-storage.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-information',
@@ -10,11 +11,18 @@ import {DataStorageService} from '../../storage/data-storage.service';
 export class InformationComponent implements OnInit {
 
     informationForm: FormGroup;
+    LANGUAGE: string;
 
     constructor(
         private fb: FormBuilder,
         private dataStorageService: DataStorageService,
+        public translate: TranslateService,
+        private storageLocal: DataStorageService
     ) {
+        this.LANGUAGE = this.storageLocal.getLanguage();
+        if (this.LANGUAGE) {
+            this.translate.use(this.LANGUAGE);
+        }
     }
 
     ngOnInit() {

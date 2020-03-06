@@ -1,20 +1,54 @@
 <div class="container">
-    <div class="body-title">Target Institution</div>
-    <hr>
-
-<!----------------------------------- display all institutions ----------------------------->
-    <div *ngFor="let bank of banks">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn" style="margin-left: 5px">
-                <input type="radio" class="bank" name="options" id="{{bank.CUST_GB}}"
-                       (click)="getId(bank.CUST_GB, bank.CUST_CD)"> {{bank.CUST_NM_ENG}}
-            </label>
+    <div *ngIf="!LANGUAGE">
+        <div class="body-title">Chọn ngôn ngữ</div>
+        <div class="body-title">(Choose language)</div>
+        <hr>
+    <div class="row">
+        <div class="col-2 text-center"></div>
+        <div class="col-4 text-center">
+            <button [ngClass]="{active:inputLanguage == 'vi'}" (click)="getInputLanguage('vi' , 'Việt Nam')" class="btn btn-sm btn-outline-danger border-right-0"
+                    style="border-radius: 12px">
+                <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/230/flag-for-vietnam_1f1fb-1f1f3.png"
+                     class="img-fluid " alt="Responsive image">
+            </button>
         </div>
-        <hr class="lineBetween">
+        <div class="col-4 text-center">
+            <button [ngClass]="{active:inputLanguage == 'en'}" (click)="getInputLanguage('en' , 'EngLish')" class="btn btn-sm btn-outline-primary  border-left-0"
+                    style="border-radius: 12px">
+                <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/230/flag-for-united-states_1f1fa-1f1f8.png"
+                     class="img-fluid " alt="Responsive image">
+            </button>
+        </div>
+        <div class="col-2 text-center"></div>
+    </div>
+        <br>
+        <div class="text-center"><b class="text-success">{{displayLanguage}}</b></div>
+        <hr>
+        <br>
+        <br/>
+        <div class="text-center" *ngIf="isShowButtonChooseLanguage">
+            <button class="btn btn-outline-primary" (click)="saveLanguageAfterChoose()">Next</button>
+        </div>
     </div>
 
-<!--------------------------------- next button until check ------------------------------->
-    <div id="wrapper" *ngIf="bankId">
-        <button class="btn btn-outline-primary" [routerLink]="['/banks', bankId, 'sending']">Next</button>
+    <div *ngIf="LANGUAGE">
+        <div class="body-title row">
+            <button class="btn btn-outline-primary border-0 back col-1" (click)="backToChooseLanguage()"><i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="body-title col-10">{{"Target Institution" | translate}}</div>
+        </div>
+        <hr>
+
+        <!----------------------------------- display all institutions ----------------------------->
+        <div *ngFor="let bank of banks">
+                    <button [ngClass]="{active:bank.CUST_GB == bankId}" class="btn btn-outline-primary border-0"
+                            (click)="getId(bank.CUST_GB, bank.CUST_CD)"> {{bank.CUST_NM_ENG}} </button>
+            <hr class="lineBetween">
+        </div>
+
+        <!--------------------------------- next button until check ------------------------------->
+        <div id="wrapper" *ngIf="bankId">
+            <button class="btn btn-outline-primary" [routerLink]="['/banks', bankId, 'sending']">Next</button>
+        </div>
     </div>
 </div>

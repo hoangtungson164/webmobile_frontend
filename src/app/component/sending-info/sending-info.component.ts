@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {DataStorageService} from '../../storage/data-storage.service';
 import {IReport} from './interface/i-report';
 import {SendingInfoService} from './service/sending-info.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-sending-info',
@@ -17,12 +18,19 @@ export class SendingInfoComponent implements OnInit {
     check = false;
 
     reports: IReport[];
+    LANGUAGE: string;
 
     constructor(
         private route: ActivatedRoute,
         private dataStorageService: DataStorageService,
         private sendingInfoService: SendingInfoService,
+        public translate: TranslateService,
+        private storageLocal: DataStorageService
     ) {
+        this.LANGUAGE = this.storageLocal.getLanguage();
+        if (this.LANGUAGE) {
+            this.translate.use(this.LANGUAGE);
+        }
     }
 
     ngOnInit() {

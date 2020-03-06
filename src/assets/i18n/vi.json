@@ -1,0 +1,20 @@
+{
+  "Target Institution": "Tổ chức tín dụng",
+  "Choose language": "Chọn ngôn ngữ",
+  "Send Information": "Send Information",
+  "Name": "Họ và Tên",
+  "National ID": "Số CMND",
+  "CIC Credit Report": "Báo cáo tín dụng thể nhân CIC",
+  "Sending Data": "Gửi dữ liệu",
+  "Date of Birth" : "Ngày sinh",
+  "Address": "Địa chỉ",
+  "Phone Number": "Số điện thoại",
+  "Credit score": "Điểm tín dụng",
+  "Credit grade": "Hạng tín dụng",
+  "Next": "Tiếp",
+  "Sending information follow": "Những thông tin sau sẽ được gửi kèm",
+  "full_name is required": "Họ và Tên không được để trống!",
+  "this is not a person's name": "Họ và Tên không hợp lệ!",
+  "Enter your full name": "Vui lòng nhập vào Họ và Tên",
+  "Sending information": "Gửi Thông Tin"
+}

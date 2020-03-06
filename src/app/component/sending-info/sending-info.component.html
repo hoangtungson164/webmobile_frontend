@@ -1,9 +1,9 @@
-<div class="container">
+<div *ngIf="LANGUAGE" class="container">
 <!------------------------------------ title ---------------------------------------->
     <div class="body-title row">
         <button class="btn btn-outline-primary back col-1" [routerLink]="['/banks']"><i class="fas fa-arrow-left"></i>
         </button>
-        <div class="body-title col-10">Sending information</div>
+        <div class="body-title col-10">{{"Sending information" | translate}}</div>
     </div>
     <hr>
     <app-information></app-information>
@@ -26,15 +26,15 @@
             </div>
             <div id="one{{i}}" class="collapse">
                 <div class="card-body">
-                    Sending information follow:
+                    {{ "Sending information follow" | translate}}
                     <ul>
-                        <li>Name</li>
-                        <li>Date of Birth</li>
-                        <li>Address</li>
-                        <li>Phone Number</li>
-                        <li>National ID number</li>
-                        <li>Credit score</li>
-                        <li>Credit grade</li>
+                        <li>{{"Name" | translate}}</li>
+                        <li>{{"Date of Birth" | translate}}</li>
+                        <li>{{"Address" | translate}}</li>
+                        <li>{{"Phone Number" | translate}}</li>
+                        <li>{{"National ID" | translate}}</li>
+                        <li>{{"Credit score" | translate}}</li>
+                        <li>{{"Credit grade" | translate}}</li>
                     </ul>
                 </div>
             </div>

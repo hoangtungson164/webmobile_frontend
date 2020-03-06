@@ -7,6 +7,7 @@ const NATIONAL_ID = 'National id';
 const CREDIT_NAME = 'Credit name';
 const USER_ID = 'user_id';
 const PASSWORD = 'password';
+const LANGUAGE = 'language';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +15,15 @@ const PASSWORD = 'password';
 export class DataStorageService {
 
     constructor() {
+    }
+
+    public saveLanguage(language: string) {
+        window.sessionStorage.removeItem(LANGUAGE);
+        window.sessionStorage.setItem(LANGUAGE, language);
+    }
+
+    public getLanguage(): string {
+        return sessionStorage.getItem(LANGUAGE);
     }
 
     public saveInstitution(institution: string) {
