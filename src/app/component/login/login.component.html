@@ -74,6 +74,6 @@
 
     <!-------------------------------------button next ------------------------------------------>
     <div id="wrapper" *ngIf="check && !f.username.errors && !f.password.errors && !f.confirmPassword.errors">
-        <button class="btn btn-outline-primary" (click)="onSubmit()">Next</button>
+        <button class="btn btn-outline-primary" (click)="onSubmit()">{{"Next" | translate}}</button>
     </div>
 </div>
