@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="LANGUAGE && LANGUAGE == 'vi' || LANGUAGE == 'en'">
 
 <!------------------------------------------ Title --------------------------------------->
     <div class="body-title row">
@@ -6,7 +6,7 @@
                 class="fas fa-arrow-left"></i>
         </button>
         <div class="body-title col-10">
-            Consensus of data using, collecting and providing
+            {{"Consensus of data using, collecting and providing" | translate}}
         </div>
     </div>
     <hr>
@@ -18,7 +18,7 @@
         <div class="card">
             <div class="card-header" id="headingOne">
                 <div class="btn-group col-12">
-                    <button class="btn consensus" type="button">Consent of data collection
+                    <button class="btn consensus" type="button">{{"Consent of data collection" | translate}}
                     </button>
                     <button class="btn col-1 drop" type="button" data-toggle="collapse" data-target="#collapseOne"
                             aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down"></i>
@@ -27,15 +27,18 @@
             </div>
 
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
+                <div class="card-body" *ngIf="LANGUAGE == 'en'">
                     {{bankConsensus["TO_CHAR(COLLECTION)"]}}
+                </div>
+                <div class="card-body" *ngIf="LANGUAGE == 'vi'">
+                    {{bankConsensus["TO_CHAR(COLLECTION_VI)"]}}
                 </div>
             </div>
         </div>
         <div class="card">
             <div class="card-header" id="headingTwo">
                 <div class="btn-group col-12">
-                    <button class="btn consensus" type="button">Consent of data using
+                    <button class="btn consensus" type="button">{{"Consent of data using" | translate}}
                     </button>
                     <button class="btn col-1 drop" type="button" data-toggle="collapse" data-target="#collapseTwo"
                             aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down"></i>
@@ -43,15 +46,18 @@
                 </div>
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                <div class="card-body">
+                <div class="card-body" *ngIf="LANGUAGE == 'en'">
                     {{bankConsensus["TO_CHAR(DATA_USING)"]}}
+                </div>
+                <div class="card-body" *ngIf="LANGUAGE == 'vi'">
+                    {{bankConsensus["TO_CHAR(DATA_USING_VI)"]}}
                 </div>
             </div>
         </div>
         <div class="card">
             <div class="card-header" id="headingThree">
                 <div class="btn-group col-12">
-                    <button class="btn consensus" type="button">Consent of data providing
+                    <button class="btn consensus" type="button">{{"Consent of data providing" | translate}}
                     </button>
                     <button class="btn col-1 drop" type="button" data-toggle="collapse" data-target="#collapseThree"
                             aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down"></i>
@@ -59,8 +65,11 @@
                 </div>
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                <div class="card-body">
+                <div class="card-body" *ngIf="LANGUAGE == 'en'">
                     {{bankConsensus["TO_CHAR(PROVIDING)"]}}
+                </div>
+                <div class="card-body" *ngIf="LANGUAGE == 'vi'">
+                    {{bankConsensus["TO_CHAR(PROVIDING_VI)"]}}
                 </div>
             </div>
         </div>
@@ -70,7 +79,7 @@
 <!----------------------------------------------------- Agreement with all the above ---------------------------------------->
     <div style="text-align: center">
         <div class="form-check form-check-inline">
-            <mat-checkbox color="primary" (click)="agreeWith()"><i style="margin-left: 10px">I agree with all the above</i></mat-checkbox>
+            <mat-checkbox color="primary" (click)="agreeWith()"><i style="margin-left: 10px">{{"I agree with all the above" | translate}}</i></mat-checkbox>
         </div>
     </div>
     <br>

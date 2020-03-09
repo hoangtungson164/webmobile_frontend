@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="LANGUAGE && LANGUAGE == 'vi' || LANGUAGE == 'en'">
 
     <!-------------------------------------------------------title-------------------------------------------------------->
     <div class="body-title row">
@@ -6,7 +6,7 @@
                 class="fas fa-arrow-left"></i>
         </button>
         <div class="body-title col-10">
-            Login information
+            {{"Login information" | translate}}
         </div>
     </div>
     <hr>
@@ -44,7 +44,7 @@
                             <div *ngIf="f.username.errors">Username must be at least 5 character</div>
                         </div>
                         <div class="form-group row">
-                            <label for="exampleInputPassword1" class="col-4 col-sm-2 col-form-label login">PW:</label>
+                            <label for="exampleInputPassword1" class="col-4 col-sm-2 col-form-label login">{{"PW" | translate}}:</label>
                             <input type="password" class="form-control col-8 col-sm-10 login" formControlName="password"
                                    id="exampleInputPassword1" placeholder="Password"
                                    [ngClass]="{ 'is-invalid': f.password.errors && f.password.touched}"/>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputPassword2"
-                                   class="col-4 col-sm-2 col-form-label login">PW(confirm):</label>
+                                   class="col-4 col-sm-2 col-form-label login">{{"PW(confirm)" | translate}}:</label>
                             <input type="password" class="form-control col-8 col-sm-10 login"
                                    formControlName="confirmPassword"
                                    id="exampleInputPassword2" placeholder="ConfirmPassword"

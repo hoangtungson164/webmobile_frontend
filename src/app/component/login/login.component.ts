@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataStorageService} from '../../storage/data-storage.service';
 import {MustMatch} from '../../validators/mustMatch';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-login',
@@ -19,13 +20,19 @@ export class LoginComponent implements OnInit {
     check = false;
 
     report: string;
+    LANGUAGE: string;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private dataStorageService: DataStorageService,
         private fb: FormBuilder,
+        private translate: TranslateService,
     ) {
+        this.LANGUAGE = this.dataStorageService.getLanguage();
+        if (this.LANGUAGE) {
+            this.translate.use(this.LANGUAGE);
+        }
     }
 
     ngOnInit() {

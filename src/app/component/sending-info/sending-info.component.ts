@@ -42,6 +42,7 @@ export class SendingInfoComponent implements OnInit {
     getAllReport() {
         this.sendingInfoService.getAllReport(10, this.id).subscribe(next => {
             this.reports = next;
+            console.log(next);
             console.log('success get all the report');
         }, error => {
             console.log(error);

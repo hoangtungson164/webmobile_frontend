@@ -5,6 +5,7 @@ import {IInfo} from '../information/interface/i-info';
 import {IndiService} from '../information/service/indi.service';
 import {UserService} from '../login/service/user-service.service';
 import {IUser} from '../login/interface/i-user';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-report',
@@ -20,6 +21,7 @@ export class InquiryReportComponent implements OnInit {
     check = false;
     info: IInfo;
     user: IUser;
+    LANGUAGE: string;
 
 
     constructor(
@@ -28,7 +30,12 @@ export class InquiryReportComponent implements OnInit {
         private dataStorageService: DataStorageService,
         private infoService: IndiService,
         private router: Router,
+        private translate: TranslateService,
     ) {
+        this.LANGUAGE = this.dataStorageService.getLanguage();
+        if (this.LANGUAGE) {
+            this.translate.use(this.LANGUAGE);
+        }
     }
 
     ngOnInit() {
@@ -42,14 +49,24 @@ export class InquiryReportComponent implements OnInit {
             && this.dataStorageService.getName()
             && this.dataStorageService.getNationalId()
             && this.dataStorageService.getPassword()) {
-            this.result = 'Done';
+            if (this.LANGUAGE === 'en') {
+                this.result = 'Done';
+            }
+            if (this.LANGUAGE === 'vi') {
+                this.result = 'Hoàn Thành';
+            }
         } else {
-            this.result = 'Fail';
+            if (this.LANGUAGE === 'en') {
+                this.result = 'Fail';
+            }
+            if (this.LANGUAGE === 'vi') {
+                this.result = 'Thất bại';
+            }
         }
     }
 
     checkToSubmit() {
-        return this.check && this.result === 'Done';
+        return this.check && this.result === 'Done' || this.check && this.result === 'Hoàn Thành';
     }
 
     onSubmit() {

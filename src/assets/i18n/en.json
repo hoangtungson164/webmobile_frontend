@@ -16,5 +16,22 @@
   "full_name is required": "Full Name is required!",
   "this is not a person's name": "this name invalid!",
   "Enter your full name": "Enter your full name",
-  "Sending information": "Sending information"
+  "Sending information": "Sending information",
+  "Consensus of data using, collecting and providing": "Consensus of data using, collecting and providing",
+  "Consent of data collection": "Consent of data collection",
+  "Consent of data using": "Consent of data using",
+  "Consent of data providing": "Consent of data providing",
+  "I agree with all the above": "I agree with all the above",
+  "Login information": "Login information",
+  "PW": "Password",
+  "PW(confirm)": "Confirm Password",
+  "Inquiry Report": "Inquiry Report",
+  "Target Information": "Target Information",
+  "Result": "Result",
+  "Delete all data": "Delete all data",
+  "Are you sure": "Are you sure",
+  "Delete all": "Delete all",
+  "Close": "Close",
+  "Submit": "Submit",
+  "Exit": "Exit"
 }

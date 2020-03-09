@@ -16,5 +16,22 @@
   "full_name is required": "Họ và Tên không được để trống!",
   "this is not a person's name": "Họ và Tên không hợp lệ!",
   "Enter your full name": "Vui lòng nhập vào Họ và Tên",
-  "Sending information": "Gửi Thông Tin"
+  "Sending information": "Gửi Thông Tin",
+  "Consensus of data using, collecting and providing": "Chính sách thu thập và sử dụng dữ liệu",
+  "Consent of data collection": "Đồng ý thu thập dữ liệu",
+  "Consent of data using": "Đồng ý sử dụng dữ liệu",
+  "Consent of data providing": "Đồng ý cung cấp dữ liệu",
+  "I agree with all the above": "Tôi đồng ý các điều khoản trên",
+  "Login information": "Thông tin đăng nhập",
+  "PW": "Mật Khẩu",
+  "PW(confirm)": "Nhập lại mật khẩu",
+  "Inquiry Report": "Kết quả hỏi tin",
+  "Target Information": "Thông tin",
+  "Result": "Kết quả",
+  "Delete all data": "Xóa hết kết quả",
+  "Are you sure": "Bạn có chắc chắn",
+  "Delete all": "Xóa hết",
+  "Close": "Đóng",
+  "Submit": "Gửi đi",
+  "Exit": "Thoát"
 }
