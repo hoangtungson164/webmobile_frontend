@@ -54,10 +54,10 @@
     <br/>
     <div class="row">
         <div class="col-12 text-center" *ngIf="!check || !onNext()">
-            <button class="btn btn-primary btn-sm" [routerLink]="['/banks']"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
+            <button class="btn btn-primary btn-sm" [routerLink]="['/banks']"><i class="fas fa-caret-left"> </i> {{"Back" | translate}}</button>
         </div>
         <div class="col-6 text-right">
-            <button *ngIf="check && onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks']"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
+            <button *ngIf="check && onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks']"><i class="fas fa-caret-left"> </i> {{"Back" | translate}}</button>
         </div>
         <div class="col-6 text-left">
             <button *ngIf="check && onNext()" class="btn btn-primary btn-sm"  [routerLink]="['/banks', id, 'consensus']">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>

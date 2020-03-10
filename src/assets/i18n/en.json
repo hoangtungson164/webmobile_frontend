@@ -34,5 +34,11 @@
   "Close": "Close",
   "Submit": "Submit",
   "Exit": "Exit",
-  "Back": "Back"
+  "Back": "Back",
+  "national_id is required": "national_id is required!",
+  "this is not national_id": "this is not national_id!",
+  "Phone Number invalid": "Phone Number invalid!",
+  "Phone": "Phone",
+  "Phone Number is require": "Phone Number is require!",
+  "Mobile Phone": "Mobile phone number"
 }

@@ -17,8 +17,19 @@
         <input type="text" class="form-control col-8 col-sm-10 information" formControlName="national_id"
                id="inputPassword1" placeholder="{{'National ID' | translate }}" (change)="saveData()" [ngClass]="{ 'is-invalid': f.national_id.errors && f.national_id.touched }">
         <div *ngIf="f.national_id.errors && f.national_id.touched" class="col-12 alert alert-danger">
-            <div *ngIf="f.national_id.errors.required">national_id is required</div>
-            <div *ngIf="f.national_id.errors">this is not national_id</div>
+            <div *ngIf="f.national_id.errors.required">{{"national_id is required" | translate}}</div>
+            <div *ngIf="f.national_id.errors">{{"this is not national_id" | translate}}</div>
+        </div>
+    </div>
+
+    <!----------------------------------------Phone------------------------------------>
+    <div class="form-group row col-12">
+        <label for="inputPassword1" class="col-4 col-sm-2 col-form-label information">{{"Phone" | translate}}:</label>
+        <input type="text" class="form-control col-8 col-sm-10 information" formControlName="phone"
+               id="inputPassword2" placeholder="{{'Mobile Phone' | translate }}" (change)="saveData()" [ngClass]="{ 'is-invalid': f.phone.errors && f.phone.touched }">
+        <div *ngIf="f.phone.errors && f.phone.touched" class="col-12 alert alert-danger">
+            <div *ngIf="f.phone.errors.required">{{"Phone Number is require" | translate}}</div>
+            <div *ngIf="f.phone.errors">{{"Phone Number invalid" | translate}}</div>
         </div>
     </div>
 </form>

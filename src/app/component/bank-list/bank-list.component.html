@@ -50,13 +50,13 @@
         <br/>
         <div class="row">
             <div class="col-12 text-center" *ngIf="!bankId">
-                <button class="btn btn-primary btn-sm" (click)="backToChooseLanguage()"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
+                <button class="btn btn-primary btn-sm" (click)="backToChooseLanguage()"><i class="fas fa-caret-left"></i> {{"Back" | translate}}</button>
             </div>
             <div class="col-6 text-right">
-                <button *ngIf="bankId" class="btn btn-primary btn-sm" (click)="backToChooseLanguage()"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
+                <button *ngIf="bankId" class="btn btn-primary btn-sm" (click)="backToChooseLanguage()"><i class="fas fa-caret-left"></i> {{"Back" | translate}}</button>
             </div>
             <div class="col-6 text-left">
-                <button *ngIf="bankId" class="btn btn-primary btn-sm" [routerLink]="['/banks', bankId, 'sending']">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
+                <button *ngIf="bankId" class="btn btn-primary btn-sm" [routerLink]="['/banks', bankId, 'sending']">{{"Next" | translate}}  <i class="fas fa-caret-right"></i></button>
             </div>
         </div>
     </div>

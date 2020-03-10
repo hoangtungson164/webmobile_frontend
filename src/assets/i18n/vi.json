@@ -11,7 +11,8 @@
   "Phone Number": "Số điện thoại",
   "Credit score": "Điểm tín dụng",
   "Credit grade": "Hạng tín dụng",
-  "Next": "Tiếp",
+  "Next": "Tiếp Tục ",
+  "Back": "Trở Lại",
   "Sending information follow": "Những thông tin sau sẽ được gửi kèm",
   "full_name is required": "Họ và Tên không được để trống!",
   "this is not a person's name": "Họ và Tên không hợp lệ!",
@@ -34,5 +35,10 @@
   "Close": "Đóng",
   "Submit": "Gửi đi",
   "Exit": "Thoát",
-  "Back": "Trở Lại"
+  "national_id is required": "Vui lòng điền vào CMND là bắt buộc!",
+  "this is not national_id": "CMND không hợp lệ!",
+  "Phone Number invalid": "Số điện thoại không hợp lệ!",
+  "Phone": "SĐT",
+  "Phone Number is require": "Vui lòng điền số điện thoại!",
+  "Mobile Phone": "Số ĐT di động"
 }
