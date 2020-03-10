@@ -49,8 +49,13 @@ export class InformationComponent implements OnInit {
     // ------------------------- store the individual data to session --------------------------------
     saveData() {
         const {value} = this.informationForm;
-        this.dataStorageService.saveName(value.full_name);
-        this.dataStorageService.saveNationalId(value.national_id);
+        if (value.full_name.length < 5 || value.national_id.length < 9 || value.national_id.length > 12) {
+            this.dataStorageService.saveName('');
+            this.dataStorageService.saveNationalId('');
+        } else {
+            this.dataStorageService.saveName(value.full_name);
+            this.dataStorageService.saveNationalId(value.national_id);
+        }
         console.log(value);
     }
 
