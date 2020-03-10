@@ -85,7 +85,15 @@
     <br>
 
 <!------------------------------------------------------- Button next ------------------------------------------------------>
-    <div id="wrapper" *ngIf="onNext()">
-        <button class="btn btn-outline-primary" [routerLink]="['/banks', id, 'login']">{{"Next" | translate}}</button>
+    <div class="row">
+        <div class="col-12 text-center" *ngIf="!onNext()">
+            <button class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'sending']"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
+        </div>
+        <div class="col-6 text-right">
+            <button *ngIf="onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'sending']"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
+        </div>
+        <div class="col-6 text-left">
+            <button *ngIf="onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'login']">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
+        </div>
     </div>
 </div>

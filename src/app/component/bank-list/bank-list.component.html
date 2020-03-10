@@ -27,7 +27,7 @@
         <br>
         <br/>
         <div class="text-center" *ngIf="isShowButtonChooseLanguage">
-            <button class="btn btn-outline-primary" (click)="saveLanguageAfterChoose()">Next/Tiếp</button>
+            <button class="btn btn-sm btn-primary" (click)="saveLanguageAfterChoose()">Next/Tiếp <i class="fas fa-caret-right"></i></button>
         </div>
     </div>
 
@@ -47,8 +47,17 @@
         </div>
 
         <!--------------------------------- next button until check ------------------------------->
-        <div id="wrapper" *ngIf="bankId">
-            <button class="btn btn-outline-primary" [routerLink]="['/banks', bankId, 'sending']">{{"Next" | translate}}</button>
+        <br/>
+        <div class="row">
+            <div class="col-12 text-center" *ngIf="!bankId">
+                <button class="btn btn-primary btn-sm" (click)="backToChooseLanguage()"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
+            </div>
+            <div class="col-6 text-right">
+                <button *ngIf="bankId" class="btn btn-primary btn-sm" (click)="backToChooseLanguage()"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
+            </div>
+            <div class="col-6 text-left">
+                <button *ngIf="bankId" class="btn btn-primary btn-sm" [routerLink]="['/banks', bankId, 'sending']">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
+            </div>
         </div>
     </div>
 </div>

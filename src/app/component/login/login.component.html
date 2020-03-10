@@ -71,9 +71,17 @@
         </div>
     </div>
     <hr>
-
+    <br/>
     <!-------------------------------------button next ------------------------------------------>
-    <div id="wrapper" *ngIf="check && !f.username.errors && !f.password.errors && !f.confirmPassword.errors">
-        <button class="btn btn-outline-primary" (click)="onSubmit()">{{"Next" | translate}}</button>
+    <div class="row">
+        <div class="col-12 text-center" *ngIf="!check || f.username.errors || f.password.errors || f.confirmPassword.errors">
+            <button class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'consensus']"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
+        </div>
+        <div class="col-6 text-right">
+            <button *ngIf="check && !f.username.errors && !f.password.errors && !f.confirmPassword.errors" class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'consensus']"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
+        </div>
+        <div class="col-6 text-left">
+            <button *ngIf="check && !f.username.errors && !f.password.errors && !f.confirmPassword.errors" class="btn btn-primary btn-sm" (click)="onSubmit()">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
+        </div>
     </div>
 </div>

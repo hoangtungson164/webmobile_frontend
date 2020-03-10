@@ -71,6 +71,7 @@ export class BankListComponent implements OnInit {
     }
 
     backToChooseLanguage() {
+        this.bankId = null;
         this.storageLocal.clear();
         this.setLanguage();
         this.isShowButtonChooseLanguage = false;

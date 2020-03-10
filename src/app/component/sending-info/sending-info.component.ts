@@ -19,6 +19,8 @@ export class SendingInfoComponent implements OnInit {
 
     reports: IReport[];
     LANGUAGE: string;
+    nationalId: string;
+    fullName: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -55,5 +57,11 @@ export class SendingInfoComponent implements OnInit {
         this.check = true;
         this.dataStorageService.saveReportCode(report);
         this.dataStorageService.saveReportName(name);
+    }
+
+    onNext() {
+        this.nationalId = this.dataStorageService.getNationalId();
+        this.fullName = this.dataStorageService.getName();
+        return this.nationalId && this.fullName;
     }
 }
