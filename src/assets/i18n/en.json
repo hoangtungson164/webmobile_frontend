@@ -49,6 +49,8 @@
   "Confirm password must be the same": "Confirm password must be the same",
   "Enter Id": "Enter Id",
   "Password": "Password",
-  "ConfirmPassword": "Confirm Password"
+  "ConfirmPassword": "Confirm Password",
+  "Notify": "Notify",
+  "Phone Number does not exist": "Phone Number does not exist"
 
 }

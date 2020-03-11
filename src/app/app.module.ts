@@ -21,6 +21,7 @@ import {HttpErrorInterceptor} from './http-error.interceptor';
 import { RedirectBackendComponent } from './component/redirect-backend/redirect-backend.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {DatePipe} from '@angular/common';
 
 
 @NgModule({
@@ -59,7 +60,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
             provide: HTTP_INTERCEPTORS,
             useClass: HttpErrorInterceptor,
             multi: true
-        }
+        }, DatePipe
     ],
     bootstrap: [AppComponent]
 })

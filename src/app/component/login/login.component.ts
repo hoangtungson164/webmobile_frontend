@@ -4,6 +4,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataStorageService} from '../../storage/data-storage.service';
 import {MustMatch} from '../../validators/mustMatch';
 import {TranslateService} from '@ngx-translate/core';
+import {UserService} from './service/user-service.service';
+import {ICheckPhone} from './interface/ICheckPhone';
+import {DatePipe} from '@angular/common';
+import {IFormUpdateScrapLog} from './interface/IFormUpdateScrapLog';
 
 @Component({
     selector: 'app-login',
@@ -21,6 +25,7 @@ export class LoginComponent implements OnInit {
 
     report: string;
     LANGUAGE: string;
+    messageCheckPhone: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -28,6 +33,8 @@ export class LoginComponent implements OnInit {
         private dataStorageService: DataStorageService,
         private fb: FormBuilder,
         private translate: TranslateService,
+        private userService: UserService,
+        private datePipe: DatePipe
     ) {
         this.LANGUAGE = this.dataStorageService.getLanguage();
         if (this.LANGUAGE) {
@@ -56,10 +63,51 @@ export class LoginComponent implements OnInit {
     }
 
     // ------------------------store after click next button ----------------------------------------------
-    onSubmit() {
-        // const {value} = this.loginForm;
-        // this.dataStorageService.saveUserId(value.username);
-        // this.dataStorageService.savePassword(value.password);
-        // this.router.navigateByUrl('/banks/' + this.id + '/inquiryReport');
+    checkNumberPhone(buttonOpenMessageCheckPhone: HTMLButtonElement) {
+        this.messageCheckPhone = null;
+        if (this.dataStorageService.getPhone()) {
+            this.userService.checkPhoneNumber(this.dataStorageService.getPhone()).subscribe(
+                result => {
+                    if (result.data[0]) {
+                        this.sendDataUpdateScrapLog(result, buttonOpenMessageCheckPhone);
+                    } else {
+                        return buttonOpenMessageCheckPhone.click();
+                    }
+                }, error => {
+                    this.messageCheckPhone = error.message;
+                    buttonOpenMessageCheckPhone.click();
+                }
+            );
+        }
+    }
+
+    sendDataUpdateScrapLog(data: ICheckPhone, buttonOpenMessageCheckPhone: HTMLButtonElement) {
+        const {value} = this.loginForm;
+        const now = new Date();
+        const timeStamp = this.datePipe.transform( now, 'yyyyMMddHHmmss');
+        if (value.username && value.password) {
+            const form: IFormUpdateScrapLog = {
+                niceSsKey: data.data[0].NICE_SSIN_ID,
+                loginID: value.username,
+                loginPW: btoa(timeStamp + value.password)
+            };
+
+            console.log(form);
+            this.userService.updateIdPwScrapLog(form).subscribe(
+                result => {
+                    if (result.rowsAffected == 1) {
+                        this.dataStorageService.saveUserId(value.username);
+                        this.dataStorageService.savePassword(value.password);
+                        this.router.navigateByUrl('/banks/' + this.id + '/inquiryReport');
+                    } else {
+                        this.messageCheckPhone = 'Error When Update Scraplog/ Lỗi cập nhật thông tin trên Scraplog';
+                        buttonOpenMessageCheckPhone.click();
+                    }
+                }, error => {
+                    this.messageCheckPhone = 'Error When Update Scraplog/ Lỗi cập nhật thông tin trên Scraplog';
+                    buttonOpenMessageCheckPhone.click();
+                }
+            );
+        }
     }
 }
