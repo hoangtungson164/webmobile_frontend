@@ -14,7 +14,8 @@ export class RedirectBackendComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    window.location.href = 'https://192.168.22.179:3400/';
+    // window.location.href = 'https://192.168.22.179:3400/';
+    window.location.href = 'https://localhost:3400/';
   }
 
 }

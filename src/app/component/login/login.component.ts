@@ -57,9 +57,9 @@ export class LoginComponent implements OnInit {
 
     // ------------------------store after click next button ----------------------------------------------
     onSubmit() {
-        const {value} = this.loginForm;
-        this.dataStorageService.saveUserId(value.username);
-        this.dataStorageService.savePassword(value.password);
-        this.router.navigateByUrl('/banks/' + this.id + '/inquiryReport');
+        // const {value} = this.loginForm;
+        // this.dataStorageService.saveUserId(value.username);
+        // this.dataStorageService.savePassword(value.password);
+        // this.router.navigateByUrl('/banks/' + this.id + '/inquiryReport');
     }
 }

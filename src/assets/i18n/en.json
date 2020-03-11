@@ -40,5 +40,15 @@
   "Phone Number invalid": "Phone Number invalid!",
   "Phone": "Phone",
   "Phone Number is require": "Phone Number is require!",
-  "Mobile Phone": "Mobile phone number"
+  "Mobile Phone": "Mobile phone number",
+  "Username is required": "Username is required",
+  "Username must be at least 5 character": "Username must be at least 5 character",
+  "Password is required": "Password is required",
+  "Password must be at least 5 character": "Password must be at least 5 character",
+  "Confirm password is required": "Confirm password is required",
+  "Confirm password must be the same": "Confirm password must be the same",
+  "Enter Id": "Enter Id",
+  "Password": "Password",
+  "ConfirmPassword": "Confirm Password"
+
 }

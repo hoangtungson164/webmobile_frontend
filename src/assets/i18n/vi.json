@@ -40,5 +40,14 @@
   "Phone Number invalid": "Số điện thoại không hợp lệ!",
   "Phone": "SĐT",
   "Phone Number is require": "Vui lòng điền số điện thoại!",
-  "Mobile Phone": "Số ĐT di động"
+  "Mobile Phone": "Số ĐT di động",
+  "Username is required": "Vui lòng điền tên đăng nhập",
+  "Username must be at least 5 character": "Tên đăng nhập phải có ít nhất 5 kí tự",
+  "Password is required": "Vui lòng điền mật khẩu",
+  "Password must be at least 5 character": "Mật khẩu phải có ít nhất 5 kí tự",
+  "Confirm password is required": "Vui lòng xác nhận lại mật khẩu",
+  "Confirm password must be the same": "Mật khẩu xác nhận không khớp",
+  "Enter Id": "Tên đăng nhập",
+  "Password": "Mật khẩu",
+  "ConfirmPassword": "Xác nhận mật khẩu"
 }

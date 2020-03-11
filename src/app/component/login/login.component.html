@@ -36,34 +36,34 @@
                             <label for="exampleInputId" class="col-4 col-sm-2 col-form-label login">ID:</label>
                             <input type="text" class="form-control col-8 col-sm-10 login" id="exampleInputId"
                                    formControlName="username"
-                                   aria-describedby="idHelp" placeholder="Enter Id"
+                                   aria-describedby="idHelp" placeholder="{{'Enter Id' | translate}}"
                                    [ngClass]="{ 'is-invalid': f.username.errors && f.username.touched }"/>
                         </div>
                         <div *ngIf="f.username.errors && f.username.touched" class="alert alert-danger">
-                            <div *ngIf="f.username.errors.required">Username is required</div>
-                            <div *ngIf="f.username.errors">Username must be at least 5 character</div>
+                            <div *ngIf="f.username.errors.required">{{"Username is required" | translate}}</div>
+                            <div *ngIf="f.username.errors">{{"Username must be at least 5 character" | translate}}</div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputPassword1" class="col-4 col-sm-2 col-form-label login">{{"PW" | translate}}:</label>
                             <input type="password" class="form-control col-8 col-sm-10 login" formControlName="password"
-                                   id="exampleInputPassword1" placeholder="Password"
+                                   id="exampleInputPassword1" placeholder="{{'Password' | translate}}"
                                    [ngClass]="{ 'is-invalid': f.password.errors && f.password.touched}"/>
                         </div>
                         <div *ngIf="f.password.errors && f.password.touched" class="alert alert-danger">
-                            <div *ngIf="f.password.errors.required">Password is required</div>
-                            <div *ngIf="f.password.errors">Password must be at least 5 character</div>
+                            <div *ngIf="f.password.errors.required">{{"Password is required" | translate}}</div>
+                            <div *ngIf="f.password.errors">{{"Password must be at least 5 character" | translate}}</div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputPassword2"
                                    class="col-4 col-sm-2 col-form-label login">{{"PW(confirm)" | translate}}:</label>
                             <input type="password" class="form-control col-8 col-sm-10 login"
                                    formControlName="confirmPassword"
-                                   id="exampleInputPassword2" placeholder="ConfirmPassword"
+                                   id="exampleInputPassword2" placeholder="{{'ConfirmPassword' | translate}}"
                                    [ngClass]="{ 'is-invalid': f.confirmPassword.errors && f.confirmPassword.touched }"/>
                         </div>
                         <div *ngIf="f.confirmPassword.errors && f.confirmPassword.touched" class="alert alert-danger">
-                            <div *ngIf="f.confirmPassword.errors.required"> Confirm password is required</div>
-                            <div *ngIf="f.confirmPassword.errors">Confirm password must be the same</div>
+                            <div *ngIf="f.confirmPassword.errors.required"> {{"Confirm password is required" | translate}}</div>
+                            <div *ngIf="f.confirmPassword.errors">{{"Confirm password must be the same" | translate}}</div>
                         </div>
                     </form>
                 </div>
