@@ -22,8 +22,9 @@ export class UserService {
     return this.http.post<IUser>(this.loginUrl, user);
   }
 
-  checkPhoneNumber(phone: string): Observable<ICheckPhone> {
-    return this.http.get<ICheckPhone>(apiUrl + '/checkPhoneNumber?phoneNumber=' + phone).pipe(
+  getNiceSsId(phone: string, custCD: string): Observable<ICheckPhone> {
+      console.log(phone , custCD);
+      return this.http.get<ICheckPhone>(apiUrl + '/checkPhoneNumber?phoneNumber=' + phone + '&custCD=' + custCD).pipe(
         tap(result => {
           console.log(result);
         }, e => {
@@ -32,7 +33,7 @@ export class UserService {
     );
   }
 
-  updateIdPwScrapLog(form: IFormUpdateScrapLog): Observable<any> {
+  updateIdPwNationIDScrapLog(form: IFormUpdateScrapLog): Observable<any> {
       return this.http.put<any>( apiUrl + '/updateIdAndPwScrapLog' , form).pipe(
           tap(
               result => {

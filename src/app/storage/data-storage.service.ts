@@ -9,6 +9,8 @@ const USER_ID = 'user_id';
 const PASSWORD = 'password';
 const LANGUAGE = 'language';
 const PHONE = 'phone';
+const NICESSKEY = 'nice ss key';
+const PHONEURL = 'phone url';
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +18,24 @@ const PHONE = 'phone';
 export class DataStorageService {
 
     constructor() {
+    }
+
+    public savePhoneUrl(phoneUrl: string) {
+        window.sessionStorage.removeItem(PHONEURL);
+        window.sessionStorage.setItem(PHONEURL, phoneUrl);
+    }
+
+    public getPhoneUrl(): string {
+        return sessionStorage.getItem(PHONEURL);
+    }
+
+    public saveNiceSS(niceSS: string) {
+        window.sessionStorage.removeItem(NICESSKEY);
+        window.sessionStorage.setItem(NICESSKEY, niceSS);
+    }
+
+    public getNiceSS(): string {
+        return sessionStorage.getItem(NICESSKEY);
     }
 
     public savePhone(phone: string) {

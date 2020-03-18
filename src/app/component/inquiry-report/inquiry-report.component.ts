@@ -6,6 +6,7 @@ import {IndiService} from '../information/service/indi.service';
 import {UserService} from '../login/service/user-service.service';
 import {IUser} from '../login/interface/i-user';
 import {TranslateService} from '@ngx-translate/core';
+import {IFormUpdateScrapLog} from '../login/interface/IFormUpdateScrapLog';
 
 @Component({
     selector: 'app-report',
@@ -15,7 +16,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class InquiryReportComponent implements OnInit {
 
-    id: number;
+    id: string;
     report: string;
     result: string;
     check = false;
@@ -39,7 +40,7 @@ export class InquiryReportComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.id = +this.route.snapshot.paramMap.get('id');
+        this.id = this.route.snapshot.paramMap.get('id');
         this.report = this.dataStorageService.getReportName();
         this.checkDone();
     }
@@ -48,7 +49,8 @@ export class InquiryReportComponent implements OnInit {
         if (this.dataStorageService.getUserId()
             && this.dataStorageService.getName()
             && this.dataStorageService.getNationalId()
-            && this.dataStorageService.getPassword()) {
+            && this.dataStorageService.getPassword()
+            && this.dataStorageService.getNiceSS()) {
             if (this.LANGUAGE === 'en') {
                 this.result = 'Done';
             }
@@ -70,43 +72,60 @@ export class InquiryReportComponent implements OnInit {
     }
 
     onSubmit() {
-        this.saveInfo();
-        this.saveUser();
+        this.updateLoginIdAndLoginPwAndNationId();
+        // this.saveInfo();
+        // this.saveUser();
+    }
+
+    updateLoginIdAndLoginPwAndNationId() {
+        if (this.dataStorageService.getUserId()
+            && this.dataStorageService.getNationalId()
+            && this.dataStorageService.getPassword()
+            && this.dataStorageService.getNiceSS()) {
+            const form: IFormUpdateScrapLog = {
+                            niceSsKey: this.dataStorageService.getNiceSS(),
+                            loginID: this.dataStorageService.getUserId(),
+                            loginPW: this.dataStorageService.getPassword(),
+                            nationID: this.dataStorageService.getNationalId()
+                        };
+            console.log(form);
+            this.userService.updateIdPwNationIDScrapLog(form).subscribe();
+        }
     }
 
     // ------------------ save individual info to database--------------------------------------
-    saveInfo() {
-        this.info = new IInfo(
-            this.dataStorageService.getInstitution(),
-            this.dataStorageService.getName(),
-            this.dataStorageService.getNationalId());
-
-        this.infoService.postINQ(this.info).subscribe(next => {
-            console.log(this.info);
-            console.log(next);
-            console.log('success to store into inqlog');
-        }, error => {
-            console.log('fail to store into inqlog');
-        });
-
-        this.infoService.postSCRP(this.info).subscribe(next => {
-            console.log(next);
-            console.log('success to store into scrplog');
-        }, error => {
-            console.log('fail to store into scrplog');
-        });
-    }
-
-    saveUser() {
-        this.user = new IUser(this.dataStorageService.getUserId(),
-            this.dataStorageService.getPassword(),
-            this.dataStorageService.getInstitution());
-        this.userService.insertUser(this.user).subscribe(next => {
-            console.log('success to insert user');
-        }, error => {
-            console.log('fail to insert user');
-        });
-    }
+    // saveInfo() {
+    //     this.info = new IInfo(
+    //         this.dataStorageService.getInstitution(),
+    //         this.dataStorageService.getName(),
+    //         this.dataStorageService.getNationalId());
+    //
+    //     this.infoService.postINQ(this.info).subscribe(next => {
+    //         console.log(this.info);
+    //         console.log(next);
+    //         console.log('success to store into inqlog');
+    //     }, error => {
+    //         console.log('fail to store into inqlog');
+    //     });
+    //
+    //     this.infoService.postSCRP(this.info).subscribe(next => {
+    //         console.log(next);
+    //         console.log('success to store into scrplog');
+    //     }, error => {
+    //         console.log('fail to store into scrplog');
+    //     });
+    // }
+    //
+    // saveUser() {
+    //     this.user = new IUser(this.dataStorageService.getUserId(),
+    //         this.dataStorageService.getPassword(),
+    //         this.dataStorageService.getInstitution());
+    //     this.userService.insertUser(this.user).subscribe(next => {
+    //         console.log('success to insert user');
+    //     }, error => {
+    //         console.log('fail to insert user');
+    //     });
+    // }
 
     clearAllData() {
         this.dataStorageService.clear();

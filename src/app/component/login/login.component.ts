@@ -64,12 +64,19 @@ export class LoginComponent implements OnInit {
 
     // ------------------------store after click next button ----------------------------------------------
     checkNumberPhone(buttonOpenMessageCheckPhone: HTMLButtonElement) {
+        const now = new Date();
+        const timeStamp = this.datePipe.transform( now, 'yyyyMMddHHmmss');
+        const {value} = this.loginForm;
         this.messageCheckPhone = null;
         if (this.dataStorageService.getPhone()) {
-            this.userService.checkPhoneNumber(this.dataStorageService.getPhone()).subscribe(
+            this.userService.getNiceSsId(this.dataStorageService.getPhone(), this.dataStorageService.getInstitution()).subscribe(
                 result => {
                     if (result.data[0]) {
-                        this.sendDataUpdateScrapLog(result, buttonOpenMessageCheckPhone);
+                        this.dataStorageService.saveUserId(value.username);
+                        this.dataStorageService.savePassword(btoa(timeStamp + value.password));
+                        this.dataStorageService.saveNiceSS(result.data[0].NICE_SSIN_ID);
+                        this.router.navigateByUrl('/banks/' + this.id + '/inquiryReport');
+                        console.log(this.dataStorageService.getNiceSS());
                     } else {
                         return buttonOpenMessageCheckPhone.click();
                     }
@@ -81,33 +88,33 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    sendDataUpdateScrapLog(data: ICheckPhone, buttonOpenMessageCheckPhone: HTMLButtonElement) {
-        const {value} = this.loginForm;
-        const now = new Date();
-        const timeStamp = this.datePipe.transform( now, 'yyyyMMddHHmmss');
-        if (value.username && value.password) {
-            const form: IFormUpdateScrapLog = {
-                niceSsKey: data.data[0].NICE_SSIN_ID,
-                loginID: value.username,
-                loginPW: btoa(timeStamp + value.password)
-            };
-
-            console.log(form);
-            this.userService.updateIdPwScrapLog(form).subscribe(
-                result => {
-                    if (result.rowsAffected == 1) {
-                        this.dataStorageService.saveUserId(value.username);
-                        this.dataStorageService.savePassword(value.password);
-                        this.router.navigateByUrl('/banks/' + this.id + '/inquiryReport');
-                    } else {
-                        this.messageCheckPhone = 'Error When Update Scraplog/ Lỗi cập nhật thông tin trên Scraplog';
-                        buttonOpenMessageCheckPhone.click();
-                    }
-                }, error => {
-                    this.messageCheckPhone = 'Error When Update Scraplog/ Lỗi cập nhật thông tin trên Scraplog';
-                    buttonOpenMessageCheckPhone.click();
-                }
-            );
-        }
-    }
+    // sendDataUpdateScrapLog(data: ICheckPhone, buttonOpenMessageCheckPhone: HTMLButtonElement) {
+    //     const {value} = this.loginForm;
+    //     const now = new Date();
+    //     const timeStamp = this.datePipe.transform( now, 'yyyyMMddHHmmss');
+    //     if (value.username && value.password) {
+    //         const form: IFormUpdateScrapLog = {
+    //             niceSsKey: data.data[0].NICE_SSIN_ID,
+    //             loginID: value.username,
+    //             loginPW: btoa(timeStamp + value.password)
+    //         };
+    //
+    //         console.log(form);
+    //         this.userService.updateIdPwScrapLog(form).subscribe(
+    //             result => {
+    //                 if (result.rowsAffected == 1) {
+    //                     this.dataStorageService.saveUserId(value.username);
+    //                     this.dataStorageService.savePassword(value.password);
+    //                     this.router.navigateByUrl('/banks/' + this.id + '/inquiryReport');
+    //                 } else {
+    //                     this.messageCheckPhone = 'Error When Update Scraplog/ Lỗi cập nhật thông tin trên Scraplog';
+    //                     buttonOpenMessageCheckPhone.click();
+    //                 }
+    //             }, error => {
+    //                 this.messageCheckPhone = 'Error When Update Scraplog/ Lỗi cập nhật thông tin trên Scraplog';
+    //                 buttonOpenMessageCheckPhone.click();
+    //             }
+    //         );
+    //     }
+    // }
 }

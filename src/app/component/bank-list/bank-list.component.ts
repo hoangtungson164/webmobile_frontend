@@ -3,6 +3,7 @@ import {BankService} from './service/bank.service';
 import {IBank} from './interface/ibank';
 import {DataStorageService} from '../../storage/data-storage.service';
 import {TranslateService} from '@ngx-translate/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-bank-list',
@@ -16,17 +17,27 @@ export class BankListComponent implements OnInit {
     displayLanguage: string;
     LANGUAGE: string;
     isShowButtonChooseLanguage = false;
+    phoneURL: string;
 
     constructor(
         private bankService: BankService,
         private dataStorageService: DataStorageService,
         public translate: TranslateService,
-        private storageLocal: DataStorageService
+        private storageLocal: DataStorageService,
+        private route: ActivatedRoute
     ) {
         translate.addLangs(['en', 'vi']);
+        this.route.queryParams.subscribe(params => {
+            this.phoneURL = params.phone;
+        });
     }
 
     ngOnInit() {
+        console.log('Phone =>> ' + this.phoneURL);
+        if (this.phoneURL) {
+            this.dataStorageService.savePhone(this.phoneURL);
+            this.dataStorageService.savePhoneUrl(this.phoneURL);
+        }
         this.getAllBanks();
         this.setLanguage();
     }
