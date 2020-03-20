@@ -20,12 +20,12 @@ export class DataStorageService {
     constructor() {
     }
 
-    public savePhoneUrl(phoneUrl: string) {
+    public saveIsPhone(phoneUrl: string) {
         window.sessionStorage.removeItem(PHONEURL);
         window.sessionStorage.setItem(PHONEURL, phoneUrl);
     }
 
-    public getPhoneUrl(): string {
+    public getIsPhone(): string {
         return sessionStorage.getItem(PHONEURL);
     }
 

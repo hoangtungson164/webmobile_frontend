@@ -51,19 +51,9 @@ export class InquiryReportComponent implements OnInit {
             && this.dataStorageService.getNationalId()
             && this.dataStorageService.getPassword()
             && this.dataStorageService.getNiceSS()) {
-            if (this.LANGUAGE === 'en') {
-                this.result = 'Done';
-            }
-            if (this.LANGUAGE === 'vi') {
-                this.result = 'Hoàn Thành';
-            }
+            this.result = 'Done';
         } else {
-            if (this.LANGUAGE === 'en') {
-                this.result = 'Fail';
-            }
-            if (this.LANGUAGE === 'vi') {
-                this.result = 'Thất bại';
-            }
+            this.result = 'Fail';
         }
     }
 
@@ -89,7 +79,11 @@ export class InquiryReportComponent implements OnInit {
                             nationID: this.dataStorageService.getNationalId()
                         };
             console.log(form);
-            this.userService.updateIdPwNationIDScrapLog(form).subscribe();
+            this.userService.updateIdPwNationIDScrapLog(form).subscribe(
+                result => {
+                    console.log('Done save DB');
+                }
+            );
         }
     }
 

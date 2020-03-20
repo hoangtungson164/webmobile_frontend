@@ -51,6 +51,8 @@
   "Password": "Password",
   "ConfirmPassword": "Confirm Password",
   "Notify": "Notify",
-  "Phone Number does not exist": "Not Found the information provided!"
+  "Phone Number does not exist": "Not Found the information provided!",
+  "Done": "Done",
+  "Fail": "Fail"
 
 }

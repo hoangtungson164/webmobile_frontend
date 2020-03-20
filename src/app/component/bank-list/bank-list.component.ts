@@ -36,7 +36,7 @@ export class BankListComponent implements OnInit {
         console.log('Phone =>> ' + this.phoneURL);
         if (this.phoneURL) {
             this.dataStorageService.savePhone(this.phoneURL);
-            this.dataStorageService.savePhoneUrl(this.phoneURL);
+            this.dataStorageService.saveIsPhone('true');
         }
         this.getAllBanks();
         this.setLanguage();

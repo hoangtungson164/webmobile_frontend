@@ -12,7 +12,7 @@ export class InformationComponent implements OnInit {
 
     informationForm: FormGroup;
     LANGUAGE: string;
-    isPhoneURL: boolean;
+    isPhone: string;
 
     constructor(
         private fb: FormBuilder,
@@ -27,11 +27,7 @@ export class InformationComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.dataStorageService.getPhoneUrl()) {
-            this.isPhoneURL = true;
-        } else {
-            this.isPhoneURL = false;
-        };
+        this.isPhone = this.dataStorageService.getIsPhone();
         if (this.dataStorageService.getName() || this.dataStorageService.getNationalId() || this.dataStorageService.getPhone()) {
             this.informationForm = this.fb.group({
                 full_name: [this.dataStorageService.getName(), [Validators.required,
