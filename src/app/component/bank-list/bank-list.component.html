@@ -1,20 +1,63 @@
 <div class="container">
-    <div class="body-title">Target Institution</div>
-    <hr>
-
-<!----------------------------------- display all institutions ----------------------------->
-    <div *ngFor="let bank of banks">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn" style="margin-left: 5px">
-                <input type="radio" class="bank" name="options" id="{{bank.CUST_GB}}"
-                       (click)="getId(bank.CUST_GB, bank.CUST_CD)"> {{bank.CUST_NM_ENG}}
-            </label>
+    <div *ngIf="!LANGUAGE">
+        <div class="body-title">Chọn ngôn ngữ</div>
+        <div class="body-title">(Choose language)</div>
+        <hr>
+    <div class="row">
+        <div class="col-2 text-center"></div>
+        <div class="col-4 text-center">
+            <button [ngClass]="{active:inputLanguage == 'vi'}" (click)="getInputLanguage('vi' , 'Việt Nam')" class="btn btn-sm  border-0"
+                   >
+                <img src="assets/img/vietnam-flag-3d-xs.jpg"
+                     class="img-fluid " alt="Responsive image">
+            </button>
         </div>
-        <hr class="lineBetween">
+        <div class="col-4 text-center">
+            <button [ngClass]="{active:inputLanguage == 'en'}" (click)="getInputLanguage('en' , 'EngLish')" class="btn btn-sm  border-0"
+                    >
+                <img src="assets/img/united-states-of-america-flag-3d-xsoi.jpg"
+                     class="img-fluid " alt="Responsive image">
+            </button>
+        </div>
+        <div class="col-2 text-center"></div>
+    </div>
+        <br>
+        <div class="text-center"><b class="text-success">{{displayLanguage}}</b></div>
+        <hr>
+        <br>
+        <br/>
+        <div class="text-center" *ngIf="isShowButtonChooseLanguage">
+            <button class="btn btn-sm btn-primary" (click)="saveLanguageAfterChoose()">Next/Tiếp <i class="fas fa-caret-right"></i></button>
+        </div>
     </div>
 
-<!--------------------------------- next button until check ------------------------------->
-    <div id="wrapper" *ngIf="bankId">
-        <button class="btn btn-outline-primary" [routerLink]="['/banks', bankId, 'sending']">Next</button>
+    <div *ngIf="LANGUAGE">
+        <div class="body-title row">
+            <button class="btn btn-outline-primary border-0 back col-1" (click)="backToChooseLanguage()"><i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="body-title col-10">{{"Target Institution" | translate}}</div>
+        </div>
+        <hr>
+
+        <!----------------------------------- display all institutions ----------------------------->
+        <div *ngFor="let bank of banks">
+                    <button [ngClass]="{active:bank.CUST_GB == bankId}" class="btn btn-outline-primary border-0"
+                            (click)="getId(bank.CUST_GB, bank.CUST_CD)"> {{bank.CUST_NM_ENG}} </button>
+            <hr class="lineBetween">
+        </div>
+
+        <!--------------------------------- next button until check ------------------------------->
+        <br/>
+        <div class="row">
+            <div class="col-12 text-center" *ngIf="!bankId">
+                <button class="btn btn-primary btn-sm" (click)="backToChooseLanguage()"><i class="fas fa-caret-left"></i> {{"Back" | translate}}</button>
+            </div>
+            <div class="col-6 text-right">
+                <button *ngIf="bankId" class="btn btn-primary btn-sm" (click)="backToChooseLanguage()"><i class="fas fa-caret-left"></i> {{"Back" | translate}}</button>
+            </div>
+            <div class="col-6 text-left">
+                <button *ngIf="bankId" class="btn btn-primary btn-sm" [routerLink]="['/banks', bankId, 'sending']">{{"Next" | translate}}  <i class="fas fa-caret-right"></i></button>
+            </div>
+        </div>
     </div>
 </div>

@@ -3,6 +3,7 @@ import {BankService} from '../bank-list/service/bank.service';
 import {IBankConsensus} from './interface/i-bank-consensus';
 import {ActivatedRoute} from '@angular/router';
 import {DataStorageService} from '../../storage/data-storage.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-bank-consensus',
@@ -17,12 +18,18 @@ export class BankConsensusComponent implements OnInit {
     agreeAll = false;
     fullName: string;
     nationalId: string;
+    LANGUAGE: string;
 
     constructor(
         private bankService: BankService,
         private route: ActivatedRoute,
         private dataStorageService: DataStorageService,
+        private translate: TranslateService,
     ) {
+        this.LANGUAGE = this.dataStorageService.getLanguage();
+        if (this.LANGUAGE) {
+            this.translate.use(this.LANGUAGE);
+        }
     }
 
     ngOnInit() {

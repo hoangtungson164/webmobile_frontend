@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {DataStorageService} from '../../storage/data-storage.service';
 import {IReport} from './interface/i-report';
 import {SendingInfoService} from './service/sending-info.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-sending-info',
@@ -17,12 +18,21 @@ export class SendingInfoComponent implements OnInit {
     check = false;
 
     reports: IReport[];
+    LANGUAGE: string;
+    nationalId: string;
+    fullName: string;
 
     constructor(
         private route: ActivatedRoute,
         private dataStorageService: DataStorageService,
         private sendingInfoService: SendingInfoService,
+        public translate: TranslateService,
+        private storageLocal: DataStorageService
     ) {
+        this.LANGUAGE = this.storageLocal.getLanguage();
+        if (this.LANGUAGE) {
+            this.translate.use(this.LANGUAGE);
+        }
     }
 
     ngOnInit() {
@@ -34,6 +44,7 @@ export class SendingInfoComponent implements OnInit {
     getAllReport() {
         this.sendingInfoService.getAllReport(10, this.id).subscribe(next => {
             this.reports = next;
+            console.log(next);
             console.log('success get all the report');
         }, error => {
             console.log(error);
@@ -46,5 +57,11 @@ export class SendingInfoComponent implements OnInit {
         this.check = true;
         this.dataStorageService.saveReportCode(report);
         this.dataStorageService.saveReportName(name);
+    }
+
+    onNext() {
+        this.nationalId = this.dataStorageService.getNationalId();
+        this.fullName = this.dataStorageService.getName();
+        return this.nationalId && this.fullName;
     }
 }

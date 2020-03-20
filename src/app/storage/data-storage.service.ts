@@ -7,6 +7,10 @@ const NATIONAL_ID = 'National id';
 const CREDIT_NAME = 'Credit name';
 const USER_ID = 'user_id';
 const PASSWORD = 'password';
+const LANGUAGE = 'language';
+const PHONE = 'phone';
+const NICESSKEY = 'nice ss key';
+const PHONEURL = 'phone url';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +18,42 @@ const PASSWORD = 'password';
 export class DataStorageService {
 
     constructor() {
+    }
+
+    public saveIsPhone(phoneUrl: string) {
+        window.sessionStorage.removeItem(PHONEURL);
+        window.sessionStorage.setItem(PHONEURL, phoneUrl);
+    }
+
+    public getIsPhone(): string {
+        return sessionStorage.getItem(PHONEURL);
+    }
+
+    public saveNiceSS(niceSS: string) {
+        window.sessionStorage.removeItem(NICESSKEY);
+        window.sessionStorage.setItem(NICESSKEY, niceSS);
+    }
+
+    public getNiceSS(): string {
+        return sessionStorage.getItem(NICESSKEY);
+    }
+
+    public savePhone(phone: string) {
+        window.sessionStorage.removeItem(PHONE);
+        window.sessionStorage.setItem(PHONE, phone);
+    }
+
+    public getPhone(): string {
+        return sessionStorage.getItem(PHONE);
+    }
+
+    public saveLanguage(language: string) {
+        window.sessionStorage.removeItem(LANGUAGE);
+        window.sessionStorage.setItem(LANGUAGE, language);
+    }
+
+    public getLanguage(): string {
+        return sessionStorage.getItem(LANGUAGE);
     }
 
     public saveInstitution(institution: string) {

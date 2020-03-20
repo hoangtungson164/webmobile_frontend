@@ -3,7 +3,7 @@ import {environment} from '../../../../environments/environment.prod';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IBank} from '../interface/ibank';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import {IBankConsensus} from '../../bank-consensus/interface/i-bank-consensus';
 
 
@@ -18,7 +18,13 @@ export class BankService {
   constructor(private httpClient: HttpClient) { }
 
   getBankConsensusById(id: number): Observable<IBankConsensus> {
-    return this.httpClient.get<IBankConsensus>(this.apiURL + '/' + id + '/consent');
+    return this.httpClient.get<IBankConsensus>(this.apiURL + '/' + id + '/consent').pipe(
+        tap(result => {
+          console.log(result);
+        }, e => {
+          console.log(e);
+        })
+    );
   }
 
   getBanks(count = 10): Observable<IBank[]> {
