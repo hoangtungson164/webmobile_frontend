@@ -35,7 +35,7 @@ export class InformationComponent implements OnInit {
                 national_id: [this.dataStorageService.getNationalId(), [Validators.required,
                     Validators.pattern('^[0-9]{9,12}$'), Validators.minLength(9)]],
                 phone: [this.dataStorageService.getPhone() , [Validators.required,
-                    Validators.pattern(/((09|03|07|08|05|00|01|02|04|06)+([0-9]{8,9})\b)/g)]]
+                    Validators.pattern(/^0[35789]{1}[0-9]{7}[0-9]{1}$/)]]
             });
         } else {
             this.informationForm = this.fb.group({
@@ -44,7 +44,7 @@ export class InformationComponent implements OnInit {
                 national_id: ['', [Validators.required, Validators.minLength(9),
                     Validators.pattern('^[0-9]{9,12}$')]],
                 phone: ['' , [Validators.required,
-                    Validators.pattern(/((09|03|07|08|05|00|01|02|04|06)+([0-9]{8,9})\b)/g)]]
+                    Validators.pattern(/^0[35789]{1}[0-9]{7}[0-9]{1}$/)]]
             });
         }
     }
