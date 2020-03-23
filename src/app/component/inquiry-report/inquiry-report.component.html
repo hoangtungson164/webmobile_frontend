@@ -27,7 +27,7 @@
     </div>
     <hr>
 <div class="btn btn-group col-12" *ngIf="checkToSubmit()">
-    <button type="button" class="btn btn-outline-primary" (click)="onSubmit()">{{"Submit" | translate}}</button>
+    <button type="button" class="btn btn-outline-primary" (click)="onSubmit(modalNotify)">{{"Submit" | translate}}</button>
     <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#deleteModal">{{"Exit" | translate}}</button>
 </div>
 
@@ -50,7 +50,26 @@
             </div>
         </div>
     </div>
+</div>
 
+
+
+<button #modalNotify hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModal">aa</button>
+
+<div class="modal fade" id="NotifyModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Notify</h5>
+            </div>
+            <div class="modal-body">
+                <p class="text-center text-success">Send information successful!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  (click)="clearAllData()" data-dismiss="modal">{{"Exit" | translate}}</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
