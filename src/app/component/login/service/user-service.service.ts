@@ -33,7 +33,7 @@ export class UserService {
     );
   }
 
-  updateIdPwNationIDScrapLog(form: IFormUpdateScrapLog): Observable<any> {
+  updateIdPwNationIDToScrapLog(form: IFormUpdateScrapLog): Observable<any> {
       return this.http.put<any>( apiUrl + '/updateIdAndPwScrapLog' , form).pipe(
           tap(
               result => {

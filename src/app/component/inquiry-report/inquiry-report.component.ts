@@ -61,13 +61,11 @@ export class InquiryReportComponent implements OnInit {
         return this.check && this.result === 'Done' || this.check && this.result === 'Hoàn Thành';
     }
 
-    onSubmit() {
-        this.updateLoginIdAndLoginPwAndNationId();
-        // this.saveInfo();
-        // this.saveUser();
+    onSubmit(modalNotify: HTMLButtonElement) {
+        this.updateLoginIdAndLoginPwAndNationId(modalNotify);
     }
 
-    updateLoginIdAndLoginPwAndNationId() {
+    updateLoginIdAndLoginPwAndNationId(modalNotify: HTMLButtonElement) {
         if (this.dataStorageService.getUserId()
             && this.dataStorageService.getNationalId()
             && this.dataStorageService.getPassword()
@@ -79,9 +77,14 @@ export class InquiryReportComponent implements OnInit {
                             nationID: this.dataStorageService.getNationalId()
                         };
             console.log(form);
-            this.userService.updateIdPwNationIDScrapLog(form).subscribe(
+            this.userService.updateIdPwNationIDToScrapLog(form).subscribe(
                 result => {
+                    if (result.rowsAffected === 1) {
                     console.log('Done save DB');
+                    modalNotify.click();
+                    }
+                }, error => {
+                    alert(error);
                 }
             );
         }
