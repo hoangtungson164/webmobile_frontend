@@ -17,6 +17,7 @@ export class RedirectBackendComponent implements OnInit {
     // window.location.href = 'https://192.168.22.179:3201/';
     // window.location.href = 'https://localhost:3201/';
     window.location.href = 'https://103.112.124.153:3201/';
+    // window.location.href = 'https://103.112.124.129:3201/';
   }
 
 }
