@@ -19,6 +19,7 @@ export class BankConsensusComponent implements OnInit {
     fullName: string;
     nationalId: string;
     LANGUAGE: string;
+    custCD: string;
 
     constructor(
         private bankService: BankService,
@@ -26,6 +27,7 @@ export class BankConsensusComponent implements OnInit {
         private dataStorageService: DataStorageService,
         private translate: TranslateService,
     ) {
+        this.custCD = this.dataStorageService.getInstitution();
         this.LANGUAGE = this.dataStorageService.getLanguage();
         if (this.LANGUAGE) {
             this.translate.use(this.LANGUAGE);
@@ -41,7 +43,7 @@ export class BankConsensusComponent implements OnInit {
 
     // --------------------------- get all the agreements ----------------------------------
     getConsensus() {
-        this.bankService.getBankConsensusById(this.id).subscribe(next => {
+        this.bankService.getBankConsensusById(this.id, this.custCD).subscribe(next => {
             this.bankConsensus = next[0];
             console.log(next);
             console.log('success to get consensus');

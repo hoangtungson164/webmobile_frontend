@@ -39,8 +39,8 @@ export class InformationComponent implements OnInit {
             });
         } else {
             this.informationForm = this.fb.group({
-                full_name: ['', [Validators.required, Validators.minLength(5)],
-                    Validators.pattern('^[^0-9]+$')],
+                full_name: ['', [Validators.required, Validators.minLength(5),
+                    Validators.pattern('^[^0-9]+$')]],
                 national_id: ['', [Validators.required, Validators.minLength(9),
                     Validators.pattern('^[0-9]{9,12}$')]],
                 phone: ['' , [Validators.required,
