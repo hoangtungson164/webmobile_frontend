@@ -3,7 +3,7 @@ import {BankService} from './service/bank.service';
 import {IBank} from './interface/ibank';
 import {DataStorageService} from '../../storage/data-storage.service';
 import {TranslateService} from '@ngx-translate/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-bank-list',
@@ -19,28 +19,37 @@ export class BankListComponent implements OnInit {
     isShowButtonChooseLanguage = false;
     phoneURL: string;
     custCD: string;
+    getPhoneUrl: string;
 
     constructor(
         private bankService: BankService,
         private dataStorageService: DataStorageService,
         public translate: TranslateService,
         private storageLocal: DataStorageService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private _router: Router,
     ) {
         translate.addLangs(['en', 'vi']);
         this.route.queryParams.subscribe(params => {
             this.phoneURL = params.phone;
         });
+        if (this.dataStorageService.getPhone()) {
+            this.getPhoneUrl = this.dataStorageService.getPhone();
+        }
     }
 
     ngOnInit() {
         console.log('Phone =>> ' + this.phoneURL);
+        this.getPhoneOnUrlParam();
+        this.getAllBanks();
+        this.setLanguage();
+    }
+
+    getPhoneOnUrlParam() {
         if (this.phoneURL) {
             this.dataStorageService.savePhone(this.phoneURL);
             this.dataStorageService.saveIsPhone('true');
         }
-        this.getAllBanks();
-        this.setLanguage();
     }
 
     setLanguage() {
@@ -84,9 +93,13 @@ export class BankListComponent implements OnInit {
     }
 
     backToChooseLanguage() {
+        console.log(this.getPhoneUrl);
         this.bankId = null;
         this.storageLocal.clear();
         this.setLanguage();
         this.isShowButtonChooseLanguage = false;
+        if (this.getPhoneUrl) {
+            this._router.navigateByUrl('/banks?phone=' + this.getPhoneUrl);
+        }
     }
 }

@@ -21,6 +21,7 @@ export class SendingInfoComponent implements OnInit {
     LANGUAGE: string;
     nationalId: string;
     fullName: string;
+    custCD: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class SendingInfoComponent implements OnInit {
         public translate: TranslateService,
         private storageLocal: DataStorageService
     ) {
+        this.custCD = this.dataStorageService.getInstitution();
         this.LANGUAGE = this.storageLocal.getLanguage();
         if (this.LANGUAGE) {
             this.translate.use(this.LANGUAGE);
@@ -42,7 +44,7 @@ export class SendingInfoComponent implements OnInit {
 
     // ---------------------- get all the inquiry-report --------------------------------------
     getAllReport() {
-        this.sendingInfoService.getAllReport(10, this.id).subscribe(next => {
+        this.sendingInfoService.getAllReport(this.id , this.custCD).subscribe(next => {
             this.reports = next;
             console.log(next);
             console.log('success get all the report');
