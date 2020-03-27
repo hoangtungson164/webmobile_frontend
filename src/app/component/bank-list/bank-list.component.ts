@@ -18,6 +18,7 @@ export class BankListComponent implements OnInit {
     LANGUAGE: string;
     isShowButtonChooseLanguage = false;
     phoneURL: string;
+    custCD: string;
 
     constructor(
         private bankService: BankService,
@@ -78,6 +79,7 @@ export class BankListComponent implements OnInit {
     getId(id: string, institution: string) {
         console.log(this.bankId);
         this.bankId = id;
+        this.custCD = institution;
         this.dataStorageService.saveInstitution(institution);
     }
 
