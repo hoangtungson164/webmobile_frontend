@@ -3,31 +3,31 @@
         <div class="body-title">Chọn ngôn ngữ</div>
         <div class="body-title">(Choose language)</div>
         <hr>
-    <div class="row">
-        <div class="col-2 text-center"></div>
-        <div class="col-4 text-center">
-            <button [ngClass]="{active:inputLanguage == 'vi'}" (click)="getInputLanguage('vi' , 'Việt Nam')" class="btn btn-sm  border-0"
-                   >
-                <img src="assets/img/vietnam-flag-3d-xs.jpg"
-                     class="img-fluid " alt="Responsive image">
-            </button>
+        <div class="row">
+            <div class="col-2 text-center"></div>
+            <div class="col-4 text-center">
+                <button [ngClass]="{active:inputLanguage == 'vi'}" (click)="getInputLanguage('vi' , 'Việt Nam')" class="btn btn-sm  border-0"
+                >
+                    <img src="assets/img/vietnam-flag-3d-xs.jpg"
+                         class="img-fluid " alt="Responsive image">
+                </button>
+            </div>
+            <div class="col-4 text-center">
+                <button [ngClass]="{active:inputLanguage == 'en'}" (click)="getInputLanguage('en' , 'EngLish')" class="btn btn-sm  border-0"
+                >
+                    <img src="assets/img/united-states-of-america-flag-3d-xsoi.jpg"
+                         class="img-fluid " alt="Responsive image">
+                </button>
+            </div>
+            <div class="col-2 text-center"></div>
         </div>
-        <div class="col-4 text-center">
-            <button [ngClass]="{active:inputLanguage == 'en'}" (click)="getInputLanguage('en' , 'EngLish')" class="btn btn-sm  border-0"
-                    >
-                <img src="assets/img/united-states-of-america-flag-3d-xsoi.jpg"
-                     class="img-fluid " alt="Responsive image">
-            </button>
-        </div>
-        <div class="col-2 text-center"></div>
-    </div>
         <br>
         <div class="text-center"><b class="text-success">{{displayLanguage}}</b></div>
         <hr>
         <br>
         <br/>
         <div class="text-center" *ngIf="isShowButtonChooseLanguage">
-            <button class="btn btn-sm btn-primary" (click)="saveLanguageAfterChoose()">Next/Tiếp <i class="fas fa-caret-right"></i></button>
+            <button class="btn btn-sm btn-primary" (click)="saveLanguageAfterChoose(); getPhoneOnUrlParam()">Next/Tiếp <i class="fas fa-caret-right"></i></button>
         </div>
     </div>
 
@@ -41,8 +41,8 @@
 
         <!----------------------------------- display all institutions ----------------------------->
         <div *ngFor="let bank of banks">
-                    <button [ngClass]="{active:bank.CUST_GB == bankId && bank.CUST_CD == custCD}" class="btn btn-outline-primary border-0"
-                            (click)="getId(bank.CUST_GB, bank.CUST_CD)"> {{bank.CUST_NM_ENG}} </button>
+            <button [ngClass]="{active:bank.CUST_GB == bankId && bank.CUST_CD == custCD}" class="btn btn-outline-primary border-0"
+                    (click)="getId(bank.CUST_GB, bank.CUST_CD)"> {{bank.CUST_NM_ENG}} </button>
             <hr class="lineBetween">
         </div>
 
