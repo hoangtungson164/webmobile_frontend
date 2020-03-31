@@ -24,10 +24,8 @@
 
     <!----------------------------------------Phone------------------------------------>
     <div  class="form-group row col-12">
-        <label for="inputPassword2" class="col-4 col-sm-2 col-form-label information">{{"Phone" | translate}}:</label>
-        <input *ngIf="isPhone" disabled type="text" class="form-control col-8 col-sm-10 information" formControlName="phone"
-               id="inputPassword2" placeholder="{{'Mobile Phone' | translate }}" (change)="saveData()" [ngClass]="{'is-invalid': f.phone.errors && f.phone.touched ? f.phone.errors && f.phone.touched : false}">
-        <input *ngIf="!isPhone" type="text" class="form-control col-8 col-sm-10 information" formControlName="phone"
+        <label for="inputPassword4" class="col-4 col-sm-2 col-form-label information">{{"Phone" | translate}}:</label>
+        <input type="text" class="form-control col-8 col-sm-10 information" formControlName="phone"
                id="inputPassword4" placeholder="{{'Mobile Phone' | translate }}" (change)="saveData()" [ngClass]="{'is-invalid': f.phone.errors && f.phone.touched ? f.phone.errors && f.phone.touched : false}">
         <div *ngIf="f.phone.errors && f.phone.touched ? f.phone.errors && f.phone.touched : false" class="col-12 alert alert-danger">
             <div *ngIf="f.phone.errors.required">{{"Phone Number is require" | translate}}</div>

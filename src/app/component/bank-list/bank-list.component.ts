@@ -17,7 +17,6 @@ export class BankListComponent implements OnInit {
     displayLanguage: string;
     LANGUAGE: string;
     isShowButtonChooseLanguage = false;
-    phoneURL: string;
     custCD: string;
     getPhoneUrl: string;
 
@@ -30,26 +29,11 @@ export class BankListComponent implements OnInit {
         private _router: Router,
     ) {
         translate.addLangs(['en', 'vi']);
-        this.route.queryParams.subscribe(params => {
-            this.phoneURL = params.phone;
-        });
-        if (this.dataStorageService.getPhone()) {
-            this.getPhoneUrl = this.dataStorageService.getPhone();
-        }
     }
 
     ngOnInit() {
-        console.log('Phone =>> ' + this.phoneURL);
-        this.getPhoneOnUrlParam();
         this.getAllBanks();
         this.setLanguage();
-    }
-
-    getPhoneOnUrlParam() {
-        if (this.phoneURL) {
-            this.dataStorageService.savePhone(this.phoneURL);
-            this.dataStorageService.saveIsPhone('true');
-        }
     }
 
     setLanguage() {
