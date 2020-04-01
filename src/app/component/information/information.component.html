@@ -3,7 +3,9 @@
     <!--------------------------------------------- name ----------------------------------------->
     <div class="form-group row col-12">
         <label for="inputId" class="col-4 col-sm-2 col-form-label information">{{"Name" | translate}}:</label>
-        <input type="text" class="form-control col-8 col-sm-10 information" id="inputId" formControlName="full_name"
+        <input *ngIf="isDisable" disabled type="text" class="form-control col-8 col-sm-10 information" id="inputId" formControlName="full_name"
+               aria-describedby="idHelp" placeholder="{{'Enter your full name' | translate}}" (change)="saveData()" [ngClass]="{ 'is-invalid': f.full_name.errors && f.full_name.touched }"/>
+        <input *ngIf="!isDisable" type="text" class="form-control col-8 col-sm-10 information" id="inputId" formControlName="full_name"
                aria-describedby="idHelp" placeholder="{{'Enter your full name' | translate}}" (change)="saveData()" [ngClass]="{ 'is-invalid': f.full_name.errors && f.full_name.touched }"/>
         <div *ngIf="f.full_name.errors && f.full_name.touched" class=" col-12 alert alert-danger">
             <div *ngIf="f.full_name.errors.required">{{"full_name is required" | translate}}</div>
@@ -14,7 +16,9 @@
     <!----------------------------------------national id ------------------------------------>
     <div class="form-group row col-12">
         <label for="inputPassword1" class="col-4 col-sm-2 col-form-label information">{{"National ID" | translate}}:</label>
-        <input type="text" class="form-control col-8 col-sm-10 information" formControlName="national_id"
+        <input *ngIf="isDisable" disabled type="text" class="form-control col-8 col-sm-10 information" formControlName="national_id"
+               id="inputPassword1" placeholder="{{'National ID' | translate }}" (change)="saveData()" [ngClass]="{ 'is-invalid': f.national_id.errors && f.national_id.touched }">
+        <input *ngIf="!isDisable" type="text" class="form-control col-8 col-sm-10 information" formControlName="national_id"
                id="inputPassword1" placeholder="{{'National ID' | translate }}" (change)="saveData()" [ngClass]="{ 'is-invalid': f.national_id.errors && f.national_id.touched }">
         <div *ngIf="f.national_id.errors && f.national_id.touched" class="col-12 alert alert-danger">
             <div *ngIf="f.national_id.errors.required">{{"national_id is required" | translate}}</div>
@@ -25,10 +29,10 @@
     <!----------------------------------------Phone------------------------------------>
     <div  class="form-group row col-12">
         <label for="inputPassword2" class="col-4 col-sm-2 col-form-label information">{{"Phone" | translate}}:</label>
-        <input *ngIf="isPhone" disabled type="text" class="form-control col-8 col-sm-10 information" formControlName="phone"
+        <input *ngIf="isDisable" disabled type="text" class="form-control col-8 col-sm-10 information" formControlName="phone"
                id="inputPassword2" placeholder="{{'Mobile Phone' | translate }}" (change)="saveData()" [ngClass]="{'is-invalid': f.phone.errors && f.phone.touched ? f.phone.errors && f.phone.touched : false}">
-        <input *ngIf="!isPhone" type="text" class="form-control col-8 col-sm-10 information" formControlName="phone"
-               id="inputPassword4" placeholder="{{'Mobile Phone' | translate }}" (change)="saveData()" [ngClass]="{'is-invalid': f.phone.errors && f.phone.touched ? f.phone.errors && f.phone.touched : false}">
+        <input *ngIf="!isDisable"  type="text" class="form-control col-8 col-sm-10 information" formControlName="phone"
+               id="inputPassword2" placeholder="{{'Mobile Phone' | translate }}" (change)="saveData()" [ngClass]="{'is-invalid': f.phone.errors && f.phone.touched ? f.phone.errors && f.phone.touched : false}">
         <div *ngIf="f.phone.errors && f.phone.touched ? f.phone.errors && f.phone.touched : false" class="col-12 alert alert-danger">
             <div *ngIf="f.phone.errors.required">{{"Phone Number is require" | translate}}</div>
             <div *ngIf="f.phone.errors">{{"Phone Number invalid" | translate}}</div>

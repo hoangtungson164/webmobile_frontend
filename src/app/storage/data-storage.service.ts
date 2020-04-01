@@ -11,6 +11,7 @@ const LANGUAGE = 'language';
 const PHONE = 'phone';
 const NICESSKEY = 'nice ss key';
 const PHONEURL = 'phone url';
+const DISABLE = 'disable';
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +19,18 @@ const PHONEURL = 'phone url';
 export class DataStorageService {
 
     constructor() {
+    }
+
+    public saveDisableInput(disable: string) {
+        window.sessionStorage.removeItem(DISABLE);
+        window.sessionStorage.setItem(DISABLE, disable);
+    }
+
+    public getDisableInput(): string {
+        return sessionStorage.getItem(DISABLE);
+    }
+    public removeDisableInput() {
+        return sessionStorage.removeItem(DISABLE);
     }
 
     public saveIsPhone(phoneUrl: string) {

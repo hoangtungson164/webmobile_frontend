@@ -17,7 +17,7 @@
   "this is not a person's name": "this name invalid!",
   "Enter your full name": "Enter your full name",
   "Sending information": "Sending information",
-  "Consensus of data using, collecting and providing": "Consensus of data using, collecting and providing",
+  "Consensus of data using, collecting and providing": "Consent of data using, collecting and providing",
   "Consent of data collection": "Consent of data collection",
   "Consent of data using": "Consent of data using",
   "Consent of data providing": "Consent of data providing",
@@ -54,6 +54,6 @@
   "Phone Number does not exist": "Not Found the information provided!",
   "Done": "Done",
   "Fail": "Fail",
-  "Send information successful": "Send information successful"
+  "Send information successful": "Send information successfully"
 
 }

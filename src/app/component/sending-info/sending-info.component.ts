@@ -40,6 +40,7 @@ export class SendingInfoComponent implements OnInit {
     ngOnInit() {
         this.id = +this.route.snapshot.paramMap.get('id');
         this.getAllReport();
+        this.removeDisableInput();
     }
 
     // ---------------------- get all the inquiry-report --------------------------------------
@@ -65,5 +66,13 @@ export class SendingInfoComponent implements OnInit {
         this.nationalId = this.dataStorageService.getNationalId();
         this.fullName = this.dataStorageService.getName();
         return this.nationalId && this.fullName;
+    }
+
+    saveDisableInput() {
+        this.dataStorageService.saveDisableInput('true');
+    }
+
+    removeDisableInput() {
+        this.dataStorageService.removeDisableInput();
     }
 }
