@@ -54,6 +54,8 @@
   "Phone Number does not exist": "Not Found the information provided!",
   "Done": "Done",
   "Fail": "Fail",
-  "Send information successful": "Send information successfully"
+  "Send information successful": "Send information successfully",
+  "You ready uploaded information, please wait for result": "You ready uploaded information, please wait for result",
+  "Your CIC information has result, please check on CIC app!": "Your CIC information has result, please check on CIC app!"
 
 }

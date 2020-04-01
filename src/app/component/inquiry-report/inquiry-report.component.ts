@@ -61,32 +61,38 @@ export class InquiryReportComponent implements OnInit {
         return this.check && this.result === 'Done' || this.check && this.result === 'Hoàn Thành';
     }
 
-    onSubmit(modalNotify: HTMLButtonElement) {
-        this.updateLoginIdAndLoginPwAndNationId(modalNotify);
+    onSubmit(modalNotify: HTMLButtonElement, modalNotifyWaiting: HTMLButtonElement, modalNotifyFinishProcess: HTMLButtonElement) {
+        this.updateLoginIdAndLoginPwAndNationId(modalNotify, modalNotifyFinishProcess, modalNotifyWaiting);
     }
 
-    updateLoginIdAndLoginPwAndNationId(modalNotify: HTMLButtonElement) {
-        if (this.dataStorageService.getUserId()
-            && this.dataStorageService.getNationalId()
-            && this.dataStorageService.getPassword()
-            && this.dataStorageService.getNiceSS()) {
-            const form: IFormUpdateScrapLog = {
-                            niceSsKey: this.dataStorageService.getNiceSS(),
-                            loginID: this.dataStorageService.getUserId(),
-                            loginPW: this.dataStorageService.getPassword(),
-                            nationID: this.dataStorageService.getNationalId()
-                        };
-            console.log(form);
-            this.userService.updateIdPwNationIDToScrapLog(form).subscribe(
-                result => {
-                    if (result.rowsAffected === 1) {
-                    console.log('Done save DB');
-                    modalNotify.click();
+    updateLoginIdAndLoginPwAndNationId(modalNotify: HTMLButtonElement, modalNotifyFinishProcess: HTMLButtonElement, modalNotifyWaiting: HTMLButtonElement) {
+        if (this.dataStorageService.getSCRP_MOD_CD() === '05' && this.dataStorageService.getSCRP_STAT_CD() === '01') {
+            if (this.dataStorageService.getUserId()
+                && this.dataStorageService.getNationalId()
+                && this.dataStorageService.getPassword()
+                && this.dataStorageService.getNiceSS()) {
+                const form: IFormUpdateScrapLog = {
+                    niceSsKey: this.dataStorageService.getNiceSS(),
+                    loginID: this.dataStorageService.getUserId(),
+                    loginPW: this.dataStorageService.getPassword(),
+                    nationID: this.dataStorageService.getNationalId()
+                };
+                console.log(form);
+                this.userService.updateIdPwNationIDToScrapLog(form).subscribe(
+                    result => {
+                        if (result.rowsAffected === 1) {
+                            console.log('Done save DB');
+                            modalNotify.click();
+                        }
+                    }, error => {
+                        alert(error);
                     }
-                }, error => {
-                    alert(error);
-                }
-            );
+                );
+            }
+        } else if (this.dataStorageService.getSCRP_MOD_CD() === '06' && this.dataStorageService.getSCRP_STAT_CD() === '01') {
+            modalNotifyWaiting.click();
+        } else {
+            modalNotifyFinishProcess.click();
         }
     }
 

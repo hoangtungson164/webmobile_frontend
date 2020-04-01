@@ -54,5 +54,7 @@
   "Phone Number does not exist": "Không tìm thấy thông tin cung cấp. Vui lòng kiểm tra lại!",
   "Done": "Thành Công",
   "Fail": "Thất Bại",
-  "Send information successful": "Gửi thông tin đi thành công"
+  "Send information successful": "Gửi thông tin đi thành công",
+  "You ready uploaded information, please wait for result": "Bạn đã cập nhật thông tin, vui lòng chờ kết quả",
+  "Your CIC information has result, please check on CIC app!": "Thông tin tín dụng của bạn đã tải lên ứng dụng CIC, vui lòng kiểm tra!"
 }

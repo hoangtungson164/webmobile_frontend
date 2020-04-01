@@ -27,7 +27,7 @@
     </div>
     <hr>
 <div class="btn btn-group col-12" *ngIf="checkToSubmit()">
-    <button type="button" class="btn btn-outline-primary" (click)="onSubmit(modalNotify)">{{"Submit" | translate}}</button>
+    <button type="button" class="btn btn-outline-primary" (click)="onSubmit(modalNotify,modalNotifyWaiting,modalNotifyFinishProcess)">{{"Submit" | translate}}</button>
     <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#deleteModal">{{"Exit" | translate}}</button>
 </div>
 
@@ -54,7 +54,7 @@
 
 
 
-<button #modalNotify hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModal">aa</button>
+<button #modalNotify hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModal"></button>
 
 <div class="modal fade" id="NotifyModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -64,6 +64,42 @@
             </div>
             <div class="modal-body">
                 <p class="text-center text-success">{{"Send information successful" | translate}}!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  (click)="clearAllData()" data-dismiss="modal">{{"Exit" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button #modalNotifyWaiting hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModal2"></button>
+
+<div class="modal fade" id="NotifyModal2" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{'Notify' | translate}}</h5>
+            </div>
+            <div class="modal-body">
+                <p class="text-center text-success">{{"You ready uploaded information, please wait for result" | translate}}!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  (click)="clearAllData()" data-dismiss="modal">{{"Exit" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button #modalNotifyFinishProcess hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModal4"></button>
+
+<div class="modal fade" id="NotifyModal4" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{'Notify' | translate}}</h5>
+            </div>
+            <div class="modal-body">
+                <p class="text-center text-success">{{"Your CIC information has result, please check on CIC app!" | translate}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"  (click)="clearAllData()" data-dismiss="modal">{{"Exit" | translate}}</button>

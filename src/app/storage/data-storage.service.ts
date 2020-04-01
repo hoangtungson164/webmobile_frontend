@@ -12,6 +12,8 @@ const PHONE = 'phone';
 const NICESSKEY = 'nice ss key';
 const PHONEURL = 'phone url';
 const DISABLE = 'disable';
+const SCRP_MOD_CD = 'SCRP_MOD_CD';
+const SCRP_STAT_CD = 'SCRP_STAT_CD';
 
 @Injectable({
     providedIn: 'root'
@@ -25,10 +27,28 @@ export class DataStorageService {
         window.sessionStorage.removeItem(DISABLE);
         window.sessionStorage.setItem(DISABLE, disable);
     }
+    public saveSCRP_MOD_CD(v: string) {
+        window.sessionStorage.removeItem(SCRP_MOD_CD);
+        window.sessionStorage.setItem(SCRP_MOD_CD, v);
+    }
+
+    public getSCRP_MOD_CD(): string {
+        return sessionStorage.getItem(SCRP_MOD_CD);
+    }
+
+    public saveSCRP_STAT_CD(v: string) {
+        window.sessionStorage.removeItem(SCRP_STAT_CD);
+        window.sessionStorage.setItem(SCRP_STAT_CD, v);
+    }
+
+    public getSCRP_STAT_CD(): string {
+        return sessionStorage.getItem(SCRP_STAT_CD);
+    }
 
     public getDisableInput(): string {
         return sessionStorage.getItem(DISABLE);
     }
+
     public removeDisableInput() {
         return sessionStorage.removeItem(DISABLE);
     }

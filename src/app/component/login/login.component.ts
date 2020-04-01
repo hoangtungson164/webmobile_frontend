@@ -75,6 +75,8 @@ export class LoginComponent implements OnInit {
                         this.dataStorageService.saveUserId(value.username);
                         this.dataStorageService.savePassword(btoa(timeStamp + value.password));
                         this.dataStorageService.saveNiceSS(result.data[0].NICE_SSIN_ID);
+                        this.dataStorageService.saveSCRP_MOD_CD(result.data[0].SCRP_MOD_CD);
+                        this.dataStorageService.saveSCRP_STAT_CD(result.data[0].SCRP_STAT_CD);
                         this.router.navigateByUrl('/banks/' + this.id + '/inquiryReport');
                         console.log(this.dataStorageService.getNiceSS());
                     } else {
