@@ -18,11 +18,14 @@
         <div class="card">
             <div class="card-header" id="headingOne">
                 <div class="btn-group col-12">
-                    <button class="btn consensus" type="button">{{"Consent of data collection" | translate}}
-                    </button>
-                    <button class="btn col-1 drop" type="button" data-toggle="collapse" data-target="#collapseOne"
-                            aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down"></i>
-                    </button>
+                    <mat-checkbox [checked]="isConsentCollectionChecked" (change)="consentCollectionCheck($event)" color="primary">
+                        <button class="btn consensus" type="button">{{"Consent of data collection" | translate}}
+                        </button>
+                    </mat-checkbox>
+                    <label class="btn text-right" type="button" data-toggle="collapse" data-target="#collapseOne"
+                           aria-expanded="true" aria-controls="collapseOne">
+                    </label>
+                    <i class="fas fa-caret-down"></i>
                 </div>
             </div>
 
@@ -38,13 +41,17 @@
         <div class="card">
             <div class="card-header" id="headingTwo">
                 <div class="btn-group col-12">
-                    <button class="btn consensus" type="button">{{"Consent of data using" | translate}}
-                    </button>
-                    <button class="btn col-1 drop" type="button" data-toggle="collapse" data-target="#collapseTwo"
-                            aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down"></i>
-                    </button>
+                    <mat-checkbox color="primary" [checked]="isConsentUsingChecked " (change)="consentUsingCheck($event)">
+                        <button class="btn consensus" type="button">{{"Consent of data using" | translate}}
+                        </button>
+                    </mat-checkbox>
+                    <label class="btn text-right" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                           aria-expanded="true" aria-controls="collapseOne">
+                    </label>
+                    <i class="fas fa-caret-down"></i>
                 </div>
             </div>
+
             <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
                 <div class="card-body" *ngIf="LANGUAGE == 'en'">
                     {{bankConsensus["TO_CHAR(DATA_USING)"]}}
@@ -57,11 +64,14 @@
         <div class="card">
             <div class="card-header" id="headingThree">
                 <div class="btn-group col-12">
-                    <button class="btn consensus" type="button">{{"Consent of data providing" | translate}}
-                    </button>
-                    <button class="btn col-1 drop" type="button" data-toggle="collapse" data-target="#collapseThree"
-                            aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down"></i>
-                    </button>
+                    <mat-checkbox color="primary" [checked]="isConsentProvidingChecked" (change)="consentProvideCheck($event)">
+                        <button class="btn consensus" type="button">{{"Consent of data providing" | translate}}
+                        </button>
+                    </mat-checkbox>
+                    <label class="btn text-right" type="button" data-toggle="collapse" data-target="#collapseThree"
+                            aria-expanded="true" aria-controls="collapseOne">
+                    </label>
+                    <i class="fas fa-caret-down"></i>
                 </div>
             </div>
             <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
@@ -79,7 +89,7 @@
 <!----------------------------------------------------- Agreement with all the above ---------------------------------------->
     <div style="text-align: center">
         <div class="form-check form-check-inline">
-            <mat-checkbox color="primary" (click)="agreeWith()"><i style="margin-left: 10px">{{"I agree with all the above" | translate}}</i></mat-checkbox>
+            <mat-checkbox id="checkAllConsent" [checked]="isConsentCheckedAll" color="primary" (change)="agreeWith($event)"><i style="margin-left: 10px">{{"I agree with all the above" | translate}}</i></mat-checkbox>
         </div>
     </div>
     <br>

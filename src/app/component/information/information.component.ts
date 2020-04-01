@@ -13,6 +13,7 @@ export class InformationComponent implements OnInit {
     informationForm: FormGroup;
     LANGUAGE: string;
     isPhone: string;
+    isDisable: string;
 
     constructor(
         private fb: FormBuilder,
@@ -28,6 +29,7 @@ export class InformationComponent implements OnInit {
 
     ngOnInit() {
         this.isPhone = this.dataStorageService.getIsPhone();
+        this.isDisable = this.dataStorageService.getDisableInput();
         if (this.dataStorageService.getName() || this.dataStorageService.getNationalId() || this.dataStorageService.getPhone()) {
             this.informationForm = this.fb.group({
                 full_name: [this.dataStorageService.getName(), [Validators.required,
@@ -57,7 +59,7 @@ export class InformationComponent implements OnInit {
     // ------------------------- store the individual data to session --------------------------------
     saveData() {
         const {value} = this.informationForm;
-        if (value.full_name.length < 5 || value.national_id.length < 9 || value.national_id.length > 12) {
+        if (this.informationForm.invalid) {
             this.dataStorageService.saveName('');
             this.dataStorageService.saveNationalId('');
             this.dataStorageService.savePhone('');

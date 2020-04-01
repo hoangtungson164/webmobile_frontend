@@ -4,6 +4,7 @@ import {IBankConsensus} from './interface/i-bank-consensus';
 import {ActivatedRoute} from '@angular/router';
 import {DataStorageService} from '../../storage/data-storage.service';
 import {TranslateService} from '@ngx-translate/core';
+import {MatCheckboxChange} from '@angular/material';
 
 @Component({
     selector: 'app-bank-consensus',
@@ -20,6 +21,10 @@ export class BankConsensusComponent implements OnInit {
     nationalId: string;
     LANGUAGE: string;
     custCD: string;
+    isConsentCollectionChecked = false;
+    isConsentProvidingChecked = false;
+    isConsentUsingChecked = false;
+    isConsentCheckedAll = false;
 
     constructor(
         private bankService: BankService,
@@ -53,14 +58,54 @@ export class BankConsensusComponent implements OnInit {
     }
 
     // ---------------------------- go to next page until agree -------------------------------
-    agreeWith() {
-        this.agreeAll = !this.agreeAll;
+    agreeWith(e: MatCheckboxChange) {
+        this.agreeAll = e.checked;
+        this.isConsentCheckedAll = e.checked;
+        this.isConsentCollectionChecked = e.checked;
+        this.isConsentUsingChecked = e.checked;
+        this.isConsentProvidingChecked = e.checked;
     }
 
     onNext() {
         this.nationalId = this.dataStorageService.getNationalId();
         this.fullName = this.dataStorageService.getName();
         return this.nationalId && this.fullName && this.agreeAll;
+    }
+
+    consentCollectionCheck(e: MatCheckboxChange) {
+        this.isConsentCollectionChecked = e.checked;
+        if (this.isConsentCollectionChecked && this.isConsentUsingChecked && this.isConsentProvidingChecked) {
+            this.isConsentCheckedAll = true;
+            this.agreeAll = true;
+        }  else {
+            this.isConsentCheckedAll = false;
+            this.agreeAll = false;
+        }
+        console.log('clickkkk');
+        console.log(this.isConsentCollectionChecked, this.isConsentUsingChecked, this.isConsentProvidingChecked);
+    }
+
+    consentUsingCheck(e: MatCheckboxChange) {
+        this.isConsentUsingChecked = e.checked;
+        if (this.isConsentCollectionChecked && this.isConsentUsingChecked && this.isConsentProvidingChecked) {
+            this.isConsentCheckedAll = true;
+            this.agreeAll = true;
+        }  else {
+            this.isConsentCheckedAll = false;
+            this.agreeAll = false;
+        }
+    }
+
+    consentProvideCheck(e: MatCheckboxChange) {
+        this.isConsentProvidingChecked = e.checked;
+        console.log(this.isConsentCollectionChecked, this.isConsentUsingChecked, this.isConsentProvidingChecked);
+        if (this.isConsentCollectionChecked && this.isConsentUsingChecked && this.isConsentProvidingChecked) {
+            this.isConsentCheckedAll = true;
+            this.agreeAll = true;
+        }  else {
+            this.isConsentCheckedAll = false;
+            this.agreeAll = false;
+        }
     }
 
 }

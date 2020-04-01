@@ -60,7 +60,7 @@
             <button *ngIf="check && onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks']"><i class="fas fa-caret-left"> </i> {{"Back" | translate}}</button>
         </div>
         <div class="col-6 text-left">
-            <button *ngIf="check && onNext()" class="btn btn-primary btn-sm"  [routerLink]="['/banks', id, 'consensus']">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
+            <button *ngIf="check && onNext()" (click)="saveDisableInput()" class="btn btn-primary btn-sm"  [routerLink]="['/banks', id, 'consensus']">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
         </div>
     </div>
 </div>
