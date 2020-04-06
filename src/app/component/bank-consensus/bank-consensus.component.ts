@@ -43,7 +43,6 @@ export class BankConsensusComponent implements OnInit {
     ngOnInit() {
         this.nationalId = this.dataStorageService.getNationalId();
         this.fullName = this.dataStorageService.getName();
-        this.id = +this.route.snapshot.paramMap.get('id');
         this.getConsensus();
     }
 

@@ -20,10 +20,10 @@ const routes: Routes = [{
   path: 'banks/sending',
   component: SendingInfoComponent,
 }, {
-  path: 'banks/:id/login',
+  path: 'banks/login',
   component: LoginComponent,
 }, {
-  path: 'banks/:id/inquiryReport',
+  path: 'banks/inquiryReport',
   component: InquiryReportComponent,
 }];
 

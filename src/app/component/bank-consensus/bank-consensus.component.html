@@ -101,7 +101,7 @@
             <button *ngIf="onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks','sending']"><i class="fas fa-caret-left"> </i> {{"Back" | translate}}</button>
         </div>
         <div class="col-6 text-left">
-            <button *ngIf="onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'login']">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
+            <button *ngIf="onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks', 'login']">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
         </div>
     </div>
 </div>

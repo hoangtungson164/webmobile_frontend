@@ -2,7 +2,7 @@
 
     <!-------------------------------------------------------title-------------------------------------------------------->
     <div class="body-title row">
-        <button class="btn btn-outline-primary back col-1" [routerLink]="['/banks', id, 'sending']"><i
+        <button class="btn btn-outline-primary back col-1" [routerLink]="['/banks','sending']"><i
                 class="fas fa-arrow-left"></i>
         </button>
         <div class="body-title col-10">
@@ -75,13 +75,13 @@
     <!-------------------------------------button next ------------------------------------------>
     <div class="row">
         <div class="col-12 text-center" *ngIf="!check || f.username.errors || f.password.errors || f.confirmPassword.errors">
-            <button class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'consensus']"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
+            <button class="btn btn-primary btn-sm" [routerLink]="['/banks','consensus']"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
         </div>
         <div class="col-6 text-right">
             <button *ngIf="check && !f.username.errors && !f.password.errors && !f.confirmPassword.errors" class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'consensus']"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
         </div>
         <div class="col-6 text-left">
-            <button *ngIf="check && !f.username.errors && !f.password.errors && !f.confirmPassword.errors" class="btn btn-primary btn-sm" (click)="checkNumberPhone(buttonOpenMessageCheckPhone)">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
+            <button *ngIf="check && !f.username.errors && !f.password.errors && !f.confirmPassword.errors" class="btn btn-primary btn-sm" (click)="checkValidNiceSS(buttonOpenMessageCheckPhone)">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
         </div>
     </div>
 </div>

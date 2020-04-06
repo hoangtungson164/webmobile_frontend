@@ -40,7 +40,6 @@ export class InquiryReportComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.id = this.route.snapshot.paramMap.get('id');
         this.report = this.dataStorageService.getReportName();
         this.checkDone();
     }
