@@ -17,7 +17,7 @@ const routes: Routes = [{
   path: 'banks/:id/consensus',
   component: BankConsensusComponent,
 }, {
-  path: 'banks/:id/sending',
+  path: 'banks/sending',
   component: SendingInfoComponent,
 }, {
   path: 'banks/:id/login',

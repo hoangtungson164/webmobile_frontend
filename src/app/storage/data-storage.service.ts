@@ -89,13 +89,13 @@ export class DataStorageService {
         return sessionStorage.getItem(LANGUAGE);
     }
 
-    public saveInstitution(institution: string) {
+    public saveInstitution(institution: any) {
         window.sessionStorage.removeItem(INSTITUTION);
-        window.sessionStorage.setItem(INSTITUTION, institution);
+        window.sessionStorage.setItem(INSTITUTION, JSON.stringify(institution));
     }
 
-    public getInstitution(): string {
-        return sessionStorage.getItem(INSTITUTION);
+    public getInstitution(): any {
+        return JSON.parse(sessionStorage.getItem(INSTITUTION));
     }
 
     public saveReportName(reportName: string) {

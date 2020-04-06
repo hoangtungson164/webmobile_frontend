@@ -40,23 +40,33 @@
         <hr>
 
         <!----------------------------------- display all institutions ----------------------------->
-        <div *ngFor="let bank of banks">
-            <button [ngClass]="{active:bank.CUST_GB == bankId && bank.CUST_CD == custCD}" class="btn btn-outline-primary border-0"
-                    (click)="getId(bank.CUST_GB, bank.CUST_CD)"> {{bank.CUST_NM_ENG}} </button>
-            <hr class="lineBetween">
-        </div>
+<!--        <div *ngFor="let bank of banks">-->
+<!--            <button [ngClass]="{active:bank.CUST_GB == bankId && bank.CUST_CD == custCD}" class="btn btn-outline-primary border-0"-->
+<!--                    (click)="getId(bank.CUST_GB, bank.CUST_CD)"> {{bank.CUST_NM_ENG}} </button>-->
+<!--            <hr class="lineBetween">-->
+<!--        </div>-->
+
+        <form [formGroup]="myFormChooseListBank">
+            <div *ngFor="let bank of banks">
+                <mat-checkbox color="primary" class="text-primary"
+                               (click)="onChooseBank(bank.CUST_GB , bank.CUST_CD)">
+                    {{bank.CUST_NM_ENG}}
+                </mat-checkbox>
+                <hr class="lineBetween">
+            </div>
+        </form>
 
         <!--------------------------------- next button until check ------------------------------->
         <br/>
         <div class="row">
-            <div class="col-12 text-center" *ngIf="!bankId">
+            <div class="col-12 text-center" *ngIf="!selectedBank">
                 <button class="btn btn-primary btn-sm" (click)="backToChooseLanguage()"><i class="fas fa-caret-left"></i> {{"Back" | translate}}</button>
             </div>
-            <div class="col-6 text-right">
-                <button *ngIf="bankId" class="btn btn-primary btn-sm" (click)="backToChooseLanguage()"><i class="fas fa-caret-left"></i> {{"Back" | translate}}</button>
+            <div class="col-6 text-right" *ngIf="selectedBank">
+                <button *ngIf="selectedBank.bankInfo[0]" class="btn btn-primary btn-sm" (click)="backToChooseLanguage()"><i class="fas fa-caret-left"></i> {{"Back" | translate}}</button>
             </div>
-            <div class="col-6 text-left">
-                <button *ngIf="bankId" class="btn btn-primary btn-sm" [routerLink]="['/banks', bankId, 'sending']">{{"Next" | translate}}  <i class="fas fa-caret-right"></i></button>
+            <div class="col-6 text-left" *ngIf="selectedBank">
+                <button *ngIf="selectedBank.bankInfo[0]" class="btn btn-primary btn-sm" [routerLink]="['/banks','sending']">{{"Next" | translate}}  <i class="fas fa-caret-right"></i></button>
             </div>
         </div>
     </div>
