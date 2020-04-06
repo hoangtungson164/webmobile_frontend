@@ -2,7 +2,7 @@
 
 <!------------------------------------------ Title --------------------------------------->
     <div class="body-title row">
-        <button class="btn btn-outline-primary back col-1" [routerLink]="['/banks', id, 'sending']"><i
+        <button class="btn btn-outline-primary back col-1" [routerLink]="['/banks','sending']"><i
                 class="fas fa-arrow-left"></i>
         </button>
         <div class="body-title col-10">
@@ -85,7 +85,7 @@
     <hr>
 
 <!----------------------------------------------------- Agreement with all the above ---------------------------------------->
-    <div style="text-align: center">
+    <div style="text-align: center" *ngIf="this.bankConsensus">
         <div class="form-check form-check-inline">
             <mat-checkbox id="checkAllConsent" [checked]="isConsentCheckedAll" color="primary" (change)="agreeWith($event)"><i style="margin-left: 10px">{{"I agree with all the above" | translate}}</i></mat-checkbox>
         </div>
@@ -98,7 +98,7 @@
             <button class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'sending']"><i class="fas fa-caret-left"> </i> {{"Back" | translate}}</button>
         </div>
         <div class="col-6 text-right">
-            <button *ngIf="onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'sending']"><i class="fas fa-caret-left"> </i> {{"Back" | translate}}</button>
+            <button *ngIf="onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks','sending']"><i class="fas fa-caret-left"> </i> {{"Back" | translate}}</button>
         </div>
         <div class="col-6 text-left">
             <button *ngIf="onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'login']">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>

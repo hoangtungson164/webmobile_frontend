@@ -18,7 +18,7 @@ export class SendingInfoService {
     constructor(private httpClient: HttpClient) {
     }
 
-    getAllReport(custGb: number, custCd: string): Observable<IReport[]> {
+    getAllReport(custGb: string, custCd: string): Observable<IReport[]> {
         return this.httpClient.get<IReport[]>(this.apiURL + '/report?custGb=' + custGb + '&custCd=' + custCd);
     }
 }
