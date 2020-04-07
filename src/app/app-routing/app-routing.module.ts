@@ -14,16 +14,16 @@ const routes: Routes = [{
   path: 'banks',
   component: BankListComponent,
 }, {
-  path: 'banks/:id/consensus',
+  path: 'banks/consensus',
   component: BankConsensusComponent,
 }, {
-  path: 'banks/:id/sending',
+  path: 'banks/sending',
   component: SendingInfoComponent,
 }, {
-  path: 'banks/:id/login',
+  path: 'banks/login',
   component: LoginComponent,
 }, {
-  path: 'banks/:id/inquiryReport',
+  path: 'banks/inquiryReport',
   component: InquiryReportComponent,
 }];
 

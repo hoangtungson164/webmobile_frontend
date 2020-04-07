@@ -4,6 +4,7 @@ import {DataStorageService} from '../../storage/data-storage.service';
 import {IReport} from './interface/i-report';
 import {SendingInfoService} from './service/sending-info.service';
 import {TranslateService} from '@ngx-translate/core';
+import {IBankSelected} from '../bank-list/interface/IBankSelected';
 
 @Component({
     selector: 'app-sending-info',
@@ -21,7 +22,7 @@ export class SendingInfoComponent implements OnInit {
     LANGUAGE: string;
     nationalId: string;
     fullName: string;
-    custCD: string;
+    banksChoose: IBankSelected;
 
     constructor(
         private route: ActivatedRoute,
@@ -30,7 +31,7 @@ export class SendingInfoComponent implements OnInit {
         public translate: TranslateService,
         private storageLocal: DataStorageService
     ) {
-        this.custCD = this.dataStorageService.getInstitution();
+        this.banksChoose = this.dataStorageService.getInstitution();
         this.LANGUAGE = this.storageLocal.getLanguage();
         if (this.LANGUAGE) {
             this.translate.use(this.LANGUAGE);
@@ -38,14 +39,13 @@ export class SendingInfoComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.id = +this.route.snapshot.paramMap.get('id');
         this.getAllReport();
         this.removeDisableInput();
     }
 
     // ---------------------- get all the inquiry-report --------------------------------------
     getAllReport() {
-        this.sendingInfoService.getAllReport(this.id , this.custCD).subscribe(next => {
+        this.sendingInfoService.getAllReport(this.banksChoose.bankInfo[0].CUST_GB , this.banksChoose.bankInfo[0].CUST_CD).subscribe(next => {
             this.reports = next;
             console.log(next);
             console.log('success get all the report');

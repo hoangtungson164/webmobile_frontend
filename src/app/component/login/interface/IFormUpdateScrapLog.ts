@@ -1,5 +1,5 @@
 export interface IFormUpdateScrapLog {
-    niceSsKey: string;
+    niceSsKey: [];
     loginID: string;
     loginPW: string;
     nationID: string;

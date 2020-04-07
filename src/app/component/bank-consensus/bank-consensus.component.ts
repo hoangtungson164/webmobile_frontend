@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {DataStorageService} from '../../storage/data-storage.service';
 import {TranslateService} from '@ngx-translate/core';
 import {MatCheckboxChange} from '@angular/material';
+import {IBankSelected} from '../bank-list/interface/IBankSelected';
 
 @Component({
     selector: 'app-bank-consensus',
@@ -20,7 +21,7 @@ export class BankConsensusComponent implements OnInit {
     fullName: string;
     nationalId: string;
     LANGUAGE: string;
-    custCD: string;
+    banksChoose: IBankSelected;
     isConsentCollectionChecked = false;
     isConsentProvidingChecked = false;
     isConsentUsingChecked = false;
@@ -32,7 +33,7 @@ export class BankConsensusComponent implements OnInit {
         private dataStorageService: DataStorageService,
         private translate: TranslateService,
     ) {
-        this.custCD = this.dataStorageService.getInstitution();
+        this.banksChoose = this.dataStorageService.getInstitution();
         this.LANGUAGE = this.dataStorageService.getLanguage();
         if (this.LANGUAGE) {
             this.translate.use(this.LANGUAGE);
@@ -42,13 +43,12 @@ export class BankConsensusComponent implements OnInit {
     ngOnInit() {
         this.nationalId = this.dataStorageService.getNationalId();
         this.fullName = this.dataStorageService.getName();
-        this.id = +this.route.snapshot.paramMap.get('id');
         this.getConsensus();
     }
 
     // --------------------------- get all the agreements ----------------------------------
     getConsensus() {
-        this.bankService.getBankConsensusById(this.id, this.custCD).subscribe(next => {
+        this.bankService.getBankConsensusById(this.banksChoose.bankInfo[0].CUST_GB, this.banksChoose.bankInfo[0].CUST_CD).subscribe(next => {
             this.bankConsensus = next[0];
             console.log(next);
             console.log('success to get consensus');

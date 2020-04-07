@@ -6,6 +6,9 @@ import {IUser} from '../interface/i-user';
 import {ICheckPhone} from '../interface/ICheckPhone';
 import {tap} from 'rxjs/operators';
 import {IFormUpdateScrapLog} from '../interface/IFormUpdateScrapLog';
+import {IResultCheckNiceSS} from '../interface/IResultCheckNiceSS';
+import {IFormRqCheckNiceSs} from '../interface/IFormRqCheckNiceSs';
+import {IFormCheckPhoneAndCust} from '../interface/IFormCheckPhoneAndCust';
 
 const apiUrl = environment.URL;
 @Injectable({
@@ -22,11 +25,20 @@ export class UserService {
     return this.http.post<IUser>(this.loginUrl, user);
   }
 
-  getNiceSsId(phone: string, custCD: string): Observable<ICheckPhone> {
-      console.log(phone , custCD);
-      return this.http.get<ICheckPhone>(apiUrl + '/checkPhoneNumber?phoneNumber=' + phone + '&custCD=' + custCD).pipe(
+  CheckNiceSsKeyValidToUpdate(form: IFormRqCheckNiceSs): Observable<IResultCheckNiceSS[]> {
+      return this.http.post<IResultCheckNiceSS[]>(apiUrl + '/CheckNiceSsKeyValidToUpdate', form).pipe(
+          tap(result => {
+              console.log('validNice:' , result);
+          }, e => {
+              console.log(e);
+          })
+      );
+    }
+
+  getNiceSsId(form: IFormCheckPhoneAndCust): Observable<ICheckPhone[]> {
+      return this.http.post<ICheckPhone[]>(apiUrl + '/checkPhoneNumber', form).pipe(
         tap(result => {
-          console.log(result);
+          console.log('CheckPhone:', result);
         }, e => {
           console.log(e);
         })

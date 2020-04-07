@@ -17,7 +17,7 @@ export class BankService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getBankConsensusById(custGb: number, custCd: string): Observable<IBankConsensus> {
+  getBankConsensusById(custGb: string, custCd: string): Observable<IBankConsensus> {
     return this.httpClient.get<IBankConsensus>(this.apiURL + '/consent?custGb=' + custGb + '&custCd=' + custCd).pipe(
         tap(result => {
           console.log(result);
