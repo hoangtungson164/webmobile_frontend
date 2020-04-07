@@ -10,6 +10,8 @@ import {DatePipe} from '@angular/common';
 import {IFormUpdateScrapLog} from './interface/IFormUpdateScrapLog';
 import {IBankSelected} from '../bank-list/interface/IBankSelected';
 import {IFormRqCheckNiceSs} from './interface/IFormRqCheckNiceSs';
+import {IFormCheckPhoneAndCust} from './interface/IFormCheckPhoneAndCust';
+import {IResultCheckNiceSS} from './interface/IResultCheckNiceSS';
 
 @Component({
     selector: 'app-login',
@@ -29,7 +31,8 @@ export class LoginComponent implements OnInit {
     LANGUAGE: string;
     messageCheckPhone: string;
     banksChoose: IBankSelected;
-    listNiceSS: string[] = [];
+    listCheckPhoneAndCustCdDone: ICheckPhone[];
+    listValidNiceSS: IResultCheckNiceSS[];
 
     constructor(
         private route: ActivatedRoute,
@@ -49,9 +52,9 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.loginForm = this.fb.group({
-                username: ['', [Validators.required, Validators.minLength(2)]],
-                password: ['', [Validators.required, Validators.minLength(5)]],
-                confirmPassword: ['', [Validators.required, Validators.minLength(5)]]
+                username: ['', [Validators.required]],
+                password: ['', [Validators.required]],
+                confirmPassword: ['', [Validators.required]]
             }, {
             validator: MustMatch('password', 'confirmPassword')
         });
@@ -76,40 +79,55 @@ export class LoginComponent implements OnInit {
             this.dataStorageService.savePassword(btoa(timeStamp + value.password));
             this.messageCheckPhone = null;
             if (this.dataStorageService.getPhone()) {
-                for (let index = 0; index < this.banksChoose.bankInfo.length; ++index) {
-                    if (index + 1 === this.banksChoose.bankInfo.length) {
-                        resolve(true);
-                    }
-                    this.userService.getNiceSsId(this.dataStorageService.getPhone(), this.banksChoose.bankInfo[index].CUST_CD).subscribe(
+                console.log('listCustCD :' ,this.banksChoose.bankInfo );
+                const form: IFormCheckPhoneAndCust = {
+                    lisCustCD: this.banksChoose.bankInfo,
+                    phoneNumber: this.dataStorageService.getPhone()
+                };
+                this.userService.getNiceSsId(form).subscribe(
                         result => {
-                            if (result.data[0]) {
-                                this.listNiceSS.push(result.data[0].NICE_SSIN_ID);
-                            }
+                            this.listCheckPhoneAndCustCdDone = result;
+                            return resolve(true);
                         }, error => {
                             this.messageCheckPhone = error.message;
                         }
                     );
-                }
             }
         });
     }
 
-    async checkValidNiceSS(buttonOpenMessageCheckPhone: HTMLButtonElement) {
-        await this.checkNumberPhone().then(res => {
-            console.log('ress', res);
-            console.log('list', this.listNiceSS);
-            if (res) {
-                if (this.listNiceSS) {
-                    const form: IFormRqCheckNiceSs = {
-                        listNiceSskey: this.listNiceSS
-                    };
-                    console.log(form);
-                    this.userService.CheckNiceSsKeyValidToUpdate(form).subscribe();
-                } else {
-                    console.log(this.listNiceSS);
-                    // buttonOpenMessageCheckPhone.click();
-                }
-            }
+    async checkValidNiceSS(buttonOpenMessageCheckPhone: HTMLButtonElement, modalNotifyFinishProcess: HTMLButtonElement) {
+         this.listCheckPhoneAndCustCdDone = null;
+         const listNiceSs: string[] = [];
+         this.checkNumberPhone().then(res => {
+             if (res) {
+                 if (this.listCheckPhoneAndCustCdDone[0]) {
+                     console.log('listCheckPhoneAndCustCdDone:', this.listCheckPhoneAndCustCdDone);
+                     this.listCheckPhoneAndCustCdDone.forEach( function(value) {
+                         listNiceSs.push(value.NICE_SSIN_ID);
+                     });
+                     const form: IFormRqCheckNiceSs = {
+                         listNiceSskey: listNiceSs
+                     };
+                     console.log('form: ' + form.listNiceSskey);
+                     this.userService.CheckNiceSsKeyValidToUpdate(form).subscribe(
+                         result => {
+                             if (result[0]) {
+                                 this.listValidNiceSS = result;
+                                 this.dataStorageService.saveListNiceSsKey(this.listValidNiceSS);
+                                 this.router.navigateByUrl('/banks/inquiryReport');
+                                 console.log('listValidNicess in store: ', this.dataStorageService.getListNiceSsKey());
+                             } else {
+                                 modalNotifyFinishProcess.click();
+                             }
+                         }
+                     );
+                 }  else {
+                     buttonOpenMessageCheckPhone.click();
+                 }
+             } else {
+                 console.log('res is false');
+             }
         });
     }
 
@@ -142,4 +160,8 @@ export class LoginComponent implements OnInit {
     //         );
     //     }
     // }
+    clearAllData() {
+        this.dataStorageService.clear();
+        this.router.navigateByUrl('/banks');
+    }
 }

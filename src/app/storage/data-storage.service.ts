@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 
 const INSTITUTION = 'Target Institution';
+const LISTNICESSKEY = 'list nice ss key';
 const CREDIT_REPORT = 'Credit inquiry-report code';
 const NAME = 'Full name';
 const NATIONAL_ID = 'National id';
@@ -96,6 +97,15 @@ export class DataStorageService {
 
     public getInstitution(): any {
         return JSON.parse(sessionStorage.getItem(INSTITUTION));
+    }
+
+    public saveListNiceSsKey(listNice: any) {
+        window.sessionStorage.removeItem(LISTNICESSKEY);
+        window.sessionStorage.setItem(LISTNICESSKEY, JSON.stringify(listNice));
+    }
+
+    public getListNiceSsKey(): any {
+        return JSON.parse(sessionStorage.getItem(LISTNICESSKEY));
     }
 
     public saveReportName(reportName: string) {

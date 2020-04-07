@@ -49,7 +49,7 @@ export class InquiryReportComponent implements OnInit {
             && this.dataStorageService.getName()
             && this.dataStorageService.getNationalId()
             && this.dataStorageService.getPassword()
-            && this.dataStorageService.getNiceSS()) {
+            && this.dataStorageService.getListNiceSsKey()) {
             this.result = 'Done';
         } else {
             this.result = 'Fail';
@@ -60,18 +60,17 @@ export class InquiryReportComponent implements OnInit {
         return this.check && this.result === 'Done' || this.check && this.result === 'Hoàn Thành';
     }
 
-    onSubmit(modalNotify: HTMLButtonElement, modalNotifyWaiting: HTMLButtonElement, modalNotifyFinishProcess: HTMLButtonElement) {
-        this.updateLoginIdAndLoginPwAndNationId(modalNotify, modalNotifyFinishProcess, modalNotifyWaiting);
+    onSubmit(modalNotify: HTMLButtonElement) {
+        this.updateLoginIdAndLoginPwAndNationId(modalNotify);
     }
 
-    updateLoginIdAndLoginPwAndNationId(modalNotify: HTMLButtonElement, modalNotifyFinishProcess: HTMLButtonElement, modalNotifyWaiting: HTMLButtonElement) {
-        if (this.dataStorageService.getSCRP_MOD_CD() === '05' && this.dataStorageService.getSCRP_STAT_CD() === '01') {
+    updateLoginIdAndLoginPwAndNationId(modalNotify: HTMLButtonElement) {
             if (this.dataStorageService.getUserId()
                 && this.dataStorageService.getNationalId()
                 && this.dataStorageService.getPassword()
-                && this.dataStorageService.getNiceSS()) {
+                && this.dataStorageService.getListNiceSsKey()) {
                 const form: IFormUpdateScrapLog = {
-                    niceSsKey: this.dataStorageService.getNiceSS(),
+                    niceSsKey: this.dataStorageService.getListNiceSsKey(),
                     loginID: this.dataStorageService.getUserId(),
                     loginPW: this.dataStorageService.getPassword(),
                     nationID: this.dataStorageService.getNationalId()
@@ -79,7 +78,7 @@ export class InquiryReportComponent implements OnInit {
                 console.log(form);
                 this.userService.updateIdPwNationIDToScrapLog(form).subscribe(
                     result => {
-                        if (result.rowsAffected === 1) {
+                        if (result.rowsAffected) {
                             console.log('Done save DB');
                             modalNotify.click();
                         }
@@ -88,11 +87,6 @@ export class InquiryReportComponent implements OnInit {
                     }
                 );
             }
-        } else if (this.dataStorageService.getSCRP_MOD_CD() === '06' && this.dataStorageService.getSCRP_STAT_CD() === '01') {
-            modalNotifyWaiting.click();
-        } else {
-            modalNotifyFinishProcess.click();
-        }
     }
 
     // ------------------ save individual info to database--------------------------------------
