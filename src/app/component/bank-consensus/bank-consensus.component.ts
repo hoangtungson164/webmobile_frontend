@@ -1,12 +1,11 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {BankService} from '../bank-list/service/bank.service';
-import {IBankConsensus} from './interface/i-bank-consensus';
-import {ActivatedRoute} from '@angular/router';
-import {DataStorageService} from '../../storage/data-storage.service';
-import {TranslateService} from '@ngx-translate/core';
-import {MatCheckboxChange} from '@angular/material';
-import {IBankSelected} from '../bank-list/interface/IBankSelected';
-
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { BankService } from '../bank-list/service/bank.service';
+import { IBankConsensus } from './interface/i-bank-consensus';
+import { ActivatedRoute } from '@angular/router';
+import { DataStorageService } from '../../storage/data-storage.service';
+import { TranslateService } from '@ngx-translate/core';
+import { MatCheckboxChange } from '@angular/material';
+import { IBankSelected } from '../bank-list/interface/IBankSelected';
 @Component({
     selector: 'app-bank-consensus',
     templateUrl: './bank-consensus.component.html',
@@ -26,6 +25,10 @@ export class BankConsensusComponent implements OnInit {
     isConsentProvidingChecked = false;
     isConsentUsingChecked = false;
     isConsentCheckedAll = false;
+    isReadConsentDataproviding: boolean;
+    isReadConsentDataUsing: boolean;
+    isReadConsentDataCollection: boolean;
+    isAgreeAll = false;
 
     constructor(
         private bankService: BankService,
@@ -77,7 +80,7 @@ export class BankConsensusComponent implements OnInit {
         if (this.isConsentCollectionChecked && this.isConsentUsingChecked && this.isConsentProvidingChecked) {
             this.isConsentCheckedAll = true;
             this.agreeAll = true;
-        }  else {
+        } else {
             this.isConsentCheckedAll = false;
             this.agreeAll = false;
         }
@@ -90,21 +93,49 @@ export class BankConsensusComponent implements OnInit {
         if (this.isConsentCollectionChecked && this.isConsentUsingChecked && this.isConsentProvidingChecked) {
             this.isConsentCheckedAll = true;
             this.agreeAll = true;
-        }  else {
+        } else {
             this.isConsentCheckedAll = false;
             this.agreeAll = false;
         }
     }
 
     consentProvideCheck(e: MatCheckboxChange) {
-        this.isConsentProvidingChecked = e.checked;
-        console.log(this.isConsentCollectionChecked, this.isConsentUsingChecked, this.isConsentProvidingChecked);
+        if (this.isReadConsentDataproviding)
+            this.isConsentProvidingChecked = e.checked;
+        console.log(this.isConsentCollectionChecked, this.isConsentUsingChecked, this.isConsentProvidingChecked, this.isReadConsentDataproviding);
         if (this.isConsentCollectionChecked && this.isConsentUsingChecked && this.isConsentProvidingChecked) {
             this.isConsentCheckedAll = true;
             this.agreeAll = true;
-        }  else {
+        } else {
             this.isConsentCheckedAll = false;
             this.agreeAll = false;
+        }
+    }
+
+    readConsentDataproviding(value: any) {
+        this.isReadConsentDataproviding = JSON.parse(value);
+        if (this.isReadConsentDataCollection && this.isReadConsentDataUsing && this.isReadConsentDataproviding) {
+            this.isAgreeAll = true;
+        } else {
+            this.isAgreeAll = false;
+        }
+    }
+
+    readConsentDataUsing(value: any) {
+        this.isReadConsentDataUsing = JSON.parse(value);
+        if (this.isReadConsentDataCollection && this.isReadConsentDataUsing && this.isReadConsentDataproviding) {
+            this.isAgreeAll = true;
+        } else {
+            this.isAgreeAll = false;
+        }
+    }
+
+    readConsentDataCollection(value: any) {
+        this.isReadConsentDataCollection = JSON.parse(value);
+        if (this.isReadConsentDataCollection && this.isReadConsentDataUsing && this.isReadConsentDataproviding) {
+            this.isAgreeAll = true;
+        } else {
+            this.isAgreeAll = false;
         }
     }
 

@@ -1,6 +1,6 @@
 <div class="container" *ngIf="LANGUAGE && LANGUAGE == 'vi' || LANGUAGE == 'en'">
 
-<!------------------------------------------ Title --------------------------------------->
+    <!------------------------------------------ Title --------------------------------------->
     <div class="body-title row">
         <button class="btn btn-outline-primary back col-1" [routerLink]="['/banks','sending']"><i
                 class="fas fa-arrow-left"></i>
@@ -13,22 +13,23 @@
     <app-information></app-information>
     <hr>
 
-<!-------------------------------------------- Consent body ---------------------------------------->
+    <!-------------------------------------------- Consent body ---------------------------------------->
     <div class="accordion" id="accordionExample" *ngIf="bankConsensus">
         <div class="card">
             <div class="card-header" id="headingOne">
                 <div class="btn-group col-12">
-                    <mat-checkbox [checked]="isConsentCollectionChecked" (change)="consentCollectionCheck($event)" color="primary">
+                    <mat-checkbox [disabled]="!isReadConsentDataCollection" [checked]="isConsentCollectionChecked" (change)="consentCollectionCheck($event)"
+                        color="primary">
                         <button class="btn consensus" type="button">{{"Consent of data collection" | translate}}
                         </button>
                     </mat-checkbox>
-                    <button class="btn text-right" type="button" data-toggle="collapse" data-target="#collapseOne"
-                           aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down"></i>
+                    <button class="btn text-right" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                            (click)="readConsentDataCollection(true)" ><i class="fas fa-caret-down"></i>
                     </button>
                 </div>
             </div>
 
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body" *ngIf="LANGUAGE == 'en'">
                     {{bankConsensus["TO_CHAR(COLLECTION)"]}}
                 </div>
@@ -40,17 +41,19 @@
         <div class="card">
             <div class="card-header" id="headingTwo">
                 <div class="btn-group col-12">
-                    <mat-checkbox color="primary" [checked]="isConsentUsingChecked " (change)="consentUsingCheck($event)">
+                    <mat-checkbox color="primary" [disabled]="!isReadConsentDataUsing" [checked]="isConsentUsingChecked "
+                        (change)="consentUsingCheck($event)">
                         <button class="btn consensus" type="button">{{"Consent of data using" | translate}}
                         </button>
                     </mat-checkbox>
-                    <button class="btn text-right" type="button" data-toggle="collapse" data-target="#collapseTwo"
-                           aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down"></i>
+                    
+                    <button class="btn text-right" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne"
+                              (click)="readConsentDataUsing(true)"><i class="fas fa-caret-down"></i>
                     </button>
                 </div>
             </div>
 
-            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                 <div class="card-body" *ngIf="LANGUAGE == 'en'">
                     {{bankConsensus["TO_CHAR(DATA_USING)"]}}
                 </div>
@@ -62,17 +65,24 @@
         <div class="card">
             <div class="card-header" id="headingThree">
                 <div class="btn-group col-12">
-                    <mat-checkbox color="primary" [checked]="isConsentProvidingChecked" (change)="consentProvideCheck($event)">
+                    <mat-checkbox  [disabled]="!isReadConsentDataproviding" color="primary"
+                        [checked]="isConsentProvidingChecked" (change)="consentProvideCheck($event)">
                         <button class="btn consensus" type="button">{{"Consent of data providing" | translate}}
                         </button>
                     </mat-checkbox>
-                    <button class="btn text-right" type="button" data-toggle="collapse" data-target="#collapseThree"
-                            aria-expanded="true" aria-controls="collapseOne"> <i class="fas fa-caret-down"></i>
+                        
+                    <!-- <mat-button-toggle class="btn-text-right" value=true aria-label="Text align down" aria-expanded="false" [checked]="isReadConsentDataproviding" (change)="readConsentDataproviding($event)">
+                        <mat-icon data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" >arrow_drop_down</mat-icon>
+                    </mat-button-toggle> -->
 
+                    <button class="btn text-right" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne"
+                              (click)="readConsentDataproviding(true)"><i class="fas fa-caret-down"></i>
                     </button>
+                
                 </div>
             </div>
-            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                data-parent="#accordionExample">
                 <div class="card-body" *ngIf="LANGUAGE == 'en'">
                     {{bankConsensus["TO_CHAR(PROVIDING)"]}}
                 </div>
@@ -84,24 +94,29 @@
     </div>
     <hr>
 
-<!----------------------------------------------------- Agreement with all the above ---------------------------------------->
+    <!----------------------------------------------------- Agreement with all the above ---------------------------------------->
     <div style="text-align: center" *ngIf="this.bankConsensus">
         <div class="form-check form-check-inline">
-            <mat-checkbox id="checkAllConsent" [checked]="isConsentCheckedAll" color="primary" (change)="agreeWith($event)"><i style="margin-left: 10px">{{"I agree with all the above" | translate}}</i></mat-checkbox>
+            <mat-checkbox [disabled]="!isAgreeAll" id="checkAllConsent" [checked]="isConsentCheckedAll" color="primary"
+                (change)="agreeWith($event)"><i
+                    style="margin-left: 10px">{{"I agree with all the above" | translate}}</i></mat-checkbox>
         </div>
     </div>
     <br>
 
-<!------------------------------------------------------- Button next ------------------------------------------------------>
+    <!------------------------------------------------------- Button next ------------------------------------------------------>
     <div class="row">
         <div class="col-12 text-center" *ngIf="!onNext()">
-            <button class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'sending']"><i class="fas fa-caret-left"> </i> {{"Back" | translate}}</button>
+            <button class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'sending']"><i
+                    class="fas fa-caret-left"> </i> {{"Back" | translate}}</button>
         </div>
         <div class="col-6 text-right">
-            <button *ngIf="onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks','sending']"><i class="fas fa-caret-left"> </i> {{"Back" | translate}}</button>
+            <button *ngIf="onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks','sending']"><i
+                    class="fas fa-caret-left"> </i> {{"Back" | translate}}</button>
         </div>
         <div class="col-6 text-left">
-            <button *ngIf="onNext()" class="btn btn-primary btn-sm" [routerLink]="['/banks', 'login']">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
+            <button *ngIf="onNext()" class="btn btn-primary btn-sm"
+                [routerLink]="['/banks', 'login']">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
         </div>
     </div>
 </div>
