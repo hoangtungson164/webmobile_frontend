@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    async checkValidNiceSS(buttonOpenMessageCheckPhone: HTMLButtonElement, modalNotifyFinishProcess: HTMLButtonElement) {
+    async checkValidNiceSS(buttonOpenMessageCheckPhone: HTMLButtonElement, modalNotifyFinishProcess: HTMLButtonElement, modalNotifyOutOfTimelogin: HTMLButtonElement) {
          this.listCheckPhoneAndCustCdDone = null;
          const listNiceSs: string[] = [];
          this.checkNumberPhone().then(res => {
@@ -119,7 +119,16 @@ export class LoginComponent implements OnInit {
                                  this.router.navigateByUrl('/banks/inquiryReport');
                                  console.log('listValidNicess in store: ', this.dataStorageService.getListNiceSsKey());
                              } else {
-                                 modalNotifyFinishProcess.click();
+                                this.userService.getRspCodeAndTryCountAfterUpdateIDPW(form).subscribe(
+                                     next => {
+                                         if ( next[0].TRY_COUNT >= 13 && next[0].RSP_CD != 'P000' ) {
+                                             modalNotifyOutOfTimelogin.click();
+                                             console.log('aaaa');
+                                         } else if (next[0].RSP_CD === 'P000') {
+                                             modalNotifyFinishProcess.click();
+                                         }
+                                     }
+                                 );
                              }
                          }
                      );
