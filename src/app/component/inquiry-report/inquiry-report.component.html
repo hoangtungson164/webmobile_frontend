@@ -1,6 +1,6 @@
 <div class="container" *ngIf="LANGUAGE && LANGUAGE == 'vi' || LANGUAGE == 'en'">
     <div class="body-title row">
-        <button class="btn btn-outline-primary back col-1" [routerLink]="['/banks','login']"><i class="fas fa-arrow-left"></i>
+        <button *ngIf="!isSubmit" class="btn btn-outline-primary back col-1" [routerLink]="['/banks','login']"><i class="fas fa-arrow-left"></i>
         </button>
         <div class="body-title col-10">{{"Inquiry Report" | translate}}</div>
     </div>
@@ -26,11 +26,17 @@
         </table>
     </div>
     <hr>
-<div class="btn btn-group col-12" *ngIf="checkToSubmit()">
-    <button type="button" class="btn btn-outline-primary" (click)="onSubmit(modalNotify)">{{"Submit" | translate}}</button>
-    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#deleteModal">{{"Exit" | translate}}</button>
-</div>
-
+    <div class="btn btn-group col-12" *ngIf="checkToSubmit() && !isSubmit">
+        <button type="button" class="btn btn-outline-primary"
+                (click)="onSubmit(modalNotify, modalNotifyLoginFail,modalNotifyOutTimeLogin)">{{"Submit" | translate}}</button>
+        <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
+                data-target="#deleteModal">{{"Exit" | translate}}</button>
+    </div>
+    <div *ngIf="isSubmit" class="text-center">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
     <div class="modal" id="deleteModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -62,11 +68,49 @@
             <div class="modal-header">
                 <h5 class="modal-title">{{'Notify' | translate}}</h5>
             </div>
-            <div class="modal-body">
+            <div *ngIf="!isSubmit" class="modal-body">
                 <p class="text-center text-success">{{"Send information successful" | translate}}!</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"  (click)="clearAllData()" data-dismiss="modal">{{"Exit" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<button #modalNotifyLoginFail hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModa2l"></button>
+
+<div class="modal fade" id="NotifyModa2l" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{'Notify' | translate}}</h5>
+            </div>
+            <div class="modal-body">
+                <p class="text-center text-success">{{'Invalid Login ID/PW. Go back to "Login information" screen and Input correct ID/PW' | translate}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  [routerLink]="['/banks','login']" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<button #modalNotifyOutTimeLogin hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModa22l"></button>
+
+<div class="modal fade" id="NotifyModa22l" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{'Notify' | translate}}</h5>
+            </div>
+            <div class="modal-body">
+                <p class="text-center text-success">{{'Can\'t access to CIC mobile app now. Please try again later' | translate}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="clearAllData()"  data-dismiss="modal">OK</button>
             </div>
         </div>
     </div>

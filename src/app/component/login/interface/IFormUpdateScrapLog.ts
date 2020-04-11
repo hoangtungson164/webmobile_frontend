@@ -1,6 +1,9 @@
 export interface IFormUpdateScrapLog {
-    niceSsKey: [];
+    niceSsKey: string;
     loginID: string;
     loginPW: string;
     nationID: string;
+    tryCount: number;
+    rspCode: string;
+    scrapModCd: string;
 }

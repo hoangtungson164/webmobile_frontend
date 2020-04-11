@@ -56,4 +56,14 @@ export class UserService {
           )
       );
   }
+
+  getRspCodeAndTryCountAfterUpdateIDPW(form: IFormRqCheckNiceSs): Observable<IResultCheckNiceSS[]>  {
+      return this.http.post<IResultCheckNiceSS[]>(apiUrl + '/getRspCodeAndTryCountAfterUpdateIDPW', form).pipe(
+          tap(result => {
+              console.log('RspTryCount:' , result);
+          }, e => {
+              console.log(e);
+          })
+      );
+  }
 }

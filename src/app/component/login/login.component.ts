@@ -115,6 +115,7 @@ export class LoginComponent implements OnInit {
                              if (result[0]) {
                                  this.listValidNiceSS = result;
                                  this.dataStorageService.saveListNiceSsKey(this.listValidNiceSS);
+                                 console.log('listValidNicess =>>: ' + this.listValidNiceSS[0] , this.listValidNiceSS[1]  );
                                  this.router.navigateByUrl('/banks/inquiryReport');
                                  console.log('listValidNicess in store: ', this.dataStorageService.getListNiceSsKey());
                              } else {

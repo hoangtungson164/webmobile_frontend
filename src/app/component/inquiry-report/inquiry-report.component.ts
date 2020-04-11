@@ -7,13 +7,18 @@ import {UserService} from '../login/service/user-service.service';
 import {IUser} from '../login/interface/i-user';
 import {TranslateService} from '@ngx-translate/core';
 import {IFormUpdateScrapLog} from '../login/interface/IFormUpdateScrapLog';
+import {IResultCheckNiceSS} from '../login/interface/IResultCheckNiceSS';
+import {IFormRqCheckNiceSs} from '../login/interface/IFormRqCheckNiceSs';
+import {environment} from '../../../environments/environment.prod';
 
+const evi = environment;
 @Component({
     selector: 'app-report',
     templateUrl: './inquiry-report.component.html',
     styleUrls: ['./inquiry-report.component.css'],
     encapsulation: ViewEncapsulation.None,
 })
+
 export class InquiryReportComponent implements OnInit {
 
     id: string;
@@ -23,6 +28,9 @@ export class InquiryReportComponent implements OnInit {
     info: IInfo;
     user: IUser;
     LANGUAGE: string;
+    listValidNiceSS: IResultCheckNiceSS[];
+    listNice: string[] = [];
+    isSubmit: boolean;
 
 
     constructor(
@@ -33,6 +41,7 @@ export class InquiryReportComponent implements OnInit {
         private router: Router,
         private translate: TranslateService,
     ) {
+        this.listValidNiceSS = this.dataStorageService.getListNiceSsKey();
         this.LANGUAGE = this.dataStorageService.getLanguage();
         if (this.LANGUAGE) {
             this.translate.use(this.LANGUAGE);
@@ -40,6 +49,7 @@ export class InquiryReportComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.isSubmit = false;
         this.report = this.dataStorageService.getReportName();
         this.checkDone();
     }
@@ -60,35 +70,65 @@ export class InquiryReportComponent implements OnInit {
         return this.check && this.result === 'Done' || this.check && this.result === 'Hoàn Thành';
     }
 
-    onSubmit(modalNotify: HTMLButtonElement) {
-        this.updateLoginIdAndLoginPwAndNationId(modalNotify);
+    onSubmit(modalNotify: HTMLButtonElement, modalNotifyLoginFail: HTMLButtonElement, modalNotifyOutTimeLogin: HTMLButtonElement) {
+        this.updateLoginIdAndLoginPwAndNationId(modalNotify, modalNotifyLoginFail, modalNotifyOutTimeLogin);
     }
 
-    updateLoginIdAndLoginPwAndNationId(modalNotify: HTMLButtonElement) {
-            if (this.dataStorageService.getUserId()
-                && this.dataStorageService.getNationalId()
-                && this.dataStorageService.getPassword()
-                && this.dataStorageService.getListNiceSsKey()) {
+    updateLoginIdAndLoginPwAndNationId(modalNotify: HTMLButtonElement, modalNotifyLoginFail: HTMLButtonElement, modalNotifyOutTimeLogin: HTMLButtonElement) {
+        if (this.dataStorageService.getUserId()
+            && this.dataStorageService.getNationalId()
+            && this.dataStorageService.getPassword()
+            && this.dataStorageService.getListNiceSsKey()) {
+            this.isSubmit = true;
+            const NationalId = this.dataStorageService.getNationalId();
+            const password = this.dataStorageService.getPassword();
+            const userId = this.dataStorageService.getUserId();
+            for (let index = 0 ; index < this.listValidNiceSS.length ; index++) {
+                this.listNice.push(this.listValidNiceSS[index].NICE_SSIN_ID);
                 const form: IFormUpdateScrapLog = {
-                    niceSsKey: this.dataStorageService.getListNiceSsKey(),
-                    loginID: this.dataStorageService.getUserId(),
-                    loginPW: this.dataStorageService.getPassword(),
-                    nationID: this.dataStorageService.getNationalId()
+                    niceSsKey: this.listValidNiceSS[index].NICE_SSIN_ID,
+                    loginID: userId,
+                    loginPW: password,
+                    nationID: NationalId,
+                    rspCode: this.listValidNiceSS[index].RSP_CD,
+                    tryCount: this.listValidNiceSS[index].TRY_COUNT,
+                    scrapModCd: this.listValidNiceSS[index].SCRP_MOD_CD
                 };
-                console.log(form);
-                this.userService.updateIdPwNationIDToScrapLog(form).subscribe(
-                    result => {
-                        if (result.rowsAffected) {
-                            console.log('Done save DB');
-                            modalNotify.click();
-                        }
-                    }, error => {
-                        alert(error);
-                    }
-                );
+                this.userService.updateIdPwNationIDToScrapLog(form).subscribe();
+                if (index + 1 === this.listValidNiceSS.length ) {
+                    this.checkRspCodeAndTryCountAfterUpdateIDPW(this.listNice, modalNotifyLoginFail, modalNotify, modalNotifyOutTimeLogin);
+                }
             }
+        }
     }
 
+    checkRspCodeAndTryCountAfterUpdateIDPW(listNice: string[], modalNotifyLoginFail: HTMLButtonElement, modalNotify: HTMLButtonElement, modalNotifyOutTimeLogin: HTMLButtonElement) {
+        const service = this.userService;
+        const localStorageSV = this.dataStorageService;
+        const form: IFormRqCheckNiceSs = {
+          listNiceSskey: listNice
+        };
+        setTimeout(function() {
+            service.getRspCodeAndTryCountAfterUpdateIDPW(form).subscribe(
+                result => {
+                    if (result[0]) {
+                        for (let index = 0 ; index < result.length ; index++) {
+                            if ((result[index].RSP_CD == 'F028' || !result[index].RSP_CD) && result[index].TRY_COUNT <= 12 ) {
+                               return modalNotifyLoginFail.click();
+                            } else if (result[index].RSP_CD == 'P000') {
+                                return modalNotify.click();
+                            } else {
+                                return modalNotifyOutTimeLogin.click();
+                            }
+
+                        }
+                     }
+                }
+            );
+        }, evi.WaitTime);
+    }
+    // localStorageSV.saveListNiceSsKey(result);
+    // console.log('listSSafterUpdateIDPW: ' + localStorageSV.getListNiceSsKey());
     // ------------------ save individual info to database--------------------------------------
     // saveInfo() {
     //     this.info = new IInfo(
