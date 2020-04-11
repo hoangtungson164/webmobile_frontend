@@ -56,6 +56,8 @@
   "Fail": "Fail",
   "Send information successful": "Send information successfully",
   "You ready uploaded information, please wait for result": "You ready uploaded information, please wait for result",
-  "Your CIC information has result, please check on CIC app!": "Your CIC information has result, please check on CIC app!"
+  "Your CIC information has result, please check on CIC app!": "Your CIC information has result, please check on CIC app!",
+  "Invalid Login ID/PW. Go back to \"Login information\" screen and Input correct ID/PW": "Invalid Login ID/PW. Go back to \"Login information\" screen and Input correct ID/PW",
+  "Can't access to CIC mobile app now. Please try again later": "Can't access to CIC mobile app now. Please try again later"
 
 }

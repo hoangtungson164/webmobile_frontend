@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {environment} from '../../../environments/environment.prod';
 
+const evi = environment;
 @Component({
   selector: 'app-redirect-backend',
   templateUrl: './redirect-backend.component.html',
@@ -14,10 +16,10 @@ export class RedirectBackendComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // window.location.href = 'https://192.168.22.179:3201/';
-    // window.location.href = 'https://localhost:3201/';
-    // window.location.href = 'https://103.112.124.153:3201/';
-    window.location.href = 'https://103.112.124.129:3200/';
+    // window.location.href = evi.serverDEV;
+    window.location.href = evi.local;
+    // window.location.href = evi.testingSV;
+    // window.location.href = evi.prodSV;
   }
 
 }
