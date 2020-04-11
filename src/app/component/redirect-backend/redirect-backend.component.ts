@@ -17,9 +17,9 @@ export class RedirectBackendComponent implements OnInit {
 
   ngOnInit() {
     // window.location.href = evi.serverDEV;
-    window.location.href = evi.local;
+    // window.location.href = evi.local;
     // window.location.href = evi.testingSV;
-    // window.location.href = evi.prodSV;
+    window.location.href = evi.prodSV;
   }
 
 }
