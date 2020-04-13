@@ -6,7 +6,7 @@
   "National ID": "National ID",
   "CIC Credit Report": "CIC Credit Report",
   "Sending Data": "Sending Data",
-  "Date of Birth" : "Date of birth",
+  "Date of Birth": "Date of birth",
   "Address": "Address",
   "Phone Number": "Phone number",
   "Credit score": "Credit score",
@@ -59,6 +59,6 @@
   "Your CIC information has result, please check on CIC app!": "Send information successfully",
   "Invalid Login ID/PW. Go back to \"Login information\" screen and Input correct ID/PW": "Invalid Login ID/PW. Go back to \"Login information\" screen and Input correct ID/PW",
   "Can't access to CIC mobile app now. Please try again later": "Can't access to CIC mobile app now. Please try again later",
-  "Invalid Login ID/PW. Please check your login information and try again.": "Invalid Login ID/PW. Please check your login information and try again."
-
+  "Invalid Login ID/PW. Please check your login information and try again.": "Invalid Login ID/PW. Please check your login information and try again.",
+  "In progress, please wait": "In progress, please wait!"
 }
