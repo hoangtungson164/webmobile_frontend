@@ -59,5 +59,6 @@
   "Your CIC information has result, please check on CIC app!": "Gửi thông tin đi thành công",
   "Invalid Login ID/PW. Go back to \"Login information\" screen and Input correct ID/PW": "ID/ mật khẩu đăng nhập không hợp lệ. Vui lòng quay lại màn hình \"Thông tin đăng nhập\" và Nhập ID / mật khẩu chính xác.",
   "Can't access to CIC mobile app now. Please try again later": "Không thể truy cập ứng dụng CIC. Vui lòng thử lại sau.",
-  "Invalid Login ID/PW. Please check your login information and try again.": "ID/ mật khẩu đăng nhập không hợp lệ. Vui lòng kiểm tra thông tin đăng nhập của bạn và thử lại."
+  "Invalid Login ID/PW. Please check your login information and try again.": "ID/ mật khẩu đăng nhập không hợp lệ. Vui lòng kiểm tra thông tin đăng nhập của bạn và thử lại.",
+  "In progress, please wait!": "Đang xử lý yêu cầu, xin vui lòng chờ!"
 }
