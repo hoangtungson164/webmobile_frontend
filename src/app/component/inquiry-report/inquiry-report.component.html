@@ -33,9 +33,10 @@
                 data-target="#deleteModal">{{"Exit" | translate}}</button>
     </div>
     <div *ngIf="isSubmit" class="text-center">
-        <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+        <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border" role="status" aria-hidden="true"></span>
+            <h6>In progress, please wait!</h6>
+        </button>
     </div>
     <div class="modal" id="deleteModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
