@@ -37,6 +37,7 @@
         <div class="col-4">
             <svg viewBox="0, 0, 100, 100">
                 <circle
+                        transform="rotate(-90 50 50)"
                         class="progress-circle"
                         stroke-width="6"
                         [style.strokeDasharray]="circumference"
@@ -78,7 +79,7 @@
 
 
 
-<button #modalNotify hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModal"></button>
+<button #modalNotify (click)="setValueWhenDoneWait()"  hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModal"></button>
 
 <div class="modal fade" id="NotifyModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -97,7 +98,7 @@
 </div>
 
 
-<button #modalNotifyLoginFail hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModa2l"></button>
+<button #modalNotifyLoginFail (click)="setValueWhenDoneWait()"  hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModa2l"></button>
 
 <div class="modal fade" id="NotifyModa2l" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -116,7 +117,7 @@
 </div>
 
 
-<button #modalNotifyOutTimeLogin hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModa22l"></button>
+<button #modalNotifyOutTimeLogin (click)="setValueWhenDoneWait()" hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModa22l"></button>
 
 <div class="modal fade" id="NotifyModa22l" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

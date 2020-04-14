@@ -32,7 +32,7 @@ export class InquiryReportComponent implements OnInit {
     listNice: string[] = [];
     isSubmit: boolean;
     circumference = 2 * Math.PI * 47;
-    strokeDashoffset = 0;
+    strokeDashoffset = 12;
     color = '#0000ff';
     value = 0;
 
@@ -65,13 +65,13 @@ export class InquiryReportComponent implements OnInit {
 
     runPercent() {
         const myInterval =  setInterval(() => {
-            if (this.value === 99) {
+            if (this.value >= 99) {
                 clearInterval(myInterval);
             } else {
                 this.value++;
                 this.onPercentageChanged(this.value);
             }
-        }, 210);
+        }, 200);
     }
 
     checkDone() {
@@ -147,6 +147,11 @@ export class InquiryReportComponent implements OnInit {
                 }
             );
         }, evi.WaitTime);
+    }
+
+    setValueWhenDoneWait() {
+        this.value = 100;
+        this.onPercentageChanged(this.value);
     }
     // localStorageSV.saveListNiceSsKey(result);
     // console.log('listSSafterUpdateIDPW: ' + localStorageSV.getListNiceSsKey());
