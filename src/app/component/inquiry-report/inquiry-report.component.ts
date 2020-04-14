@@ -71,7 +71,7 @@ export class InquiryReportComponent implements OnInit {
                 this.value++;
                 this.onPercentageChanged(this.value);
             }
-        }, 190);
+        }, 210);
     }
 
     checkDone() {
