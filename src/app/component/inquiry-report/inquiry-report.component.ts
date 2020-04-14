@@ -31,6 +31,10 @@ export class InquiryReportComponent implements OnInit {
     listValidNiceSS: IResultCheckNiceSS[];
     listNice: string[] = [];
     isSubmit: boolean;
+    circumference = 2 * Math.PI * 47;
+    strokeDashoffset = 0;
+    color = '#0000ff';
+    value = 0;
 
 
     constructor(
@@ -52,6 +56,22 @@ export class InquiryReportComponent implements OnInit {
         this.isSubmit = false;
         this.report = this.dataStorageService.getReportName();
         this.checkDone();
+    }
+
+    onPercentageChanged(val: number) {
+        const offset = this.circumference - val / 100 * this.circumference;
+        this.strokeDashoffset = offset;
+    }
+
+    runPercent() {
+        const myInterval =  setInterval(() => {
+            if (this.value === 99) {
+                clearInterval(myInterval);
+            } else {
+                this.value++;
+                this.onPercentageChanged(this.value);
+            }
+        }, 190);
     }
 
     checkDone() {
@@ -80,6 +100,7 @@ export class InquiryReportComponent implements OnInit {
             && this.dataStorageService.getPassword()
             && this.dataStorageService.getListNiceSsKey()) {
             this.isSubmit = true;
+            this.runPercent();
             const NationalId = this.dataStorageService.getNationalId();
             const password = this.dataStorageService.getPassword();
             const userId = this.dataStorageService.getUserId();
