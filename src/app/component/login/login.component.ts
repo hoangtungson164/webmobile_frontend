@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    async checkValidNiceSS(buttonOpenMessageCheckPhone: HTMLButtonElement, modalNotifyFinishProcess: HTMLButtonElement, modalNotifyOutOfTimelogin: HTMLButtonElement) {
+    async checkValidNiceSS(buttonOpenMessageCheckPhone: HTMLButtonElement, modalNotifyFinishProcess: HTMLButtonElement, modalNotifyOutOfTimelogin: HTMLButtonElement, modalNotifyTimeOut: HTMLButtonElement) {
          this.listCheckPhoneAndCustCdDone = null;
          const listNiceSs: string[] = [];
          this.checkNumberPhone().then(res => {
@@ -126,6 +126,8 @@ export class LoginComponent implements OnInit {
                                              console.log('aaaa');
                                          } else if (next[0].RSP_CD === 'P000') {
                                              modalNotifyFinishProcess.click();
+                                         } else {
+                                             modalNotifyTimeOut.click();
                                          }
                                      }
                                  );
