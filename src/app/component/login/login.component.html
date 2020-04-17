@@ -79,7 +79,7 @@
             <button *ngIf="check && !f.username.errors && !f.password.errors && !f.confirmPassword.errors" class="btn btn-primary btn-sm" [routerLink]="['/banks', id, 'consensus']"><i class="fas fa-caret-left"> {{"Back" | translate}}</i></button>
         </div>
         <div class="col-6 text-left">
-            <button *ngIf="check && !f.username.errors && !f.password.errors && !f.confirmPassword.errors" class="btn btn-primary btn-sm" (click)="checkValidNiceSS(buttonOpenMessageCheckPhone,modalNotifyFinishProcess,modalNotifyOutOfTimelogin)">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
+            <button *ngIf="check && !f.username.errors && !f.password.errors && !f.confirmPassword.errors" class="btn btn-primary btn-sm" (click)="checkValidNiceSS(buttonOpenMessageCheckPhone,modalNotifyFinishProcess,modalNotifyOutOfTimelogin,modalNotifyTimeOut)">{{"Next" | translate}} <i class="fas fa-caret-right"></i></button>
         </div>
     </div>
 </div>
@@ -142,7 +142,26 @@
                 <h5 class="modal-title">{{'Notify' | translate}}</h5>
             </div>
             <div class="modal-body">
-                <p class="text-center text-success">{{"Invalid Login ID/PW. Please check your login information and try again." | translate}}</p>
+                <p class="text-center text-success">{{"Can't access to CIC mobile app now. Please try again later" | translate}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  (click)="clearAllData()" data-dismiss="modal">{{"Exit" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<button #modalNotifyTimeOut hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#modalNotifyTimeOut"></button>
+
+<div class="modal fade" id="modalNotifyTimeOut" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{'Notify' | translate}}</h5>
+            </div>
+            <div class="modal-body">
+                <p class="text-center text-success">{{"Can't access to CIC mobile app now. Please try again later" | translate}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"  (click)="clearAllData()" data-dismiss="modal">{{"Exit" | translate}}</button>

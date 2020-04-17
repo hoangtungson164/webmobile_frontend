@@ -12,7 +12,7 @@
   "Credit score": "Credit score",
   "Credit grade": "Credit grade",
   "Next": "Next",
-  "Sending information follow": "Sending information follow",
+  "Sending information follow": "Sending following information",
   "full_name is required": "Input your name!",
   "this is not a person's name": "Invalid name, check your name!",
   "Enter your full name": "Enter your full name",
@@ -21,11 +21,11 @@
   "Consent of data collection": "Consent of data collection",
   "Consent of data using": "Consent of data using",
   "Consent of data providing": "Consent of data providing",
-  "I agree with all the above": "I agree with all the above",
+  "I agree with all the above": "I agree with all the above consent",
   "Login information": "Login information",
   "PW": "Password",
   "PW(confirm)": "Confirm Password",
-  "Inquiry Report": "Inquiry Report",
+  "Inquiry Report": "Inquiry Result",
   "Target Information": "Target Information",
   "Result": "Result",
   "Delete all data": "Delete all data",
@@ -60,5 +60,6 @@
   "Invalid Login ID/PW. Go back to \"Login information\" screen and Input correct ID/PW": "Invalid Login ID/PW. Go back to \"Login information\" screen and Input correct ID/PW",
   "Can't access to CIC mobile app now. Please try again later": "Can't access to CIC mobile app now. Please try again later",
   "Invalid Login ID/PW. Please check your login information and try again.": "Invalid Login ID/PW. Please check your login information and try again.",
-  "In progress, please wait!": "In progress, please wait!"
+  "In progress, please wait!": "In progress, please wait!",
+  "Timeout on internal processing, please try again": "Timeout on internal processing, please try again!"
 }

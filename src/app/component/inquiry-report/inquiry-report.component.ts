@@ -90,11 +90,11 @@ export class InquiryReportComponent implements OnInit {
         return this.check && this.result === 'Done' || this.check && this.result === 'Hoàn Thành';
     }
 
-    onSubmit(modalNotify: HTMLButtonElement, modalNotifyLoginFail: HTMLButtonElement, modalNotifyOutTimeLogin: HTMLButtonElement) {
-        this.updateLoginIdAndLoginPwAndNationId(modalNotify, modalNotifyLoginFail, modalNotifyOutTimeLogin);
+    onSubmit(modalNotify: HTMLButtonElement, modalNotifyLoginFail: HTMLButtonElement, modalCanNotAccess: HTMLButtonElement) {
+        this.updateLoginIdAndLoginPwAndNationId(modalNotify, modalNotifyLoginFail, modalCanNotAccess);
     }
 
-    updateLoginIdAndLoginPwAndNationId(modalNotify: HTMLButtonElement, modalNotifyLoginFail: HTMLButtonElement, modalNotifyOutTimeLogin: HTMLButtonElement) {
+    updateLoginIdAndLoginPwAndNationId(modalNotify: HTMLButtonElement, modalNotifyLoginFail: HTMLButtonElement, modalCanNotAccess: HTMLButtonElement) {
         if (this.dataStorageService.getUserId()
             && this.dataStorageService.getNationalId()
             && this.dataStorageService.getPassword()
@@ -117,13 +117,13 @@ export class InquiryReportComponent implements OnInit {
                 };
                 this.userService.updateIdPwNationIDToScrapLog(form).subscribe();
                 if (index + 1 === this.listValidNiceSS.length ) {
-                    this.checkRspCodeAndTryCountAfterUpdateIDPW(this.listNice, modalNotifyLoginFail, modalNotify, modalNotifyOutTimeLogin);
+                    this.checkRspCodeAndTryCountAfterUpdateIDPW(this.listNice, modalNotifyLoginFail, modalNotify, modalCanNotAccess);
                 }
             }
         }
     }
 
-    checkRspCodeAndTryCountAfterUpdateIDPW(listNice: string[], modalNotifyLoginFail: HTMLButtonElement, modalNotify: HTMLButtonElement, modalNotifyOutTimeLogin: HTMLButtonElement) {
+    checkRspCodeAndTryCountAfterUpdateIDPW(listNice: string[], modalNotifyLoginFail: HTMLButtonElement, modalNotify: HTMLButtonElement, modalCanNotAccess: HTMLButtonElement) {
         const service = this.userService;
         const localStorageSV = this.dataStorageService;
         const form: IFormRqCheckNiceSs = {
@@ -139,7 +139,7 @@ export class InquiryReportComponent implements OnInit {
                             } else if (result[index].RSP_CD == 'P000') {
                                 return modalNotify.click();
                             } else {
-                                return modalNotifyOutTimeLogin.click();
+                                return modalCanNotAccess.click();
                             }
 
                         }

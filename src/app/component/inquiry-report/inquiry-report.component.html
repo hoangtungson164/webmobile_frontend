@@ -28,7 +28,7 @@
     <hr>
     <div class="btn btn-group col-12" *ngIf="checkToSubmit() && !isSubmit">
         <button type="button" class="btn btn-outline-primary"
-                (click)="onSubmit(modalNotify, modalNotifyLoginFail,modalNotifyOutTimeLogin)">{{"Submit" | translate}}</button>
+                (click)="onSubmit(modalNotify, modalNotifyLoginFail,modalCanNotAccess)">{{"Submit" | translate}}</button>
         <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
                 data-target="#deleteModal">{{"Exit" | translate}}</button>
     </div>
@@ -117,7 +117,7 @@
 </div>
 
 
-<button #modalNotifyOutTimeLogin (click)="setValueWhenDoneWait()" hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModa22l"></button>
+<button #modalCanNotAccess (click)="setValueWhenDoneWait()" hidden data-backdrop="static"  type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#NotifyModa22l"></button>
 
 <div class="modal fade" id="NotifyModa22l" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -126,7 +126,7 @@
                 <h5 class="modal-title">{{'Notify' | translate}}</h5>
             </div>
             <div class="modal-body">
-                <p class="text-center text-success">{{'Can\'t access to CIC mobile app now. Please try again later' | translate}}</p>
+                <p class="text-center text-success">{{'Timeout on internal processing, please try again' | translate}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="clearAllData()"  data-dismiss="modal">OK</button>

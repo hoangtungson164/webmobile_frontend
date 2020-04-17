@@ -13,7 +13,7 @@
   "Credit grade": "Hạng tín dụng",
   "Next": "Tiếp Tục ",
   "Back": "Trở Lại",
-  "Sending information follow": "Những thông tin sau sẽ được gửi kèm",
+  "Sending information follow": "Gửi các thông tin sau",
   "full_name is required": "Họ và Tên không được để trống!",
   "this is not a person's name": "Họ và Tên không hợp lệ!",
   "Enter your full name": "Vui lòng nhập vào Họ và Tên",
@@ -60,5 +60,6 @@
   "Invalid Login ID/PW. Go back to \"Login information\" screen and Input correct ID/PW": "ID/ mật khẩu đăng nhập không hợp lệ. Vui lòng quay lại màn hình \"Thông tin đăng nhập\" và Nhập ID / mật khẩu chính xác.",
   "Can't access to CIC mobile app now. Please try again later": "Không thể truy cập ứng dụng CIC. Vui lòng thử lại sau.",
   "Invalid Login ID/PW. Please check your login information and try again.": "ID/ mật khẩu đăng nhập không hợp lệ. Vui lòng kiểm tra thông tin đăng nhập của bạn và thử lại.",
-  "In progress, please wait!": "Đang xử lý yêu cầu, xin vui lòng chờ!"
+  "In progress, please wait!": "Đang xử lý yêu cầu, xin vui lòng chờ!",
+  "Timeout on internal processing, please try again": "Lỗi trong quá trình xử lý. Vui lòng thử lại sau!"
 }
