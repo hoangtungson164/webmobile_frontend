@@ -61,5 +61,5 @@
   "Can't access to CIC mobile app now. Please try again later": "Không thể truy cập ứng dụng CIC. Vui lòng thử lại sau.",
   "Invalid Login ID/PW. Please check your login information and try again.": "ID/ mật khẩu đăng nhập không hợp lệ. Vui lòng kiểm tra thông tin đăng nhập của bạn và thử lại.",
   "In progress, please wait!": "Đang xử lý yêu cầu, xin vui lòng chờ!",
-  "Timeout on internal processing, please try again": "Lỗi trong quá trình xử lý. Vui lòng thử lại sau!"
+  "Timeout on internal processing, please try again": "Thời gian xử lý nội bộ quá dài, vui lòng thử lại"
 }
