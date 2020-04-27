@@ -1,15 +1,16 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {DataStorageService} from '../../storage/data-storage.service';
-import {IInfo} from '../information/interface/i-info';
-import {IndiService} from '../information/service/indi.service';
-import {UserService} from '../login/service/user-service.service';
-import {IUser} from '../login/interface/i-user';
-import {TranslateService} from '@ngx-translate/core';
-import {IFormUpdateScrapLog} from '../login/interface/IFormUpdateScrapLog';
-import {IResultCheckNiceSS} from '../login/interface/IResultCheckNiceSS';
-import {IFormRqCheckNiceSs} from '../login/interface/IFormRqCheckNiceSs';
-import {environment} from '../../../environments/environment.prod';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DataStorageService } from '../../storage/data-storage.service';
+import { IInfo } from '../information/interface/i-info';
+import { IndiService } from '../information/service/indi.service';
+import { UserService } from '../login/service/user-service.service';
+import { IUser } from '../login/interface/i-user';
+import { TranslateService } from '@ngx-translate/core';
+import { IFormUpdateScrapLog } from '../login/interface/IFormUpdateScrapLog';
+import { IResultCheckNiceSS } from '../login/interface/IResultCheckNiceSS';
+import { IFormRqCheckNiceSs } from '../login/interface/IFormRqCheckNiceSs';
+import { environment } from '../../../environments/environment.prod';
+import { SocketService } from 'src/app/shared/service/soket.service';
 
 const evi = environment;
 @Component({
@@ -36,7 +37,6 @@ export class InquiryReportComponent implements OnInit {
     color = '#0000ff';
     value = 0;
 
-
     constructor(
         private route: ActivatedRoute,
         private userService: UserService,
@@ -44,6 +44,7 @@ export class InquiryReportComponent implements OnInit {
         private infoService: IndiService,
         private router: Router,
         private translate: TranslateService,
+        private socketService: SocketService,
     ) {
         this.listValidNiceSS = this.dataStorageService.getListNiceSsKey();
         this.LANGUAGE = this.dataStorageService.getLanguage();
@@ -64,7 +65,7 @@ export class InquiryReportComponent implements OnInit {
     }
 
     runPercent() {
-        const myInterval =  setInterval(() => {
+        const myInterval = setInterval(() => {
             if (this.value >= 99) {
                 clearInterval(myInterval);
             } else {
@@ -104,7 +105,7 @@ export class InquiryReportComponent implements OnInit {
             const NationalId = this.dataStorageService.getNationalId();
             const password = this.dataStorageService.getPassword();
             const userId = this.dataStorageService.getUserId();
-            for (let index = 0 ; index < this.listValidNiceSS.length ; index++) {
+            for (let index = 0; index < this.listValidNiceSS.length; index++) {
                 this.listNice.push(this.listValidNiceSS[index].NICE_SSIN_ID);
                 const form: IFormUpdateScrapLog = {
                     niceSsKey: this.listValidNiceSS[index].NICE_SSIN_ID,
@@ -116,7 +117,7 @@ export class InquiryReportComponent implements OnInit {
                     scrapModCd: this.listValidNiceSS[index].SCRP_MOD_CD
                 };
                 this.userService.updateIdPwNationIDToScrapLog(form).subscribe();
-                if (index + 1 === this.listValidNiceSS.length ) {
+                if (index + 1 === this.listValidNiceSS.length) {
                     this.checkRspCodeAndTryCountAfterUpdateIDPW(this.listNice, modalNotifyLoginFail, modalNotify, modalCanNotAccess);
                 }
             }
@@ -127,15 +128,35 @@ export class InquiryReportComponent implements OnInit {
         const service = this.userService;
         const localStorageSV = this.dataStorageService;
         const form: IFormRqCheckNiceSs = {
-          listNiceSskey: listNice
+            listNiceSskey: listNice
         };
-        setTimeout(function() {
+        this.socketService.getA0001Messages().subscribe((message: boolean) => {
+            if (message = true) {
+                service.getRspCodeAndTryCountAfterUpdateIDPW(form).subscribe(
+                    result => {
+                        if (result[0]) {
+                            for (let index = 0; index < result.length; index++) {
+                                if ((result[index].RSP_CD == 'F028' || !result[index].RSP_CD) && result[index].TRY_COUNT <= 12) {
+                                    return modalNotifyLoginFail.click();
+                                } else if (result[index].RSP_CD == 'P000') {
+                                    return modalNotify.click();
+                                } else {
+                                    return modalCanNotAccess.click();
+                                }
+
+                            }
+                        }
+                    }
+                );
+            }
+        });
+        setTimeout(function () {
             service.getRspCodeAndTryCountAfterUpdateIDPW(form).subscribe(
                 result => {
                     if (result[0]) {
-                        for (let index = 0 ; index < result.length ; index++) {
-                            if ((result[index].RSP_CD == 'F028' || !result[index].RSP_CD) && result[index].TRY_COUNT <= 12 ) {
-                               return modalNotifyLoginFail.click();
+                        for (let index = 0; index < result.length; index++) {
+                            if ((result[index].RSP_CD == 'F028' || !result[index].RSP_CD) && result[index].TRY_COUNT <= 12) {
+                                return modalNotifyLoginFail.click();
                             } else if (result[index].RSP_CD == 'P000') {
                                 return modalNotify.click();
                             } else {
@@ -143,7 +164,7 @@ export class InquiryReportComponent implements OnInit {
                             }
 
                         }
-                     }
+                    }
                 }
             );
         }, evi.WaitTime);
