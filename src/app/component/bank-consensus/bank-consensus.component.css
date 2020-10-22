@@ -36,4 +36,14 @@ hr {
   transform: scale(1.5);
 }
 
+.consent_content {
+  border: 1px solid gray;
+}
+
+.content_scroll {
+  padding-top: 2%;
+  max-height: 300px;
+  overflow-x: scroll;
+}
+
 

@@ -46,7 +46,6 @@ export class BankConsensusComponent implements OnInit {
     ngOnInit() {
         this.nationalId = this.dataStorageService.getNationalId();
         this.fullName = this.dataStorageService.getName();
-        this.getConsensus();
     }
 
     // --------------------------- get all the agreements ----------------------------------
@@ -63,10 +62,6 @@ export class BankConsensusComponent implements OnInit {
     // ---------------------------- go to next page until agree -------------------------------
     agreeWith(e: MatCheckboxChange) {
         this.agreeAll = e.checked;
-        this.isConsentCheckedAll = e.checked;
-        this.isConsentCollectionChecked = e.checked;
-        this.isConsentUsingChecked = e.checked;
-        this.isConsentProvidingChecked = e.checked;
     }
 
     onNext() {
