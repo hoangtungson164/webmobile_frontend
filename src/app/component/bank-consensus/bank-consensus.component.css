@@ -46,4 +46,12 @@ hr {
   overflow-x: scroll;
 }
 
+ol {
+  list-style-type: lower-alpha;
+}
+
+ul {
+  list-style-type: lower-alpha;
+}
+
 
