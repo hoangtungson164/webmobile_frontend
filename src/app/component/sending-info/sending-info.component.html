@@ -11,31 +11,22 @@
 
 <!----------------------------------------- sending info ---------------------------------->
     <div class="accordion" id="accordionExample">
-        <div class="card" *ngFor="let report of reports, index as i">
+        <div class="card">
             <div class="card-header card-check form-inline" >
-                <div *ngIf="report.REPORT_NAME && !report.REPORT_VN_NAME && LANGUAGE == 'vi'" class="form-group col-sm-11 col-10">
-                    <mat-radio-button color="primary"  class="checkbox-consensus" name="radio"
-                                  (click)="checkBox(report.REPORT_CODE, report.REPORT_NAME)"><i style=" margin-left: 10px">{{report.REPORT_NAME}}</i></mat-radio-button>
-                </div>
-                <div *ngIf="report.REPORT_NAME && LANGUAGE == 'en'" class="form-group col-sm-11 col-10">
-                    <mat-radio-button color="primary"  class="checkbox-consensus" name="radio"
-                                      (click)="checkBox(report.REPORT_CODE, report.REPORT_NAME)"><i style=" margin-left: 10px">{{report.REPORT_NAME}}</i></mat-radio-button>
-                </div>
-                <div *ngIf="report.REPORT_VN_NAME && LANGUAGE == 'vi'" class="form-group col-sm-11 col-10">
-                    <mat-radio-button color="primary"  class="checkbox-consensus" name="radio"
-                                      (click)="checkBox(report.REPORT_CODE, report.REPORT_VN_NAME)"><i style=" margin-left: 10px">{{report.REPORT_VN_NAME}}</i></mat-radio-button>
+                <div class="form-group col-sm-11 col-10">
+                    <mat-radio-button color="primary" (click)="checkBox()" class="checkbox-consensus" name="radio"><i style=" margin-left: 10px">{{"CIC_CREDIT_REPORT" | translate}}</i></mat-radio-button>
                 </div>
                 <div class="form-group">
                     <button class="btn drop" type="button" data-toggle="collapse"
-                            [attr.data-target]="'#one' + i"
-                            aria-expanded="true" [attr.aria-controls]="'one' + i"><i class="fas fa-caret-down "></i>
+                            [attr.data-target]="'#one'"
+                            aria-expanded="true" [attr.aria-controls]="'one'"><i class="fas fa-caret-down "></i>
                     </button>
                 </div>
             </div>
-            <div id="one{{i}}" class="collapse show">
+            <div id="one" class="collapse show">
                 <div class="card-body">
                     {{ "Sending information follow" | translate}}
-                    <ul>
+                    <ul style="list-style-type: square;">
                         <li>{{"Name" | translate}}</li>
                         <li>{{"Date of Birth" | translate}}</li>
                         <li>{{"Address" | translate}}</li>

@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
             }, {
             validator: MustMatch('password', 'confirmPassword')
         });
-        this.report = this.dataStorageService.getReportName();
     }
 
     checkBox() {
