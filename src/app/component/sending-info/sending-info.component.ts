@@ -39,7 +39,7 @@ export class SendingInfoComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getAllReport();
+        // this.getAllReport();
         this.removeDisableInput();
     }
 
@@ -56,10 +56,10 @@ export class SendingInfoComponent implements OnInit {
     }
 
     // ------------------------ store the chosen inquiry-report -------------------------------------
-    checkBox(report: string, name: string) {
+    checkBox() {
         this.check = true;
-        this.dataStorageService.saveReportCode(report);
-        this.dataStorageService.saveReportName(name);
+        // this.dataStorageService.saveReportCode(report);
+        // this.dataStorageService.saveReportName(name);
     }
 
     onNext() {
