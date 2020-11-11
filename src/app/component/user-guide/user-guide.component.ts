@@ -26,7 +26,7 @@ export class UserGuideComponent implements OnInit {
       } else {
         window.location.reload();
       }
-    }, 10000);
+    }, 30000);
   }
 
 
