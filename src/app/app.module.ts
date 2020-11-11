@@ -22,6 +22,8 @@ import { RedirectBackendComponent } from './component/redirect-backend/redirect-
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {DatePipe} from '@angular/common';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
+import { UserGuideComponent } from './component/user-guide/user-guide.component';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import {DatePipe} from '@angular/common';
         InformationComponent,
         FooterComponent,
         InquiryReportComponent,
-        RedirectBackendComponent
+        RedirectBackendComponent,
+        UserGuideComponent
     ],
     imports: [
         BrowserModule,
@@ -47,6 +50,7 @@ import {DatePipe} from '@angular/common';
         MatCheckboxModule,
         MatRadioModule,
         MatTableModule,
+        PdfViewerModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

@@ -1,0 +1,19 @@
+<!--<div class="pdf-container">-->
+<!--    <pdf-viewer src="assets/1.pdf"-->
+<!--                [original-size]="false" [zoom-scale]="'page-fit'"  [autoresize]="true" [show-borders]="true"-->
+<!--    ></pdf-viewer>-->
+<!--</div>-->
+<div>
+    <div *ngIf="!isLoading" class="body-title">User Guide Infobox</div>
+    <div *ngIf="isLoading" class="w3-display-middle">
+        <button class="btn btn-outline-primary border-0" type="button" disabled>
+            Loading User Guide&nbsp;
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+    </div>
+</div>
+<!--If change the guide, change it here-->
+<iframe (load)="endLoad()"
+        src="https://docs.google.com/viewerng/viewer?url=https://dev.mobile.infobox.nicegroup.com.vn:4201/assets/1.pdf&embedded=true"
+        frameborder="0" height="100%" width="100%">
+</iframe>
