@@ -23,6 +23,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {DatePipe} from '@angular/common';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
+import { UserGuideComponent } from './component/user-guide/user-guide.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
         FooterComponent,
         InquiryReportComponent,
         RedirectBackendComponent,
+        UserGuideComponent,
     ],
     imports: [
         BrowserModule,
