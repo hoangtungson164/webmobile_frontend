@@ -18,3 +18,9 @@ pdf-viewer {
     text-align: center;
     font-weight: bold;
 }
+
+.content_scroll {
+    padding-top: 2%;
+    max-height: 300px;
+    overflow-x: scroll;
+}
