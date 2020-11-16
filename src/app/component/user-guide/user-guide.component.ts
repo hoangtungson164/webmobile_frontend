@@ -20,7 +20,6 @@ export class UserGuideComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.detectBrowser();
   }
 
   detectBrowser() {
