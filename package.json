@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --ssl --ssl-cert sslcert/cert.pem --ssl-key sslcert/key.pem --host 0.0.0.0 --port 4201 --disable-host-check",
+    "start": "ng serve --ssl --ssl-cert sslcert/STAR_nicegroup_com_vn.crt --ssl-key sslcert/STAR_nicegroup_com_vn.key --host 0.0.0.0 --port 4201 --disable-host-check",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
