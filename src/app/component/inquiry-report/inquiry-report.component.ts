@@ -130,26 +130,26 @@ export class InquiryReportComponent implements OnInit {
         const form: IFormRqCheckNiceSs = {
             listNiceSskey: listNice
         };
-        this.socketService.getA0001Messages().subscribe((message: boolean) => {
-            if (message = true) {
-                service.getRspCodeAndTryCountAfterUpdateIDPW(form).subscribe(
-                    result => {
-                        if (result[0]) {
-                            for (let index = 0; index < result.length; index++) {
-                                if ((result[index].RSP_CD == 'F028' || !result[index].RSP_CD) && result[index].TRY_COUNT <= 12) {
-                                    return modalNotifyLoginFail.click();
-                                } else if (result[index].RSP_CD == 'P000') {
-                                    return modalNotify.click();
-                                } else {
-                                    return modalCanNotAccess.click();
-                                }
-
-                            }
-                        }
-                    }
-                );
-            }
-        });
+        // this.socketService.getA0001Messages().subscribe((message: boolean) => {
+        //     if (message = true) {
+        //         service.getRspCodeAndTryCountAfterUpdateIDPW(form).subscribe(
+        //             result => {
+        //                 if (result[0]) {
+        //                     for (let index = 0; index < result.length; index++) {
+        //                         if ((result[index].RSP_CD == 'F028' || !result[index].RSP_CD) && result[index].TRY_COUNT <= 12) {
+        //                             return modalNotifyLoginFail.click();
+        //                         } else if (result[index].RSP_CD == 'P000') {
+        //                             return modalNotify.click();
+        //                         } else {
+        //                             return modalCanNotAccess.click();
+        //                         }
+        //
+        //                     }
+        //                 }
+        //             }
+        //         );
+        //     }
+        // });
         setTimeout(function () {
             service.getRspCodeAndTryCountAfterUpdateIDPW(form).subscribe(
                 result => {

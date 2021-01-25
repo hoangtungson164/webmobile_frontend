@@ -10,7 +10,7 @@ import {UserGuideComponent} from '../component/user-guide/user-guide.component';
 
 const routes: Routes = [{
   path: '',
-  component: RedirectBackendComponent,
+  component: BankListComponent,
 }, {
   path: 'banks',
   component: BankListComponent,
@@ -29,6 +29,9 @@ const routes: Routes = [{
 }, {
   path: 'user-guide',
   component: UserGuideComponent,
+}, {
+  path: '**',
+  component: UserGuideComponent
 }];
 
 @NgModule({
