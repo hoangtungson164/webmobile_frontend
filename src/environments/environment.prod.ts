@@ -8,7 +8,7 @@ export const environment = {
   WaitTime: 20000,
   serverDEV : 'https://192.168.100.19:3201/',
   local : 'https://localhost:3201/',
-  testingSV : 'https://103.112.124.153:3201/',
+  testingSV : 'https://103.112.124.153:3200/',
   prodSV : 'https://103.112.124.129:3200/',
   URL_SOCKET: 'https://103.112.124.153:3200'
 };
